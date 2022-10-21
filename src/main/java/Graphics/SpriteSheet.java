@@ -1,4 +1,4 @@
-package uet.oop.bomberman.graphics;
+package Graphics;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
