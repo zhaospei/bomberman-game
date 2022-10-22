@@ -16,6 +16,7 @@ public class MainGame extends Application {
     private GraphicsContext graphicsContext;
     private Canvas canvas;
 
+    private final long timePerFrame = 100000000;
     public static long time;
     private long startTime;
 
@@ -39,7 +40,7 @@ public class MainGame extends Application {
             @Override
             public void handle(long currentTime) {
                 graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                time = (long) ((currentTime - startTime)) / 600000000;
+                time = (long) ((currentTime - startTime)) / timePerFrame;
                 System.out.println(time);
                 map.updateMap();
                 map.renderMap(graphicsContext);

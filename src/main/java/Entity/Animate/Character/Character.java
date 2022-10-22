@@ -29,6 +29,7 @@ public abstract class Character extends AnimateEntity {
     }
 
     public void update() {
+        setDirection();
         updateAnimation();
         move();
     }

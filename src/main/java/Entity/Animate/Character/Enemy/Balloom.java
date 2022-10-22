@@ -14,7 +14,6 @@ public class Balloom extends Enemy{
         animation.put(DIRECTION.DESTROYED, Sprite.BALLOOM_DESTROYED);
         currentAnimate = animation.get(DIRECTION.UP);
     }
-
     @Override
     public void setDirection() {
         direction = new RandomPath().getRandomDirection();
