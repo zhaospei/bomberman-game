@@ -13,4 +13,7 @@ public class Bomber extends Character {
     public void update() {
 
     }
+    public void setDirection() {
+
+    }
 }

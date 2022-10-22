@@ -2,11 +2,15 @@ package Entity.Animate.Character;
 
 import Entity.Animate.AnimateEntity;
 import Graphics.Sprite;
+import static Variables.Variables.*;
+
 import static Graphics.Sprite.*;
 
 public abstract class Character extends AnimateEntity {
     protected int velocityX = 0;
     protected int velocityY = 0;
+    protected int defaultVel = 0;
+    protected DIRECTION direction;
 
     public Character(int x, int y, Sprite sprite) {
         super(x, y, sprite);
@@ -29,4 +33,5 @@ public abstract class Character extends AnimateEntity {
         move();
     }
 
+    public abstract void setDirection();
 }
