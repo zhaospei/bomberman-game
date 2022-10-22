@@ -4,6 +4,8 @@ import Entity.Animate.Character.Bomber;
 import Entity.Animate.Character.Character;
 import Entity.Entity;;
 import Entity.Static.StaticEntity;
+import Graphics.Sprite;
+import Input.PlayerInput;
 import Texture.CharacterTexture;
 import Texture.StaticTexture;
 import javafx.scene.canvas.GraphicsContext;
@@ -50,8 +52,10 @@ public class Map {
                 if (character != null) {
                     characters.add(character);
                 }
+                if (c == 'p') player = new Bomber(i, j, Sprite.PLAYER_RIGHT[0], new PlayerInput());
             }
         }
+        characters.add(player);
     }
 
     public void updateMap() {

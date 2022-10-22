@@ -1,5 +1,6 @@
 package Game;
 
+import Input.KeyInput;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -40,8 +41,18 @@ public class MainGame extends Application {
             @Override
             public void handle(long currentTime) {
                 graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                time = (long) ((currentTime - startTime)) / 1000000000 + 1;
+                time = (long) ((currentTime - startTime)) / 600000000 + 1;
                 System.out.println(time);
+                scene.setOnKeyPressed(keyEvent -> {
+                    String code = keyEvent.getCode().toString();
+                    System.out.println(code + "Pressed");
+                    KeyInput.keyInput.put(code, true);
+                });
+                scene.setOnKeyReleased(keyEvent -> {
+                    String code = keyEvent.getCode().toString();
+                    System.out.println(code + "Released");
+                    KeyInput.keyInput.put(code, false);
+                });
                 map.updateMap();
                 map.renderMap(graphicsContext);
             }

@@ -15,6 +15,7 @@ public class Variables {
         LEFT,
         RIGHT,
         DESTROYED,
+        NONE,
     }
 
     public static final String[] MAP_URLS = {
