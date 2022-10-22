@@ -27,6 +27,11 @@ public abstract class Entity {
     public Rectangle2D getBorder() {
         return new Rectangle2D(pixelX, pixelY, SCALED_SIZE, SCALED_SIZE);
     }
+
+    public boolean isCollider(Entity entity) {
+        if (entity == null) return false;
+        return getBorder().intersects(entity.getBorder());
+    }
     public void render(GraphicsContext graphicsContext) {
         graphicsContext.drawImage(image, pixelX, pixelY);
     }

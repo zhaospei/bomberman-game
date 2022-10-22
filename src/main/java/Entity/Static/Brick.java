@@ -1,8 +1,9 @@
-package Entity.Animate;
+package Entity.Static;
 
+import Entity.Animate.AnimateEntity;
 import Graphics.Sprite;
 
-public class Brick extends AnimateEntity{
+public class Brick extends StaticEntity {
     public Brick(int x, int y, Sprite sprite) {
         super(x,y,sprite);
     }
