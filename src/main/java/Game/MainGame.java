@@ -40,7 +40,7 @@ public class MainGame extends Application {
             @Override
             public void handle(long currentTime) {
                 graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                time = (long) ((currentTime - startTime)) / 600000000 + 1;
+                time = (long) ((currentTime - startTime)) / 1000000000 + 1;
                 System.out.println(time);
                 map.updateMap();
                 map.renderMap(graphicsContext);

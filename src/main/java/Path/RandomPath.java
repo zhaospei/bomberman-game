@@ -1,24 +1,24 @@
 package Path;
 
-import Variables.Variables;
+import Variables.Variables.DIRECTION;
 
 import java.util.Random;
-import static Variables.Variables.*;
+import static Variables.Variables.DIRECTION.*;
 
 public class RandomPath implements Path{
     public DIRECTION getRandomDirection() {
         int random = new Random().nextInt(4);
         switch (random) {
             case 0:
-                return DIRECTION.UP;
+                return UP;
             case 1:
-                return DIRECTION.DOWN;
+                return DOWN;
             case 2:
-                return DIRECTION.LEFT;
+                return LEFT;
             case 3:
-                return DIRECTION.RIGHT;
+                return RIGHT;
             default:
-                return DIRECTION.DESTROYED;
+                return DESTROYED;
         }
     }
 }

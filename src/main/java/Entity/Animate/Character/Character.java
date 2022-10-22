@@ -11,6 +11,7 @@ public abstract class Character extends AnimateEntity {
     protected int velocityY = 0;
     protected int defaultVel = 0;
     protected DIRECTION direction;
+    private boolean isCollision = false;
 
     public Character(int x, int y, Sprite sprite) {
         super(x, y, sprite);
@@ -21,6 +22,10 @@ public abstract class Character extends AnimateEntity {
         this.velocityY = velocityY;
     }
 
+    private void collision() {
+        isCollision = false;
+        
+    }
     public void move() {
         pixelX += velocityX;
         pixelY += velocityY;

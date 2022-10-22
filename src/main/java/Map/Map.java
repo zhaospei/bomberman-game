@@ -1,5 +1,6 @@
 package Map;
 
+import Entity.Animate.AnimateEntity;
 import Entity.Entity;;
 import Texture.AnimateTexture;
 import Texture.StaticTexture;
@@ -8,6 +9,8 @@ import javafx.scene.canvas.GraphicsContext;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Map {
@@ -15,8 +18,9 @@ public class Map {
     private int levelNumber;
     private int WIDTH;
     private int HEIGHT;
-    private static Entity[][] staticEntities;
-    private static Entity[][] animateEntities;
+    public static Entity[][] staticEntities;
+
+    public List<Entity> animateEntities = new ArrayList<Entity>();
 
     public static Map getGameMap() {
         if (gameMap == null) {
@@ -27,7 +31,7 @@ public class Map {
 
     private void resetEntities() {
         staticEntities = new Entity[HEIGHT][WIDTH];
-        animateEntities = new Entity[HEIGHT][WIDTH];
+        animateEntities = new ArrayList<Entity>();
     }
 
     public void createMap(String mapPath) throws FileNotFoundException {
@@ -42,37 +46,30 @@ public class Map {
             for (int j = 0; j < WIDTH; j++) {
                 char c = string.charAt(j);
                 staticEntities[i][j] = StaticTexture.getStatic(c, i, j);
-                animateEntities[i][j] = AnimateTexture.getAnimate(c, i, j);
+                Entity animateEntity = AnimateTexture.getAnimate(c, i, j);
+                if (animateEntity != null) {
+                    animateEntities.add(animateEntity);
+                }
             }
         }
     }
 
     public void updateMap() {
-        for (int i = 0; i < HEIGHT; i++) {
-            for (int j = 0; j < WIDTH; j++) {
-                if (animateEntities[i][j] != null) {
-                    animateEntities[i][j].update();
-                }
-            }
-        }
+        animateEntities.forEach(entity -> {
+            entity.update();
+        });
     }
 
     public void renderMap(GraphicsContext graphicsContext) {
         graphicsContext.clearRect(0, 0, WIDTH, HEIGHT);
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
-                if (staticEntities[i][j] != null) {
-                    staticEntities[i][j].render(graphicsContext);
-                }
+                staticEntities[i][j].render(graphicsContext);
             }
         }
-        for (int i = 0; i < HEIGHT; i++) {
-            for (int j = 0; j < WIDTH; j++) {
-                if (animateEntities[i][j] != null) {
-                    animateEntities[i][j].render(graphicsContext);
-                }
-            }
-        }
+        animateEntities.forEach(animateEntity -> {
+            animateEntity.render(graphicsContext);
+        });
     }
 
 }
