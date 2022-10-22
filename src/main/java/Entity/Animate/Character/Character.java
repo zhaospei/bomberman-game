@@ -1,20 +1,35 @@
 package Entity.Animate.Character;
 
 import Entity.Animate.AnimateEntity;
+import Entity.Animate.Character.Enemy.Enemy;
+import Entity.Entity;
+import Entity.Static.Grass;
+import Entity.Static.StaticEntity;
 import Graphics.Sprite;
+import Map.Map;
+
 import static Variables.Variables.*;
 
 import static Graphics.Sprite.*;
 
 public abstract class Character extends AnimateEntity {
-    protected int velocityX = 0;
-    protected int velocityY = 0;
-    protected int defaultVel = 0;
+    protected int velocityX;
+    protected int velocityY;
+    protected int defaultVel;
+    protected int speed;
     protected DIRECTION direction;
-    private boolean isCollision = false;
+    protected boolean isCollision;
+    protected boolean stand;
 
     public Character(int x, int y, Sprite sprite) {
         super(x, y, sprite);
+        gameMap.getCharacters().add(this);
+        defaultVel = 1;
+        velocityX = 0;
+        velocityY = 0;
+        speed = 0;
+        isCollision = false;
+        stand = true;
     }
 
     public void setVelocity(int velocityX, int velocityY) {
@@ -22,10 +37,19 @@ public abstract class Character extends AnimateEntity {
         this.velocityY = velocityY;
     }
 
-    private void collision() {
-        isCollision = false;
-        
+    public int getSpeed() {
+        return speed;
     }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public void addVelocity(int velocityX, int velocityY) {
+        this.velocityX += velocityX;
+        this.velocityY += velocityY;
+    }
+
     public void move() {
         pixelX += velocityX;
         pixelY += velocityY;
@@ -33,10 +57,38 @@ public abstract class Character extends AnimateEntity {
         tileY = pixelY / SCALED_SIZE;
     }
 
+    public void checkCollision() {
+        isCollision = false;
+        pixelX += this.velocityX;
+        pixelY += this.velocityY;
+
+        for (int i = 0; i < HEIGHT; ++i) {
+            for (int j = 0; j < WIDTH; ++j) {
+                Entity entity = gameMap.getTiles()[i][j];
+
+                if (entity.isBlock() && this.isCollider(entity)) {
+                    isCollision = true;
+                }
+            }
+        }
+
+        stand = (velocityX == 0 && velocityY == 0) || isCollision;
+        pixelX -= this.velocityX;
+        pixelY -= this.velocityY;
+    }
+
+    @Override
     public void update() {
-        setDirection();
-        updateAnimation();
-        move();
+        for (int i = 0; i < speed; i++) {
+            setDirection();
+            checkCollision();
+            if (!stand || this instanceof Enemy) {
+                updateAnimation();
+            }
+            if (!isCollision) {
+                move();
+            }
+        }
     }
 
     public abstract void setDirection();

@@ -225,9 +225,7 @@ public class Sprite {
 	}
 
 	public static Sprite movingSprite(Sprite[] sprites, int animate, long time) {
-		int curAnimate = (int) ((time + 3) / 3) % animate;
-		//System.out.println(curAnimate);
-		return sprites[curAnimate];
+		return sprites[(int) ((time + 3) / 3 % animate)];
 	}
 	
 	public int getSize() {
