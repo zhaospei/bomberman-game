@@ -1,50 +1,59 @@
 package GameController;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import static Variables.Variables.*;
 
 public class Bomberman extends Application {
     public static Canvas canvas = new Canvas();
 
     public static GraphicsContext gc = canvas.getGraphicsContext2D();
 
+    private final double FPS = 60.0;
+    private final double timePerFrame = 1000000000.0 / FPS;
+    long lastUpdate = System.currentTimeMillis();
+    int frameRate = 0;
 
+    public static Stage stage;
+
+    private final long[] frameTimes = new long[100];
+    private int frameTimeIndex = 0 ;
+    private boolean arrayFilled = false ;
 
     @Override
     public void start(Stage stage) {
-        stage.setTitle("creating canvas");
+        Label label = new Label();
+        AnimationTimer frameRateMeter = new AnimationTimer() {
 
-        // create a canvas
-        Canvas canvas = new Canvas(100.0f, 100.0f);
+            @Override
+            public void handle(long now) {
+                long oldFrameTime = frameTimes[frameTimeIndex] ;
+                frameTimes[frameTimeIndex] = now ;
+                frameTimeIndex = (frameTimeIndex + 1) % frameTimes.length ;
+                if (frameTimeIndex == 0) {
+                    arrayFilled = true ;
+                }
+                if (arrayFilled) {
+                    long elapsedNanos = now - oldFrameTime ;
+                    long elapsedNanosPerFrame = elapsedNanos / frameTimes.length ;
+                    double frameRate = 1_000_000_000.0 / elapsedNanosPerFrame ;
+                    label.setText(String.format("Current frame rate: %.3f", frameRate));
+                }
+            }
+        };
 
-        // graphics context
-        GraphicsContext graphics_context =
-                canvas.getGraphicsContext2D();
+        frameRateMeter.start();
 
-        // set fill for rectangle
-        graphics_context.setFill(Color.RED);
-        graphics_context.fillRect(20, 20, 70, 70);
-
-        // set fill for oval
-        graphics_context.setFill(Color.BLUE);
-        graphics_context.fillOval(30, 30, 70, 70);
-
-        // create a Group
-        Group group = new Group(canvas);
-
-        // create a scene
-        Scene scene = new Scene(group, 200, 200);
-
-        // set the scene
-        stage.setScene(scene);
-
+        stage.setScene(new Scene(new StackPane(label), 250, 150));
         stage.show();
     }
 
