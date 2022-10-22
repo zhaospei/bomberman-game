@@ -53,7 +53,7 @@ public class Bomberman extends Application {
 
         frameRateMeter.start();
 
-        stage.setScene(new Scene(new StackPane(label), 250, 150));
+        stage.setScene(new Scene(new StackPane(label), 450, 250));
         stage.show();
     }
 
