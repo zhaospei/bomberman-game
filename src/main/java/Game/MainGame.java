@@ -16,6 +16,9 @@ public class MainGame extends Application {
     private GraphicsContext graphicsContext;
     private Canvas canvas;
 
+    public static long time;
+    private long startTime;
+
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle(GAME_TITLE);
@@ -30,12 +33,14 @@ public class MainGame extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+        startTime = System.nanoTime();
         map.createMap(MAP_URLS[0]);
-
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long currentTime) {
-                System.out.println(currentTime);
+                graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                time = (long) ((currentTime - startTime)) / 600000000;
+                System.out.println(time);
                 map.updateMap();
                 map.renderMap(graphicsContext);
             }

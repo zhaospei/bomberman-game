@@ -48,7 +48,13 @@ public class Map {
     }
 
     public void updateMap() {
-
+        for (int i = 0; i < HEIGHT; i++) {
+            for (int j = 0; j < WIDTH; j++) {
+                if (animateEntities[i][j] != null) {
+                    animateEntities[i][j].update();
+                }
+            }
+        }
     }
 
     public void renderMap(GraphicsContext graphicsContext) {
