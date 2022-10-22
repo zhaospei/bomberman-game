@@ -1,35 +1,35 @@
 package Entity;
 
-import Graphics.Sprite;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-
-import static Graphics.Sprite.SCALED_SIZE;
+import Graphics.Sprite;
+import static Graphics.Sprite.*;
 
 public abstract class Entity {
-    protected int tileX, tileY;
-    protected int pixelX, pixelY;
+    public int pixelX;
+    public int pixelY;
+    public int tileX;
+    public int tileY;
+
     protected Sprite sprite;
-    protected Image img;
+    protected Image image;
 
     public Entity(int x, int y, Sprite sprite) {
         this.tileX = x;
         this.tileY = y;
-        this.pixelX = this.tileX * SCALED_SIZE;
-        this.pixelY = this.tileY * SCALED_SIZE;
+        this.pixelX = x * SCALED_SIZE;
+        this.pixelY = y * SCALED_SIZE;
         this.sprite = sprite;
-        this.img = sprite.getFxImage();
+        this.image = sprite.getFxImage();
     }
 
     public Rectangle2D getBorder() {
         return new Rectangle2D(pixelX, pixelY, SCALED_SIZE, SCALED_SIZE);
     }
-
     public void render(GraphicsContext graphicsContext) {
-        graphicsContext.drawImage(img, pixelX, pixelY);
+        graphicsContext.drawImage(image, pixelX, pixelY);
     }
 
-    public abstract void update();
-
+    abstract public void update();
 }
