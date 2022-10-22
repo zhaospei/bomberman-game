@@ -13,7 +13,8 @@ public class Variables {
         UP,
         DOWN,
         LEFT,
-        RIGHT
+        RIGHT,
+        DESTROYED,
     }
 
     public static final String[] MAP_URLS = {

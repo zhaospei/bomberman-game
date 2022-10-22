@@ -31,5 +31,5 @@ public abstract class Entity {
         graphicsContext.drawImage(image, pixelX, pixelY);
     }
 
-    abstract public void update();
+    public abstract void update();
 }

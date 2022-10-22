@@ -1,6 +1,6 @@
 package Texture;
 
-import Entity.Animate.Bomber;
+import Entity.Animate.Character.Bomber;
 import Entity.Animate.Brick;
 import Entity.Entity;
 import Graphics.Sprite;
