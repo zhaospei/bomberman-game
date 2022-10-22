@@ -1,5 +1,6 @@
 package Entity.Animate.Character.Enemy;
 
+import Game.MainGame;
 import Graphics.Sprite;
 import Path.RandomPath;
 import static Variables.Variables.*;
@@ -13,6 +14,7 @@ public class Balloom extends Enemy{
         animation.put(DIRECTION.DOWN, Sprite.BALLOOM_RIGHT);
         animation.put(DIRECTION.DESTROYED, Sprite.BALLOOM_DESTROYED);
         currentAnimate = animation.get(DIRECTION.UP);
+        defaultVel = 2;
     }
     @Override
     public void setDirection() {
@@ -41,4 +43,12 @@ public class Balloom extends Enemy{
             setVelocity(0, 0);
         }
     }
+
+    @Override
+    public void update() {
+        setDirection();
+        updateAnimation();
+        move();
+    }
+
 }

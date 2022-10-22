@@ -64,6 +64,10 @@ public class Map {
                 if (staticEntities[i][j] != null) {
                     staticEntities[i][j].render(graphicsContext);
                 }
+            }
+        }
+        for (int i = 0; i < HEIGHT; i++) {
+            for (int j = 0; j < WIDTH; j++) {
                 if (animateEntities[i][j] != null) {
                     animateEntities[i][j].render(graphicsContext);
                 }

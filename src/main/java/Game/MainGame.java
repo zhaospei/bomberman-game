@@ -16,7 +16,7 @@ public class MainGame extends Application {
     private GraphicsContext graphicsContext;
     private Canvas canvas;
 
-    private final long timePerFrame = 100000000;
+    private final long timePerFrame = 600000000;
     public static long time;
     private long startTime;
 
