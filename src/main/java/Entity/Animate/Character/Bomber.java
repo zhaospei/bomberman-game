@@ -34,7 +34,7 @@ public class Bomber extends Character {
         super.checkCollision();
 
         if (isCollision) {
-            for (int i = -5 - speed; i <= 5 + speed; i++) {
+            for (int i = -8 - speed; i <= 8 + speed; i++) {
                 switch (direction) {
                     case UP, DOWN -> pixelX += i;
                     case LEFT, RIGHT -> pixelY += i;
@@ -59,10 +59,10 @@ public class Bomber extends Character {
         this.setVelocity(0, 0);
         switch (direction) {
             case NONE -> this.setVelocity(0, 0);
-            case LEFT -> this.addVelocity(-defaultVel, 0);
-            case RIGHT -> this.addVelocity(defaultVel, 0);
-            case UP -> this.addVelocity(0, -defaultVel);
-            case DOWN -> this.addVelocity(0, defaultVel);
+            case LEFT -> this.setVelocity(-defaultVel, 0);
+            case RIGHT -> this.setVelocity(defaultVel, 0);
+            case UP -> this.setVelocity(0, -defaultVel);
+            case DOWN -> this.setVelocity(0, defaultVel);
         }
         if (direction != NONE) {
             currentAnimate = animation.get(direction);
