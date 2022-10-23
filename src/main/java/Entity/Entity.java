@@ -36,7 +36,8 @@ public abstract class Entity {
     }
 
     public Rectangle2D getBorder() {
-        return new Rectangle2D(pixelX, pixelY, SCALED_SIZE, SCALED_SIZE);
+
+        return new Rectangle2D(pixelX, pixelY, sprite.getRealHeight(), sprite.getRealWidth());
     }
 
     public boolean isCollider(Entity entity) {

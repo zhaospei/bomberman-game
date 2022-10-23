@@ -209,8 +209,8 @@ public class Sprite {
 		_x = x * SIZE;
 		_y = y * SIZE;
 		_sheet = sheet;
-		_realWidth = rw;
-		_realHeight = rh;
+		_realWidth = rw * 2;
+		_realHeight = rh * 2;
 		load();
 	}
 	
@@ -288,5 +288,13 @@ public class Sprite {
 		}
 
 		return output;
+	}
+
+	public int getRealWidth() {
+		return _realWidth;
+	}
+
+	public int getRealHeight() {
+		return _realHeight;
 	}
 }

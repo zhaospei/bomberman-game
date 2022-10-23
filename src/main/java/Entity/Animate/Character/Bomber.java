@@ -17,9 +17,10 @@ public class Bomber extends Character {
         animation.put(UP, Sprite.PLAYER_UP);
         animation.put(DOWN, Sprite.PLAYER_DOWN);
         animation.put(DESTROYED, Sprite.PLAYER_DESTROYED);
-        currentAnimate = animation.get(RIGHT);
+        currentAnimate = animation.get(DOWN);
         this.keyInput = keyInput;
         this.keyInput.initialization();
+        this.defaultVel = 1;
         this.speed = 1;
     }
 
@@ -31,23 +32,23 @@ public class Bomber extends Character {
         }
 
         super.checkCollision();
-//        if (isCollision) {
-//            for (int i = -8 - speed; i <= 8 + speed; i++) {
-//                switch (direction) {
-//                    case LEFT, RIGHT -> pixelX += i;
-//                    case UP, DOWN -> pixelY += i;
-//                }
-//                super.checkCollision();
-//                if (!isCollision) {
-//                    break;
-//                } else {
-//                    switch (direction) {
-//                        case LEFT, RIGHT -> pixelX -= i;
-//                        case UP, DOWN -> pixelY -=i;
-//                    }
-//                }
-//            }
-//        }
+
+        if (isCollision) {
+            for (int i = -5 - speed; i <= 5 + speed; i++) {
+                switch (direction) {
+                    case UP, DOWN -> pixelX += i;
+                    case LEFT, RIGHT -> pixelY += i;
+                }
+                super.checkCollision();
+                if (!isCollision) {
+                    break;
+                }
+                switch (direction) {
+                    case UP, DOWN -> pixelX -= i;
+                    case LEFT, RIGHT -> pixelY -= i;
+                }
+            }
+        }
         tileX = pixelX / Sprite.SCALED_SIZE;
         tileY = pixelY / Sprite.SCALED_SIZE;
     }
@@ -58,10 +59,10 @@ public class Bomber extends Character {
         this.setVelocity(0, 0);
         switch (direction) {
             case NONE -> this.setVelocity(0, 0);
-            case LEFT -> this.setVelocity(-defaultVel, 0);
-            case RIGHT -> this.setVelocity(defaultVel, 0);
-            case UP -> this.setVelocity(0, -defaultVel);
-            case DOWN -> this.setVelocity(0, defaultVel);
+            case LEFT -> this.addVelocity(-defaultVel, 0);
+            case RIGHT -> this.addVelocity(defaultVel, 0);
+            case UP -> this.addVelocity(0, -defaultVel);
+            case DOWN -> this.addVelocity(0, defaultVel);
         }
         if (direction != NONE) {
             currentAnimate = animation.get(direction);

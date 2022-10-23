@@ -24,7 +24,7 @@ public abstract class Character extends AnimateEntity {
     public Character(int x, int y, Sprite sprite) {
         super(x, y, sprite);
         gameMap.getCharacters().add(this);
-        defaultVel = 1;
+        defaultVel = 0;
         velocityX = 0;
         velocityY = 0;
         speed = 0;
@@ -67,7 +67,6 @@ public abstract class Character extends AnimateEntity {
                 Entity entity = gameMap.getTiles()[i][j];
                 if (entity.isBlock() && this.isCollider(entity)) {
                     isCollision = true;
-                    System.out.println(i + " " + j + " " + entity.getClass());
                 }
             }
         }
