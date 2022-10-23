@@ -10,6 +10,7 @@ import Texture.CharacterTexture;
 import Texture.StaticTexture;
 import javafx.scene.canvas.GraphicsContext;
 
+import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -18,16 +19,16 @@ import java.util.Scanner;
 import static Variables.Variables.*;
 
 public class Map {
-    private static Map gameMap;
+    private static Map map;
     private int levelNumber;
     private Entity[][] tiles;
     private ArrayList<Character> characters;
     private Bomber player;
     public static Map getGameMap() {
-        if (gameMap == null) {
-            gameMap = new Map();
+        if (map == null) {
+            map = new Map();
         }
-        return gameMap;
+        return map;
     }
 
     private void resetEntities() {
@@ -40,6 +41,7 @@ public class Map {
     }
 
     public void createMap(String mapPath) throws FileNotFoundException {
+        System.out.println("CREATE A MAP");
         Scanner scanner = new Scanner(new File(mapPath));
         scanner.nextLine();
         resetEntities();
@@ -56,9 +58,6 @@ public class Map {
             }
         }
         characters.add(player);
-//        characters.forEach(character -> {
-//            System.out.println(character.getClass());
-//        });
     }
 
     public void updateMap() {
@@ -85,11 +84,19 @@ public class Map {
         });
     }
 
-    public void setTiles(int x, int y, Entity entity) {
+    public void setTile(int x, int y, Entity entity) {
         tiles[x][y] = entity;
+    }
+
+    public Entity getTile(int x, int y) {
+        return tiles[x][y];
     }
 
     public Entity[][] getTiles(){
         return tiles;
+    }
+
+    public Bomber getPlayer() {
+        return this.player;
     }
 }

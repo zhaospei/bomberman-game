@@ -1,10 +1,11 @@
 package Entity.Animate.Character.Enemy;
 
-import Game.MainGame;
+import Entity.Animate.Character.Bomber;
 import Graphics.Sprite;
 import Map.Map;
 import Path.RandomPath;
-import Variables.Variables.*;
+import Variables.Variables.DIRECTION;
+
 import static Variables.Variables.DIRECTION.*;
 import static Graphics.Sprite.*;
 
@@ -17,36 +18,18 @@ public class Balloom extends Enemy{
         animation.put(DOWN, BALLOOM_RIGHT);
         animation.put(DESTROYED, BALLOOM_DESTROYED);
         currentAnimate = animation.get(UP);
-        this.speed = 0;
+        this.defaultVel = 1;
+        this.speed = 1;
+        this.cntMove = 10;
+    }
+    @Override
+    public DIRECTION path(Map map, Bomber player, Enemy enemy){
+        RandomPath randomPath = new RandomPath(map, map.getPlayer(),this);
+        return randomPath.path();
     }
 
     @Override
-    public void setDirection() {
-        direction = new RandomPath().getRandomDirection();
-        switch (direction) {
-            case UP:
-                this.setVelocity(0,-defaultVel);
-                currentAnimate = animation.get(LEFT);
-                break;
-            case DOWN:
-                this.setVelocity(0, defaultVel);
-                currentAnimate = animation.get(RIGHT);
-                break;
-            case LEFT:
-                this.setVelocity(-defaultVel,0);
-                currentAnimate = animation.get(LEFT);
-                break;
-            case RIGHT:
-                this.setVelocity(defaultVel, 0);
-                currentAnimate = animation.get(RIGHT);
-                break;
-            default:
-                break;
-        }
-        if (direction != NONE) {
-            currentAnimate = animation.get(direction);
-            updateAnimation();
-        }
-    }
+    public void update() {
 
+    }
 }

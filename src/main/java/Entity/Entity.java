@@ -10,7 +10,7 @@ import javafx.util.Pair;
 import static Graphics.Sprite.*;
 
 public abstract class Entity {
-    protected static Map gameMap = Map.getGameMap();
+    protected static Map map = Map.getGameMap();
     public int pixelX;
     public int pixelY;
     public int tileX;
@@ -31,8 +31,8 @@ public abstract class Entity {
         this.block = false;
     }
 
-    public static void setGameMap(Map gameMap) {
-        Entity.gameMap = gameMap;
+    public static void setGameMap(Map map) {
+        Entity.map = map;
     }
 
     public Rectangle2D getBorder() {
@@ -52,6 +52,13 @@ public abstract class Entity {
 
     public Pair<Integer,Integer> getTile() {
         return new Pair(tileX, tileY);
+    }
+    public int getTileX() {
+        return tileX;
+    }
+
+    public int getTileY() {
+        return tileY;
     }
 
     public boolean isBlock() {

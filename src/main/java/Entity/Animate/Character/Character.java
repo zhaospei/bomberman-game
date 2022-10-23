@@ -11,6 +11,7 @@ import Map.Map;
 import static Variables.Variables.*;
 
 import static Graphics.Sprite.*;
+import static Variables.Variables.DIRECTION.NONE;
 
 public abstract class Character extends AnimateEntity {
     protected int velocityX;
@@ -23,13 +24,14 @@ public abstract class Character extends AnimateEntity {
 
     public Character(int x, int y, Sprite sprite) {
         super(x, y, sprite);
-        gameMap.getCharacters().add(this);
+        map.getCharacters().add(this);
         defaultVel = 0;
         velocityX = 0;
         velocityY = 0;
         speed = 0;
         isCollision = false;
         stand = true;
+        direction = NONE;
     }
 
     public void setVelocity(int velocityX, int velocityY) {
@@ -44,6 +46,15 @@ public abstract class Character extends AnimateEntity {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
+
+    public DIRECTION getDirection() {
+        return direction;
+    }
+
+    public boolean isCollider() {
+        return isCollision;
+    }
+
 
     public void addVelocity(int velocityX, int velocityY) {
         this.velocityX += velocityX;
@@ -64,10 +75,8 @@ public abstract class Character extends AnimateEntity {
 
         for (int i = 0; i < HEIGHT; ++i) {
             for (int j = 0; j < WIDTH; ++j) {
-                Entity entity = gameMap.getTiles()[i][j];
+                Entity entity = map.getTiles()[i][j];
                 if (entity.isBlock() && this.isCollider(entity)) {
-                    //System.out.println("This: " + this.getBorder());
-                    //System.out.println("Other: " + entity.getBorder());
                     isCollision = true;
                 }
             }

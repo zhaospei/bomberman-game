@@ -42,6 +42,7 @@ public class MainGame extends Application {
             @Override
             public void handle(long currentTime) {
                 graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                //System.out.println(startTime);
                 time = (long) ((currentTime - startTime)) / timePerFrame + 1;
                 //System.out.println(time);
                 scene.setOnKeyPressed(keyEvent -> {

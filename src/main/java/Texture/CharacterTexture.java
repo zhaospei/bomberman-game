@@ -9,7 +9,7 @@ public class CharacterTexture {
     public static Character setCharacter(char c, int i, int j) {
         switch (c) {
             case '1':
-                return new Balloom(i, j, Sprite.BALLOOM_RIGHT[0]);
+                return new Balloom(j, i, Sprite.BALLOOM_RIGHT[0]);
             default:
                 return null;
         }
