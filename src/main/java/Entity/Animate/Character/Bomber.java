@@ -21,7 +21,6 @@ public class Bomber extends Character {
         this.keyInput = keyInput;
         this.keyInput.initialization();
         this.speed = 1;
-
     }
 
     @Override
@@ -32,23 +31,23 @@ public class Bomber extends Character {
         }
 
         super.checkCollision();
-        if (isCollision) {
-            for (int i = -8 - speed; i <= 8 + speed; i++) {
-                switch (direction) {
-                    case LEFT, RIGHT -> pixelX += i;
-                    case UP, DOWN -> pixelY += i;
-                }
-                super.checkCollision();
-                if (!isCollision) {
-                    break;
-                } else {
-                    switch (direction) {
-                        case LEFT, RIGHT -> pixelX -= i;
-                        case UP, DOWN -> pixelY -=i;
-                    }
-                }
-            }
-        }
+//        if (isCollision) {
+//            for (int i = -8 - speed; i <= 8 + speed; i++) {
+//                switch (direction) {
+//                    case LEFT, RIGHT -> pixelX += i;
+//                    case UP, DOWN -> pixelY += i;
+//                }
+//                super.checkCollision();
+//                if (!isCollision) {
+//                    break;
+//                } else {
+//                    switch (direction) {
+//                        case LEFT, RIGHT -> pixelX -= i;
+//                        case UP, DOWN -> pixelY -=i;
+//                    }
+//                }
+//            }
+//        }
         tileX = pixelX / Sprite.SCALED_SIZE;
         tileY = pixelY / Sprite.SCALED_SIZE;
     }

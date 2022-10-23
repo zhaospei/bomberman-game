@@ -17,7 +17,8 @@ public class MainGame extends Application {
     private GraphicsContext graphicsContext;
     private Canvas canvas;
 
-    private final long timePerFrame = 600000000;
+    private final double FPS = 60.0;
+    private final long timePerFrame = (long) (1000000000 / FPS);
     public static long time;
     private long startTime;
 
@@ -41,16 +42,16 @@ public class MainGame extends Application {
             @Override
             public void handle(long currentTime) {
                 graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                time = (long) ((currentTime - startTime)) / 600000000 + 1;
-                System.out.println(time);
+                time = (long) ((currentTime - startTime)) / timePerFrame + 1;
+                //System.out.println(time);
                 scene.setOnKeyPressed(keyEvent -> {
                     String code = keyEvent.getCode().toString();
-                    System.out.println(code + "Pressed");
+                    System.out.println(code + " Pressed");
                     KeyInput.keyInput.put(code, true);
                 });
                 scene.setOnKeyReleased(keyEvent -> {
                     String code = keyEvent.getCode().toString();
-                    System.out.println(code + "Released");
+                    System.out.println(code + " Released");
                     KeyInput.keyInput.put(code, false);
                 });
                 map.updateMap();

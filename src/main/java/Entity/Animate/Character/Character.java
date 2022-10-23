@@ -65,13 +65,12 @@ public abstract class Character extends AnimateEntity {
         for (int i = 0; i < HEIGHT; ++i) {
             for (int j = 0; j < WIDTH; ++j) {
                 Entity entity = gameMap.getTiles()[i][j];
-
                 if (entity.isBlock() && this.isCollider(entity)) {
                     isCollision = true;
+                    System.out.println(i + " " + j + " " + entity.getClass());
                 }
             }
         }
-
         stand = (velocityX == 0 && velocityY == 0) || isCollision;
         pixelX -= this.velocityX;
         pixelY -= this.velocityY;
