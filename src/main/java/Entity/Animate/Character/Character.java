@@ -66,8 +66,8 @@ public abstract class Character extends AnimateEntity {
             for (int j = 0; j < WIDTH; ++j) {
                 Entity entity = gameMap.getTiles()[i][j];
                 if (entity.isBlock() && this.isCollider(entity)) {
-                    System.out.println("This: " + this.getBorder());
-                    System.out.println("Other: " + entity.getBorder());
+                    //System.out.println("This: " + this.getBorder());
+                    //System.out.println("Other: " + entity.getBorder());
                     isCollision = true;
                 }
             }

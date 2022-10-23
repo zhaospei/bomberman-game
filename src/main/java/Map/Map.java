@@ -56,6 +56,9 @@ public class Map {
             }
         }
         characters.add(player);
+//        characters.forEach(character -> {
+//            System.out.println(character.getClass());
+//        });
     }
 
     public void updateMap() {
