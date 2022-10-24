@@ -11,4 +11,9 @@ public class Flame extends AnimateEntity{
     public void update() {
 
     }
+
+    @Override
+    public void delete() {
+
+    }
 }

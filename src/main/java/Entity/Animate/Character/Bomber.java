@@ -26,10 +26,9 @@ public class Bomber extends Character {
         this.keyInput = keyInput;
         this.keyInput.initialization();
         this.defaultVel = 1;
-        this.speed = 1;
+        this.speed = 3;
         this.life = 3;
     }
-
     public void placeBombAt(int x, int y) {
         if (map.getTiles()[x][y] instanceof Grass && map.getBombs().size() <= Bomb.limit) {
             Bomb bomb1 = BombTexture.setBomb(x, y);
@@ -45,7 +44,11 @@ public class Bomber extends Character {
         }
 
         super.checkCollision();
-
+        map.getEnemies().forEach(enemy -> {
+            if (this.isCollider(enemy)) {
+                destroy();
+            }
+        });
         if (isCollision) {
             for (int i = -8 - speed; i <= 8 + speed; i++) {
                 switch (direction) {
@@ -87,4 +90,12 @@ public class Bomber extends Character {
         }
     }
 
+    @Override
+    public void delete() {
+        this.life--;
+        setPosition(32, 32);
+        destroyed = false;
+        direction = NONE;
+        setSprite(Sprite.PLAYER_DOWN[0]);
+    }
 }

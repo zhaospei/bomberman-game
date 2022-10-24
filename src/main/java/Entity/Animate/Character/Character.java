@@ -5,6 +5,7 @@ import Entity.Animate.Character.Enemy.Enemy;
 import Entity.Entity;
 import Entity.Static.Grass;
 import Entity.Static.StaticEntity;
+import Game.MainGame;
 import Graphics.Sprite;
 import Map.Map;
 
@@ -91,6 +92,7 @@ public abstract class Character extends AnimateEntity {
                 });
             }
         }
+        
         stand = (velocityX == 0 && velocityY == 0) || isCollision;
         pixelX -= this.velocityX;
         pixelY -= this.velocityY;
@@ -98,17 +100,31 @@ public abstract class Character extends AnimateEntity {
 
     @Override
     public void update() {
-        for (int i = 0; i < speed; i++) {
-            setDirection();
-            checkCollision();
-            if (!stand || this instanceof Enemy) {
-                updateAnimation();
-            }
-            if (!isCollision) {
-                move();
+        if (isDestroyed()) {
+            updateDestroyAnimation();
+        }
+        else {
+            for (int i = 0; i < speed; i++) {
+                setDirection();
+                checkCollision();
+                if (!stand || this instanceof Enemy) {
+                    updateAnimation();
+                }
+                if (!isCollision) {
+                    move();
+                }
             }
         }
     }
+    public int getLife() {
+        return life;
+    }
 
+    @Override
+    public void updateAnimation() {
+        long time = MainGame.time;
+        sprite = Sprite.movingSprite(currentAnimate, 3, time * this.speed);
+        image = sprite.getFxImage();
+    }
     public abstract void setDirection();
 }

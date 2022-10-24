@@ -44,15 +44,25 @@ public abstract class Entity {
         if (entity == null) return false;
         return getBorder().intersects(entity.getBorder());
     }
+
     public void render(GraphicsContext graphicsContext) {
         graphicsContext.drawImage(image, pixelX, pixelY);
     }
 
     public abstract void update();
 
-    public Pair<Integer,Integer> getTile() {
+    public void setPosition(int x, int y) {
+        pixelX = x;
+        pixelY = y;
+        tileX = pixelX / SCALED_SIZE;
+        tileY = pixelY / SCALED_SIZE;
+    }
+
+
+    public Pair<Integer, Integer> getTile() {
         return new Pair(tileX, tileY);
     }
+
     public int getTileX() {
         return tileX;
     }
@@ -83,5 +93,6 @@ public abstract class Entity {
 
     public void setSprite(Sprite sprite) {
         this.sprite = sprite;
+        image = sprite.getFxImage();
     }
 }

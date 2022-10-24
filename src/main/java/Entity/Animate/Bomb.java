@@ -7,7 +7,7 @@ import Variables.Variables;
 import static Variables.Variables.BOMB_STATUS.*;
 public class Bomb extends AnimateEntity{
     protected int timetoExplode = 120;
-    public static int limit = 1;
+    public static int limit = 3;
     public Bomb(int x, int y, Sprite sprite) {
         super(x, y, sprite);
         animation.put(NOTEXPLODEDYET, Sprite.BOMB);
@@ -20,5 +20,10 @@ public class Bomb extends AnimateEntity{
             updateAnimation();
             timetoExplode--;
         }
+    }
+
+    @Override
+    public void delete() {
+
     }
 }

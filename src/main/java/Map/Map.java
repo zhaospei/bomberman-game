@@ -84,7 +84,6 @@ public class Map {
     }
 
     public void renderMap(GraphicsContext graphicsContext) {
-        graphicsContext.clearRect(0, 0, WIDTH, HEIGHT);
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
                 tiles[i][j].render(graphicsContext);
