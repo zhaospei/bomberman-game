@@ -46,6 +46,7 @@ public class Bomber extends Character {
         map.getEnemies().forEach(enemy -> {
             if (this.isCollider(enemy)) {
                 destroy();
+                enemy.destroy();
             }
         });
         if (isCollision) {

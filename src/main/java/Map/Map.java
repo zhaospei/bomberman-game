@@ -46,7 +46,6 @@ public class Map {
     }
 
     public void createMap(String mapPath) throws FileNotFoundException {
-        System.out.println("CREATE A MAP");
         Scanner scanner = new Scanner(new File(mapPath));
         scanner.nextLine();
         resetEntities();

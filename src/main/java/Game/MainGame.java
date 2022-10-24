@@ -64,7 +64,7 @@ public class MainGame extends Application {
                 }
 
                 if (now - lastTime >= 1000000000) {
-                    stage.setTitle(GAME_TITLE + " | " + frames + " FPS" + " | LIFE: " + map.getPlayer().getLife());
+                    stage.setTitle(GAME_TITLE + " | " + frames + " FPS" + " | LIFES: " + map.getPlayer().getLife());
                     frames = 0;
                     lastTime = now;
                 }

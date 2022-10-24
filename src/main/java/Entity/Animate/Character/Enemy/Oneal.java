@@ -42,6 +42,6 @@ public class Oneal extends Enemy{
 
     @Override
     public void delete() {
-
+        map.getEnemies().remove(this);
     }
 }
