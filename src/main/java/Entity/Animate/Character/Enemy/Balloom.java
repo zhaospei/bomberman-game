@@ -5,6 +5,7 @@ import Graphics.Sprite;
 import Map.Map;
 import Path.RandomPath;
 import Variables.Variables.DIRECTION;
+import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
 import static Variables.Variables.DIRECTION.*;
 import static Graphics.Sprite.*;
@@ -18,6 +19,7 @@ public class Balloom extends Enemy{
         animation.put(DOWN, BALLOOM_RIGHT);
         animation.put(DESTROYED, BALLOOM_DESTROYED);
         currentAnimate = animation.get(UP);
+        this.direction = UP;
         this.defaultVel = 1;
         this.speed = 1;
         this.cntMove = 10;
@@ -28,8 +30,4 @@ public class Balloom extends Enemy{
         return randomPath.path();
     }
 
-    @Override
-    public void update() {
-
-    }
 }

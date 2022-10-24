@@ -13,7 +13,6 @@ import static Variables.Variables.*;
 public abstract class Enemy extends Character {
     public Enemy(int x, int y, Sprite sprite) {
         super(x, y, sprite);
-        this.direction = NONE;
     }
 
     public abstract DIRECTION path(Map map, Bomber player, Enemy enemy);

@@ -89,7 +89,7 @@ public class Map {
     }
 
     public Entity getTile(int x, int y) {
-        return tiles[x][y];
+        return tiles[y][x];
     }
 
     public Entity[][] getTiles(){

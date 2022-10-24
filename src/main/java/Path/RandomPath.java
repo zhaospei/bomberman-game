@@ -18,7 +18,7 @@ public class RandomPath extends Path {
         super(map, player, enemy);
     }
     public DIRECTION path() {
-        if (enemy.isCollider()) {
+        if (enemy.isCollider() || enemy.getDirection() == NONE) {
             ArrayList<DIRECTION> canDirections = new ArrayList<>();
             if (map.getTile(enemy.getTileX(), enemy.getTileY() - 1) instanceof Grass) {
                 canDirections.add(UP);
