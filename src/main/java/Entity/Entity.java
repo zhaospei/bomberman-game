@@ -77,5 +77,11 @@ public abstract class Entity {
         return block;
     }
 
+    public void setBlock(boolean block) {
+        this.block = block;
+    }
 
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+    }
 }

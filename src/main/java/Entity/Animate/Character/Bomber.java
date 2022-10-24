@@ -1,17 +1,22 @@
 package Entity.Animate.Character;
+
 import Entity.Animate.AnimateEntity;
+import Entity.Animate.Bomb;
 import Entity.Entity;
+import Entity.Static.Grass;
 import Graphics.Sprite;
 import Input.KeyInput;
+import Texture.BombTexture;
 import javafx.geometry.Rectangle2D;
 
 import static Variables.Variables.DIRECTION.*;
 
 public class Bomber extends Character {
     public KeyInput keyInput;
+    public boolean standInBomb = false;
 
     public Bomber(int x, int y, Sprite sprite, KeyInput keyInput) {
-        super( x, y, sprite);
+        super(x, y, sprite);
         animation.put(LEFT, Sprite.PLAYER_LEFT);
         animation.put(RIGHT, Sprite.PLAYER_RIGHT);
         animation.put(UP, Sprite.PLAYER_UP);
@@ -23,6 +28,13 @@ public class Bomber extends Character {
         this.defaultVel = 1;
         this.speed = 1;
         this.life = 3;
+    }
+
+    public void placeBombAt(int x, int y) {
+        if (map.getTiles()[x][y] instanceof Grass && map.getBombs().size() <= Bomb.limit) {
+            Bomb bomb1 = BombTexture.setBomb(x, y);
+            map.getBombs().add(bomb1);
+        }
     }
 
     @Override
@@ -50,9 +62,12 @@ public class Bomber extends Character {
                 }
             }
         }
-        tileX = pixelX / Sprite.SCALED_SIZE;
-        tileY = pixelY / Sprite.SCALED_SIZE;
-    }
+
+
+    tileX =pixelX /Sprite.SCALED_SIZE;
+    tileY =pixelY /Sprite.SCALED_SIZE;
+}
+
 
     @Override
     public void setDirection() {
@@ -64,8 +79,9 @@ public class Bomber extends Character {
             case RIGHT -> this.setVelocity(defaultVel, 0);
             case UP -> this.setVelocity(0, -defaultVel);
             case DOWN -> this.setVelocity(0, defaultVel);
+            case PLACEBOMB -> placeBombAt(getTileX(), getTileY());
         }
-        if (direction != NONE) {
+        if (direction != NONE && direction != PLACEBOMB) {
             currentAnimate = animation.get(direction);
             updateAnimation();
         }
