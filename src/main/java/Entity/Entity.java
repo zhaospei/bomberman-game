@@ -61,6 +61,18 @@ public abstract class Entity {
         return tileY;
     }
 
+    public int getPixelX() {
+        return pixelX;
+    }
+
+    public int getPixelY() {
+        return pixelY;
+    }
+
+    public boolean isInATile() {
+        return (pixelX % SCALED_SIZE == 0 && pixelY % SCALED_SIZE == 0);
+    }
+
     public boolean isBlock() {
         return block;
     }

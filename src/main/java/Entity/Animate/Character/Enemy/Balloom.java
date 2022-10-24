@@ -22,10 +22,15 @@ public class Balloom extends Enemy{
         this.direction = UP;
         this.defaultVel = 1;
         this.speed = 1;
-        this.cntMove = 10;
+        this.defaultCntMove = 5;
     }
     @Override
     public DIRECTION path(Map map, Bomber player, Enemy enemy){
+        if (!enemy.isCollider() && cntMove > 0) {
+            cntMove--;
+            return enemy.getDirection();
+        }
+        cntMove = defaultCntMove;
         RandomPath randomPath = new RandomPath(map, map.getPlayer(),this);
         return randomPath.path();
     }
