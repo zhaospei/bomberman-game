@@ -50,6 +50,14 @@ public abstract class Entity {
 
     public abstract void update();
 
+    public void setPosition(int x, int y) {
+        pixelX = x;
+        pixelY = y;
+        tileX = pixelX / SCALED_SIZE;
+        tileY = pixelY / SCALED_SIZE;
+    }
+
+
     public Pair<Integer,Integer> getTile() {
         return new Pair(tileX, tileY);
     }
@@ -77,5 +85,9 @@ public abstract class Entity {
         return block;
     }
 
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+        image = sprite.getFxImage();
+    }
 
 }

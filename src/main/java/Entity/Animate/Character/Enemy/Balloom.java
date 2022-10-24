@@ -35,4 +35,8 @@ public class Balloom extends Enemy{
         return randomPath.path();
     }
 
+    @Override
+    public void delete() {
+
+    }
 }
