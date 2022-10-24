@@ -1,5 +1,6 @@
 package Map;
 
+import Entity.Animate.Bomb;
 import Entity.Animate.Character.Bomber;
 import Entity.Animate.Character.Character;
 import Entity.Animate.Character.Enemy.Enemy;
@@ -7,6 +8,7 @@ import Entity.Entity;;
 import Entity.Static.StaticEntity;
 import Graphics.Sprite;
 import Input.PlayerInput;
+import Texture.BombTexture;
 import Texture.CharacterTexture;
 import Texture.StaticTexture;
 import javafx.scene.canvas.GraphicsContext;
@@ -24,6 +26,7 @@ public class Map {
     private int levelNumber;
     private Entity[][] tiles;
     private ArrayList<Enemy> enemies;
+    private ArrayList<Bomb> bombs;
     private Bomber player;
     public static Map getGameMap() {
         if (map == null) {
@@ -35,6 +38,7 @@ public class Map {
     private void resetEntities() {
         tiles = new Entity[HEIGHT][WIDTH];
         enemies = new ArrayList<>();
+        bombs = new ArrayList<>();
     }
 
     public ArrayList<Enemy> getEnemies() {
@@ -74,6 +78,9 @@ public class Map {
             enemy.update();
         });
         player.update();
+        bombs.forEach(bomb -> {
+            bomb.update();
+        });
     }
 
     public void renderMap(GraphicsContext graphicsContext) {
@@ -86,6 +93,9 @@ public class Map {
             enemy.render(graphicsContext);
         });
         player.render(graphicsContext);
+        bombs.forEach(bomb -> {
+            bomb.render(graphicsContext);
+        });
     }
 
     public void setTile(int x, int y, Entity entity) {
@@ -102,6 +112,10 @@ public class Map {
 
     public Bomber getPlayer() {
         return this.player;
+    }
+
+    public ArrayList<Bomb> getBombs() {
+        return bombs;
     }
 
 }

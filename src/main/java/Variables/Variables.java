@@ -1,5 +1,7 @@
 package Variables;
 
+import Graphics.Sprite;
+
 public class Variables {
     public static final String GAME_TITLE = "BOMBERMAN";
 
@@ -14,8 +16,13 @@ public class Variables {
         DOWN,
         LEFT,
         RIGHT,
+        PLACEBOMB,
         DESTROYED,
         NONE,
+
+    }
+    public static enum BOMB_STATUS {
+        NOTEXPLODEDYET,
     }
 
     public static final String[] MAP_URLS = {

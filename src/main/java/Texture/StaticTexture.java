@@ -9,8 +9,8 @@ import Graphics.Sprite;
 public class StaticTexture {
     public static StaticEntity setStatic(char c, int i, int j) {
         switch (c) {
-            case '*':
-                return new Brick(j, i, Sprite.brick);
+            //case '*':
+                //return new Brick(j, i, Sprite.brick);
             case '#':
                 return new Wall(j, i, Sprite.wall);
             default:

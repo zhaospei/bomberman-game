@@ -28,6 +28,8 @@ public class PlayerInput implements KeyInput {
                         return DOWN;
                     case ("A"):
                         return LEFT;
+                    case ("SPACE"):
+                        return PLACEBOMB;
                 }
             }
         }

@@ -12,9 +12,12 @@ import static Variables.Variables.DIRECTION.DESTROYED;
 
 public abstract class AnimateEntity extends Entity {
     protected Sprite[] currentAnimate;
+
+    public HashMap<Enum, Sprite[]> animation = new HashMap<>();
+
     protected int timeDestroy;
     protected boolean destroyed;
-    public HashMap<DIRECTION, Sprite[]> animation = new HashMap<>();
+
     public AnimateEntity(int x, int y, Sprite sprite) {
         super(x, y, sprite);
         destroyed = false;
@@ -44,5 +47,6 @@ public abstract class AnimateEntity extends Entity {
     public boolean isDestroyed() {
         return destroyed;
     }
+
     public abstract void delete();
 }

@@ -44,6 +44,7 @@ public abstract class Entity {
         if (entity == null) return false;
         return getBorder().intersects(entity.getBorder());
     }
+
     public void render(GraphicsContext graphicsContext) {
         graphicsContext.drawImage(image, pixelX, pixelY);
     }
@@ -58,9 +59,10 @@ public abstract class Entity {
     }
 
 
-    public Pair<Integer,Integer> getTile() {
+    public Pair<Integer, Integer> getTile() {
         return new Pair(tileX, tileY);
     }
+
     public int getTileX() {
         return tileX;
     }
@@ -85,9 +87,12 @@ public abstract class Entity {
         return block;
     }
 
+    public void setBlock(boolean block) {
+        this.block = block;
+    }
+
     public void setSprite(Sprite sprite) {
         this.sprite = sprite;
         image = sprite.getFxImage();
     }
-
 }
