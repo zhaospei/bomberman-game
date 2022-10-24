@@ -103,6 +103,9 @@ public abstract class Character extends AnimateEntity {
             }
         }
     }
+    public int getLife() {
+        return life;
+    }
 
     public abstract void setDirection();
 }

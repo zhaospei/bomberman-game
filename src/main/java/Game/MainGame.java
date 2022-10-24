@@ -17,10 +17,13 @@ public class MainGame extends Application {
     private GraphicsContext graphicsContext;
     private Canvas canvas;
 
-    private final double FPS = 60.0;
+    private final double FPS = 120.0;
     private final long timePerFrame = (long) (1000000000 / FPS);
+    private long lastFrame;
+    private int frames;
     public static long time;
     private long startTime;
+    private long lastTime;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -37,26 +40,37 @@ public class MainGame extends Application {
         stage.setResizable(false);
         stage.show();
         startTime = System.nanoTime();
+        lastFrame = 0;
+        lastTime = 0;
         map.createMap(MAP_URLS[0]);
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long currentTime) {
-                graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                //System.out.println(startTime);
-                time = (long) ((currentTime - startTime)) / timePerFrame + 1;
-                //System.out.println(time);
-                scene.setOnKeyPressed(keyEvent -> {
-                    String code = keyEvent.getCode().toString();
-                    System.out.println(code + " Pressed");
-                    KeyInput.keyInput.put(code, true);
-                });
-                scene.setOnKeyReleased(keyEvent -> {
-                    String code = keyEvent.getCode().toString();
-                    System.out.println(code + " Released");
-                    KeyInput.keyInput.put(code, false);
-                });
-                map.updateMap();
-                map.renderMap(graphicsContext);
+                long now = currentTime - startTime;
+                if (now - lastFrame >= timePerFrame) {
+                    lastFrame = now;
+                    map.updateMap();
+                    map.renderMap(graphicsContext);
+                    scene.setOnKeyPressed(keyEvent -> {
+                        String code = keyEvent.getCode().toString();
+                        System.out.println(code + " Pressed");
+                        KeyInput.keyInput.put(code, true);
+                    });;
+                    scene.setOnKeyReleased(keyEvent -> {
+                        String code = keyEvent.getCode().toString();
+                        System.out.println(code + " Released");
+                        KeyInput.keyInput.put(code, false);
+                    });
+                    frames ++;
+
+                }
+
+                if (now - lastTime >= 1000000000) {
+                    stage.setTitle(GAME_TITLE + " | " + frames + " FPS" + " | Life: " + map.getPlayer().getLife());
+                    frames = 0;
+                    lastTime = now;
+                }
+                time = (long) ((currentTime - startTime)) / 30000000 + 1;
             }
         };
         timer.start();

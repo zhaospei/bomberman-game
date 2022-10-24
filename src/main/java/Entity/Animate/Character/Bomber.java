@@ -33,7 +33,9 @@ public class Bomber extends Character {
         }
 
         super.checkCollision();
-
+        map.getEnemies().forEach(enemy -> {
+            if (this.isCollider(enemy)) life--;
+        });
         if (isCollision) {
             for (int i = -8 - speed; i <= 8 + speed; i++) {
                 switch (direction) {
