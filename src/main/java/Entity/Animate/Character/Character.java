@@ -21,13 +21,14 @@ public abstract class Character extends AnimateEntity {
     protected DIRECTION direction;
     protected boolean isCollision;
     protected boolean stand;
+    protected int life;
 
     public Character(int x, int y, Sprite sprite) {
         super(x, y, sprite);
-        map.getCharacters().add(this);
         defaultVel = 0;
         velocityX = 0;
         velocityY = 0;
+        life = 0;
         speed = 0;
         isCollision = false;
         stand = true;

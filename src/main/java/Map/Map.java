@@ -2,6 +2,7 @@ package Map;
 
 import Entity.Animate.Character.Bomber;
 import Entity.Animate.Character.Character;
+import Entity.Animate.Character.Enemy.Enemy;
 import Entity.Entity;;
 import Entity.Static.StaticEntity;
 import Graphics.Sprite;
@@ -22,7 +23,7 @@ public class Map {
     private static Map map;
     private int levelNumber;
     private Entity[][] tiles;
-    private ArrayList<Character> characters;
+    private ArrayList<Enemy> enemies;
     private Bomber player;
     public static Map getGameMap() {
         if (map == null) {
@@ -33,11 +34,11 @@ public class Map {
 
     private void resetEntities() {
         tiles = new Entity[HEIGHT][WIDTH];
-        characters = new ArrayList<>();
+        enemies = new ArrayList<>();
     }
 
-    public ArrayList<Character> getCharacters() {
-        return characters;
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
     }
 
     public void createMap(String mapPath) throws FileNotFoundException {
@@ -52,12 +53,14 @@ public class Map {
                 tiles[i][j] = StaticTexture.setStatic(c, i, j);
                 Character character = CharacterTexture.setCharacter(c, i, j);
                 if (character != null) {
-                    characters.add(character);
+                    if (c == 'p') {
+                        player = (Bomber) character;
+                    } else {
+                        enemies.add((Enemy) character);
+                    }
                 }
-                if (c == 'p') player = new Bomber(i, j, Sprite.PLAYER_RIGHT[0], new PlayerInput());
             }
         }
-        characters.add(player);
     }
 
     public void updateMap() {
@@ -67,9 +70,10 @@ public class Map {
             }
         }
 
-        characters.forEach(character -> {
-            character.update();
+        enemies.forEach(enemy -> {
+            enemy.update();
         });
+        player.update();
     }
 
     public void renderMap(GraphicsContext graphicsContext) {
@@ -79,9 +83,10 @@ public class Map {
                 tiles[i][j].render(graphicsContext);
             }
         }
-        characters.forEach(character -> {
-            character.render(graphicsContext);
+        enemies.forEach(enemy -> {
+            enemy.render(graphicsContext);
         });
+        player.render(graphicsContext);
     }
 
     public void setTile(int x, int y, Entity entity) {
@@ -99,4 +104,5 @@ public class Map {
     public Bomber getPlayer() {
         return this.player;
     }
+
 }

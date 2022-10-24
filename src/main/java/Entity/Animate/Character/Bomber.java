@@ -22,6 +22,7 @@ public class Bomber extends Character {
         this.keyInput.initialization();
         this.defaultVel = 1;
         this.speed = 1;
+        this.life = 3;
     }
 
     @Override
