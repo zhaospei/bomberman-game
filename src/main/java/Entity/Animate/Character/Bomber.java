@@ -26,7 +26,7 @@ public class Bomber extends Character {
         this.keyInput = keyInput;
         this.keyInput.initialization();
         this.defaultVel = 1;
-        this.speed = 3;
+        this.speed = 2;
         this.life = 3;
     }
     public void placeBombAt(int x, int y) {
@@ -38,11 +38,6 @@ public class Bomber extends Character {
 
     @Override
     public void checkCollision() {
-        if (direction == NONE) {
-            stand = true;
-            return;
-        }
-
         super.checkCollision();
         map.getEnemies().forEach(enemy -> {
             if (this.isCollider(enemy)) {
