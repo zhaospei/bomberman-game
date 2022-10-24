@@ -21,8 +21,21 @@ public class Oneal extends Enemy{
         this.direction = UP;
         this.defaultVel = 1;
         this.speed = 2;
+        this.defaultCntMove = 5;
+        this.defaultChangeSpeed = 10;
     }
     public DIRECTION path(Map map, Bomber player, Enemy enemy){
+        if (!enemy.isCollider() && cntMove > 0) {
+            cntMove--;
+            return enemy.getDirection();
+        }
+        cntMove = defaultCntMove;
+        if (changeSpeed == 0) {
+            speed = 1 + new Random().nextInt(2);
+            changeSpeed = defaultChangeSpeed;
+        } else {
+            changeSpeed--;
+        }
         SpeedRandomPath speedRandomPath = new SpeedRandomPath(map, player, enemy);
         return speedRandomPath.path();
     }

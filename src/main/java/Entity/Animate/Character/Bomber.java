@@ -30,9 +30,13 @@ public class Bomber extends Character {
         this.life = 3;
     }
     public void placeBombAt(int x, int y) {
-        if (map.getTiles()[x][y] instanceof Grass && map.getBombs().size() <= Bomb.limit) {
-            Bomb bomb1 = BombTexture.setBomb(x, y);
-            map.getBombs().add(bomb1);
+        for (Bomb bomb: map.getBombs()) {
+            if (bomb.tileX == x && bomb.tileY == y) {
+                return;
+            }
+        }
+        if (map.getTile(x, y) instanceof Grass && map.getBombs().size() < Bomb.limit) {
+            map.getBombs().add(new Bomb(x, y, Sprite.BOMB[0]));
         }
     }
 

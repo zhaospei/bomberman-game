@@ -19,11 +19,13 @@ public class Bomb extends AnimateEntity{
         if(timetoExplode > 0) {
             updateAnimation();
             timetoExplode--;
+        } else {
+            delete();
         }
     }
 
     @Override
     public void delete() {
-
+        map.getBombs().remove(this);
     }
 }

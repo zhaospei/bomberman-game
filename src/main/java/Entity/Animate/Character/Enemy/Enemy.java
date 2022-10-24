@@ -12,7 +12,9 @@ import static Variables.Variables.*;
 
 public abstract class Enemy extends Character {
     protected int cntMove;
+    protected int changeSpeed;
     protected int defaultCntMove;
+    protected int defaultChangeSpeed;
     public Enemy(int x, int y, Sprite sprite) {
         super(x, y, sprite);
     }
