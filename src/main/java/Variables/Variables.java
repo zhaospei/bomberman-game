@@ -27,7 +27,9 @@ public class Variables {
         NOTEXPLODEDYET,
     }
 
+    public static final String ICON_PATH = "/icon.png";
+
     public static final String[] MAP_URLS = {
-            Variables.class.getResource("/levels/Level1.txt").getPath(),
+           Variables.class.getResource("/levels/Level1.txt").getPath(),
     };
 }
