@@ -82,21 +82,28 @@ public class Sprite {
 	};
 
 	public static Sprite[] BALLOOM_DESTROYED = {
-			new Sprite(DEFAULT_SIZE, 9, 3, SpriteSheet.tiles, 16, 16),
-			new Sprite(DEFAULT_SIZE, 9, 3, SpriteSheet.tiles, 16, 16),
-			new Sprite(DEFAULT_SIZE, 9, 3, SpriteSheet.tiles, 16, 16),
+		new Sprite(DEFAULT_SIZE, 9, 3, SpriteSheet.tiles, 16, 16),
+		new Sprite(DEFAULT_SIZE, 9, 3, SpriteSheet.tiles, 16, 16),
+		new Sprite(DEFAULT_SIZE, 9, 3, SpriteSheet.tiles, 16, 16),
 	};
 	
 	//ONEAL
-	public static Sprite oneal_left1 = new Sprite(DEFAULT_SIZE, 11, 0, SpriteSheet.tiles, 16, 16);
-	public static Sprite oneal_left2 = new Sprite(DEFAULT_SIZE, 11, 1, SpriteSheet.tiles, 16, 16);
-	public static Sprite oneal_left3 = new Sprite(DEFAULT_SIZE, 11, 2, SpriteSheet.tiles, 16, 16);
-	
-	public static Sprite oneal_right1 = new Sprite(DEFAULT_SIZE, 12, 0, SpriteSheet.tiles, 16, 16);
-	public static Sprite oneal_right2 = new Sprite(DEFAULT_SIZE, 12, 1, SpriteSheet.tiles, 16, 16);
-	public static Sprite oneal_right3 = new Sprite(DEFAULT_SIZE, 12, 2, SpriteSheet.tiles, 16, 16);
-	
-	public static Sprite oneal_dead = new Sprite(DEFAULT_SIZE, 11, 3, SpriteSheet.tiles, 16, 16);
+	public static Sprite[] ONEAL_LEFT = {
+		new Sprite(DEFAULT_SIZE, 11, 0, SpriteSheet.tiles, 16, 16),
+		new Sprite(DEFAULT_SIZE, 11, 1, SpriteSheet.tiles, 16, 16),
+		new Sprite(DEFAULT_SIZE, 11, 2, SpriteSheet.tiles, 16, 16),
+	};
+
+	public static Sprite[] ONEAL_RIGHT = {
+		new Sprite(DEFAULT_SIZE, 12, 0, SpriteSheet.tiles, 16, 16),
+		new Sprite(DEFAULT_SIZE, 12, 1, SpriteSheet.tiles, 16, 16),
+		new Sprite(DEFAULT_SIZE, 12, 2, SpriteSheet.tiles, 16, 16),
+	};
+	public static Sprite[] ONEAL_DESTROYED = {
+		new Sprite(DEFAULT_SIZE, 11, 3, SpriteSheet.tiles, 16, 16),
+		new Sprite(DEFAULT_SIZE, 11, 3, SpriteSheet.tiles, 16, 16),
+		new Sprite(DEFAULT_SIZE, 11, 3, SpriteSheet.tiles, 16, 16),
+	};
 	
 	//Doll
 	public static Sprite doll_left1 = new Sprite(DEFAULT_SIZE, 13, 0, SpriteSheet.tiles, 16, 16);

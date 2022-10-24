@@ -53,12 +53,10 @@ public class MainGame extends Application {
                     map.renderMap(graphicsContext);
                     scene.setOnKeyPressed(keyEvent -> {
                         String code = keyEvent.getCode().toString();
-                        System.out.println(code + " Pressed");
                         KeyInput.keyInput.put(code, true);
                     });;
                     scene.setOnKeyReleased(keyEvent -> {
                         String code = keyEvent.getCode().toString();
-                        System.out.println(code + " Released");
                         KeyInput.keyInput.put(code, false);
                     });
                     frames ++;

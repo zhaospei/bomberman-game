@@ -11,9 +11,11 @@ public class CharacterTexture {
     public static Character setCharacter(char c, int i, int j) {
         switch (c) {
             case 'p':
-                return new Bomber(i, j, Sprite.PLAYER_RIGHT[0], new PlayerInput());
+                return new Bomber(j, i, Sprite.PLAYER_DOWN[0], new PlayerInput());
             case '1':
                 return new Balloom(j, i, Sprite.BALLOOM_RIGHT[0]);
+            case '2':
+                return new Oneal(j, i, Sprite.ONEAL_RIGHT[0]);
             default:
                 return null;
         }
