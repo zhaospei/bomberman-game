@@ -29,7 +29,7 @@ public class MainGame extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle(GAME_TITLE);
-        canvas = new Canvas(SCALED_SIZE * WIDTH, SCALED_SIZE * HEIGHT);
+        canvas = new Canvas(WIDTH_SCREEN * SCALED_SIZE, HEIGHT_SCREEN * SCALED_SIZE + UP_BORDER * SCALED_SIZE);
         graphicsContext = canvas.getGraphicsContext2D();
 
         Group root = new Group();

@@ -20,6 +20,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import static Variables.Variables.*;
+import static Graphics.Sprite.*;
 
 public class Map {
     private static Map map;
@@ -28,6 +29,10 @@ public class Map {
     private ArrayList<Enemy> enemies;
     private ArrayList<Bomb> bombs;
     private Bomber player;
+
+    private boolean revival;
+    private int renderX;
+    private int renderY;
     public static Map getGameMap() {
         if (map == null) {
             map = new Map();
@@ -49,6 +54,7 @@ public class Map {
         Scanner scanner = new Scanner(new File(mapPath));
         scanner.nextLine();
         resetEntities();
+        revival = false;
         for (int i = 0; i < HEIGHT; i++) {
             String string = scanner.nextLine();
             for (int j = 0; j < WIDTH; j++) {
@@ -90,12 +96,12 @@ public class Map {
 
 
     public void updateMap() {
+        if (revival) return;
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
                 tiles[i][j].update();
             }
         }
-
         enemies.forEach(enemy -> {
             enemy.update();
         });
@@ -106,7 +112,13 @@ public class Map {
         removeEntities();
     }
 
-    public void renderMap(GraphicsContext graphicsContext) {
+    private void renderRevival(GraphicsContext graphicsContext) {
+        if (renderX == 0) {
+            revival = false;
+            return;
+        } else {
+            renderX = Math.max(0, renderX - player.getTimeRevival());
+        }
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
                 tiles[i][j].render(graphicsContext);
@@ -120,6 +132,33 @@ public class Map {
             bomb.render(graphicsContext);
         });
     }
+
+    public void renderMap(GraphicsContext graphicsContext) {
+        if (revival) {
+            renderRevival(graphicsContext);
+            return;
+        }
+        renderX = player.getPixelX() - (WIDTH_SCREEN / 2) * SCALED_SIZE;
+        if (renderX < 0) {
+            renderX = 0;
+        }
+        if (renderX > WIDTH * SCALED_SIZE - WIDTH_SCREEN * SCALED_SIZE) {
+            renderX = WIDTH * SCALED_SIZE - WIDTH_SCREEN * SCALED_SIZE;
+        }
+        for (int i = 0; i < HEIGHT; i++) {
+            for (int j = 0; j < WIDTH; j++) {
+                tiles[i][j].render(graphicsContext);
+            }
+        }
+        enemies.forEach(enemy -> {
+            enemy.render(graphicsContext);
+        });
+        player.render(graphicsContext);
+        bombs.forEach(bomb -> {
+            bomb.render(graphicsContext);
+        });
+    }
+
 
     public void setTile(int x, int y, Entity entity) {
         tiles[x][y] = entity;
@@ -141,4 +180,15 @@ public class Map {
         return bombs;
     }
 
+    public int getRenderX() {
+        return renderX;
+    }
+
+    public int getRenderY() {
+        return renderY;
+    }
+
+    public void setRevival(boolean revival) {
+        this.revival = revival;
+    }
 }

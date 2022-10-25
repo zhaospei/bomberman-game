@@ -8,13 +8,14 @@ import Graphics.Sprite;
 import javafx.util.Pair;
 
 import static Graphics.Sprite.*;
+import static Variables.Variables.UP_BORDER;
 
 public abstract class Entity {
     protected static Map map = Map.getGameMap();
-    public int pixelX;
-    public int pixelY;
-    public int tileX;
-    public int tileY;
+    protected int pixelX;
+    protected int pixelY;
+    protected int tileX;
+    protected int tileY;
 
     protected Sprite sprite;
     protected Image image;
@@ -57,7 +58,7 @@ public abstract class Entity {
     }
 
     public void render(GraphicsContext graphicsContext) {
-        graphicsContext.drawImage(image, pixelX, pixelY);
+        graphicsContext.drawImage(image, pixelX - map.getRenderX(), pixelY - map.getRenderY() + UP_BORDER * SCALED_SIZE);
     }
 
     public abstract void update();

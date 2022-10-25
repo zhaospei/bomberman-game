@@ -8,12 +8,15 @@ import Graphics.Sprite;
 import Input.KeyInput;
 import Texture.BombTexture;
 import javafx.geometry.Rectangle2D;
+import static Graphics.Sprite.*;
 
 import static Variables.Variables.DIRECTION.*;
 
 public class Bomber extends Character {
     public KeyInput keyInput;
     public boolean standInBomb = false;
+
+    private int timeRevival;
 
     public Bomber(int x, int y, Sprite sprite, KeyInput keyInput) {
         super(x, y, sprite);
@@ -26,12 +29,12 @@ public class Bomber extends Character {
         this.keyInput = keyInput;
         this.keyInput.initialization();
         this.defaultVel = 1;
-        this.speed = 1;
+        this.speed = 2;
         this.life = 3;
     }
     public void placeBombAt(int x, int y) {
         for (Bomb bomb: map.getBombs()) {
-            if (bomb.tileX == x && bomb.tileY == y) {
+            if (bomb.getTileX() == x && bomb.getTileY() == y) {
                 return;
             }
         }
@@ -93,9 +96,15 @@ public class Bomber extends Character {
     @Override
     public void delete() {
         this.life--;
-        setPosition(32, 32);
+        timeRevival = 7;
+        map.setRevival(true);
+        setPosition(SCALED_SIZE, SCALED_SIZE);
         destroyed = false;
         direction = NONE;
         setSprite(Sprite.PLAYER_DOWN[0]);
+    }
+
+    public int getTimeRevival() {
+        return timeRevival;
     }
 }

@@ -19,8 +19,8 @@ public class SpeedRandomPath extends Path{
 
 
     public DIRECTION path() {
-//        System.out.println(Distance(enemy.tileY, enemy.tileX, player.tileY, player.tileX));
-        if (Distance(enemy.tileY, enemy.tileX, player.tileY, player.tileX) <= 20) {
+//        System.out.println(Distance(enemy.getTileY(), enemy.getTileX(), player.getTileY(), player.getTileX()));
+        if (Distance(enemy.getTileY(), enemy.getTileX(), player.getTileY(), player.getTileX()) <= 20) {
             if (player.getTileX() == enemy.getTileX() && player.getTileY() == enemy.getTileY()) {
                 if (Math.abs(player.getPixelX() - enemy.getPixelX()) > Math.abs(player.getPixelY() - enemy.getPixelY())) {
                     if (player.getPixelX() < enemy.getPixelX()) {
@@ -40,28 +40,28 @@ public class SpeedRandomPath extends Path{
                 int minDistance = INF;
                 DIRECTION nowDirection = UP;
                 if (map.getTile(enemy.getTileX(), enemy.getTileY() - 1) instanceof Grass) {
-                    int curDistance = Distance(enemy.tileY - 1, enemy.tileX, player.tileY, player.tileX);
+                    int curDistance = Distance(enemy.getTileY() - 1, enemy.getTileX(), player.getTileY(), player.getTileX());
                     if (minDistance > curDistance) {
                         minDistance = curDistance;
                         nowDirection = UP;
                     }
                 }
                 if (map.getTile(enemy.getTileX(), enemy.getTileY() + 1) instanceof Grass) {
-                    int curDistance = Distance(enemy.tileY + 1, enemy.tileX, player.tileY, player.tileX);
+                    int curDistance = Distance(enemy.getTileY() + 1, enemy.getTileX(), player.getTileY(), player.getTileX());
                     if (minDistance > curDistance) {
                         minDistance = curDistance;
                         nowDirection = DOWN;
                     }
                 }
                 if (map.getTile(enemy.getTileX() - 1, enemy.getTileY()) instanceof Grass) {
-                    int curDistance = Distance(enemy.tileY, enemy.tileX - 1, player.tileY, player.tileX);
+                    int curDistance = Distance(enemy.getTileY(), enemy.getTileX() - 1, player.getTileY(), player.getTileX());
                     if (minDistance > curDistance) {
                         minDistance = curDistance;
                         nowDirection = LEFT;
                     }
                 }
                 if (map.getTile(enemy.getTileX() + 1, enemy.getTileY()) instanceof Grass) {
-                    int curDistance = Distance(enemy.tileY, enemy.tileX + 1, player.tileY, player.tileX);
+                    int curDistance = Distance(enemy.getTileY(), enemy.getTileX() + 1, player.getTileY(), player.getTileX());
                     if (minDistance > curDistance) {
                         minDistance = curDistance;
                         nowDirection = RIGHT;
