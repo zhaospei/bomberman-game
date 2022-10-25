@@ -16,6 +16,8 @@ public class CharacterTexture {
                 return new Balloom(j, i, Sprite.BALLOOM_RIGHT[0]);
             case '2':
                 return new Oneal(j, i, Sprite.ONEAL_RIGHT[0]);
+            case '3':
+                return new Doll(j, i, Sprite.DOLL_RIGHT[0]);
             default:
                 return null;
         }

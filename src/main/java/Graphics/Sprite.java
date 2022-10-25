@@ -106,15 +106,23 @@ public class Sprite {
 	};
 	
 	//Doll
-	public static Sprite doll_left1 = new Sprite(DEFAULT_SIZE, 13, 0, SpriteSheet.tiles, 16, 16);
-	public static Sprite doll_left2 = new Sprite(DEFAULT_SIZE, 13, 1, SpriteSheet.tiles, 16, 16);
-	public static Sprite doll_left3 = new Sprite(DEFAULT_SIZE, 13, 2, SpriteSheet.tiles, 16, 16);
-	
-	public static Sprite doll_right1 = new Sprite(DEFAULT_SIZE, 14, 0, SpriteSheet.tiles, 16, 16);
-	public static Sprite doll_right2 = new Sprite(DEFAULT_SIZE, 14, 1, SpriteSheet.tiles, 16, 16);
-	public static Sprite doll_right3 = new Sprite(DEFAULT_SIZE, 14, 2, SpriteSheet.tiles, 16, 16);
-	
-	public static Sprite doll_dead = new Sprite(DEFAULT_SIZE, 13, 3, SpriteSheet.tiles, 16, 16);
+	public static Sprite[] DOLL_LEFT = {
+		new Sprite(DEFAULT_SIZE, 13, 0, SpriteSheet.tiles, 16, 16),
+		new Sprite(DEFAULT_SIZE, 13, 1, SpriteSheet.tiles, 16, 16),
+		new Sprite(DEFAULT_SIZE, 13, 2, SpriteSheet.tiles, 16, 16),
+	};
+
+	public static Sprite[] DOLL_RIGHT = {
+		new Sprite(DEFAULT_SIZE, 14, 0, SpriteSheet.tiles, 16, 16),
+		new Sprite(DEFAULT_SIZE, 14, 1, SpriteSheet.tiles, 16, 16),
+		new Sprite(DEFAULT_SIZE, 14, 2, SpriteSheet.tiles, 16, 16),
+	};
+
+	public static Sprite[] DOLL_DESTROYED = {
+		new Sprite(DEFAULT_SIZE, 13, 3, SpriteSheet.tiles, 16, 16),
+		new Sprite(DEFAULT_SIZE, 13, 3, SpriteSheet.tiles, 16, 16),
+		new Sprite(DEFAULT_SIZE, 13, 3, SpriteSheet.tiles, 16, 16),
+	};
 	
 	//Minvo
 	public static Sprite minvo_left1 = new Sprite(DEFAULT_SIZE, 8, 5, SpriteSheet.tiles, 16, 16);
