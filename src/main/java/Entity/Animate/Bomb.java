@@ -26,6 +26,6 @@ public class Bomb extends AnimateEntity{
 
     @Override
     public void delete() {
-        map.getBombs().remove(this);
+        this.remove();
     }
 }

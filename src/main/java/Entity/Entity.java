@@ -21,6 +21,8 @@ public abstract class Entity {
 
     protected boolean block;
 
+    protected boolean removed;
+
     public Entity(int x, int y, Sprite sprite) {
         this.tileX = x;
         this.tileY = y;
@@ -29,6 +31,7 @@ public abstract class Entity {
         this.sprite = sprite;
         this.image = sprite.getFxImage();
         this.block = false;
+        this.removed = false;
     }
 
     public static void setGameMap(Map map) {
@@ -38,6 +41,14 @@ public abstract class Entity {
     public Rectangle2D getBorder() {
 
         return new Rectangle2D(pixelX, pixelY, sprite.getRealWidth(), sprite.getRealHeight());
+    }
+
+    public void remove() {
+        removed = true;
+    }
+
+    public boolean isRemoved() {
+        return removed;
     }
 
     public boolean isCollider(Entity entity) {
@@ -56,11 +67,6 @@ public abstract class Entity {
         pixelY = y;
         tileX = pixelX / SCALED_SIZE;
         tileY = pixelY / SCALED_SIZE;
-    }
-
-
-    public Pair<Integer, Integer> getTile() {
-        return new Pair(tileX, tileY);
     }
 
     public int getTileX() {

@@ -66,6 +66,29 @@ public class Map {
         }
     }
 
+    private void removeEntities() {
+        ArrayList<Enemy> removedEnemies = new ArrayList<>();
+        ArrayList<Bomb> removedBombs = new ArrayList<>();
+        enemies.forEach(enemy -> {
+            if (enemy.isRemoved()) {
+                removedEnemies.add(enemy);
+            }
+        });
+        bombs.forEach(bomb -> {
+            if (bomb.isRemoved()) {
+                removedBombs.add(bomb);
+            }
+        });
+        if (player.isRemoved()) player = null;
+        removedEnemies.forEach(enemy -> {
+            enemies.remove(enemy);
+        });
+        removedBombs.forEach(bomb -> {
+            bombs.remove(bomb);
+        });
+    }
+
+
     public void updateMap() {
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
@@ -80,6 +103,7 @@ public class Map {
         bombs.forEach(bomb -> {
             bomb.update();
         });
+        removeEntities();
     }
 
     public void renderMap(GraphicsContext graphicsContext) {

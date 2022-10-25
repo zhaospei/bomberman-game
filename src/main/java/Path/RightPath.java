@@ -58,7 +58,6 @@ public class RightPath extends Path{
             enemy.setSpeed(2);
             if (player.getTileX() == enemy.getTileX() && player.getTileY() == enemy.getTileY()) {
                 if (Math.abs(player.getPixelX() - enemy.getPixelX()) > Math.abs(player.getPixelY() - enemy.getPixelY())) {
-                    //System.out.println("X");
                     if (player.getPixelX() < enemy.getPixelX()) {
                         return LEFT;
                     } else {

@@ -26,7 +26,7 @@ public class Bomber extends Character {
         this.keyInput = keyInput;
         this.keyInput.initialization();
         this.defaultVel = 1;
-        this.speed = 3;
+        this.speed = 1;
         this.life = 3;
     }
     public void placeBombAt(int x, int y) {

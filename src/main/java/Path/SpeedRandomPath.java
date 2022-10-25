@@ -19,7 +19,23 @@ public class SpeedRandomPath extends Path{
 
 
     public DIRECTION path() {
-        if (Distance(enemy.tileY, enemy.tileX, player.tileY, player.tileX) <= 4) {
+//        System.out.println(Distance(enemy.tileY, enemy.tileX, player.tileY, player.tileX));
+        if (Distance(enemy.tileY, enemy.tileX, player.tileY, player.tileX) <= 20) {
+            if (player.getTileX() == enemy.getTileX() && player.getTileY() == enemy.getTileY()) {
+                if (Math.abs(player.getPixelX() - enemy.getPixelX()) > Math.abs(player.getPixelY() - enemy.getPixelY())) {
+                    if (player.getPixelX() < enemy.getPixelX()) {
+                        return LEFT;
+                    } else {
+                        return RIGHT;
+                    }
+                } else {
+                    if (player.getPixelY() < enemy.getPixelY()) {
+                        return UP;
+                    } else {
+                        return DOWN;
+                    }
+                }
+            }
             if (enemy.isInATile()) {
                 int minDistance = INF;
                 DIRECTION nowDirection = UP;

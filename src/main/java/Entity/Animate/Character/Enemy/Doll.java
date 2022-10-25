@@ -33,7 +33,7 @@ public class Doll extends Enemy{
         life --;
         destroyed = false;
         if (life == 0) {
-            map.getEnemies().remove(this);
+            this.remove();
         }
     }
 }
