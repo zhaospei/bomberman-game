@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import Map.Map;
 import static Graphics.Sprite.SCALED_SIZE;
@@ -28,7 +29,7 @@ public class MainGame extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle(GAME_TITLE);
-        canvas = new Canvas(SCALED_SIZE * WIDTH, SCALED_SIZE * HEIGHT);
+        canvas = new Canvas(WIDTH_SCREEN * SCALED_SIZE, HEIGHT_SCREEN * SCALED_SIZE + UP_BORDER * SCALED_SIZE);
         graphicsContext = canvas.getGraphicsContext2D();
 
         Group root = new Group();
@@ -38,6 +39,7 @@ public class MainGame extends Application {
 
         stage.setScene(scene);
         stage.setResizable(false);
+        stage.getIcons().add(new Image("/icon.png"));
         stage.show();
         startTime = System.nanoTime();
         lastFrame = 0;
@@ -53,12 +55,10 @@ public class MainGame extends Application {
                     map.renderMap(graphicsContext);
                     scene.setOnKeyPressed(keyEvent -> {
                         String code = keyEvent.getCode().toString();
-                        System.out.println(code + " Pressed");
                         KeyInput.keyInput.put(code, true);
                     });;
                     scene.setOnKeyReleased(keyEvent -> {
                         String code = keyEvent.getCode().toString();
-                        System.out.println(code + " Released");
                         KeyInput.keyInput.put(code, false);
                     });
                     frames ++;
@@ -66,7 +66,7 @@ public class MainGame extends Application {
                 }
 
                 if (now - lastTime >= 1000000000) {
-                    stage.setTitle(GAME_TITLE + " | " + frames + " FPS" + " | LIFE: " + map.getPlayer().getLife());
+                    stage.setTitle(GAME_TITLE + " | " + frames + " FPS" + " | LIFES: " + map.getPlayer().getLife());
                     frames = 0;
                     lastTime = now;
                 }

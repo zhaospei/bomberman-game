@@ -8,18 +8,21 @@ import Graphics.Sprite;
 import javafx.util.Pair;
 
 import static Graphics.Sprite.*;
+import static Variables.Variables.UP_BORDER;
 
 public abstract class Entity {
     protected static Map map = Map.getGameMap();
-    public int pixelX;
-    public int pixelY;
-    public int tileX;
-    public int tileY;
+    protected int pixelX;
+    protected int pixelY;
+    protected int tileX;
+    protected int tileY;
 
     protected Sprite sprite;
     protected Image image;
 
     protected boolean block;
+
+    protected boolean removed;
 
     public Entity(int x, int y, Sprite sprite) {
         this.tileX = x;
@@ -29,6 +32,7 @@ public abstract class Entity {
         this.sprite = sprite;
         this.image = sprite.getFxImage();
         this.block = false;
+        this.removed = false;
     }
 
     public static void setGameMap(Map map) {
@@ -40,13 +44,21 @@ public abstract class Entity {
         return new Rectangle2D(pixelX, pixelY, sprite.getRealWidth(), sprite.getRealHeight());
     }
 
+    public void remove() {
+        removed = true;
+    }
+
+    public boolean isRemoved() {
+        return removed;
+    }
+
     public boolean isCollider(Entity entity) {
         if (entity == null) return false;
         return getBorder().intersects(entity.getBorder());
     }
 
     public void render(GraphicsContext graphicsContext) {
-        graphicsContext.drawImage(image, pixelX, pixelY);
+        graphicsContext.drawImage(image, pixelX - map.getRenderX(), pixelY - map.getRenderY() + UP_BORDER * SCALED_SIZE);
     }
 
     public abstract void update();
@@ -56,11 +68,6 @@ public abstract class Entity {
         pixelY = y;
         tileX = pixelX / SCALED_SIZE;
         tileY = pixelY / SCALED_SIZE;
-    }
-
-
-    public Pair<Integer, Integer> getTile() {
-        return new Pair(tileX, tileY);
     }
 
     public int getTileX() {

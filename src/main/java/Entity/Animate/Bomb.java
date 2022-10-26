@@ -6,8 +6,6 @@ import Graphics.Sprite;
 import Texture.FlameTexture;
 import Variables.Variables;
 
-import java.util.Iterator;
-
 import static Variables.Variables.BOMB_STATUS.*;
 
 public class Bomb extends AnimateEntity {
