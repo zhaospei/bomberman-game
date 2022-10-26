@@ -64,9 +64,9 @@ public abstract class Character extends AnimateEntity {
     }
 
     public void move() {
-        if (this instanceof Bomber && (velocityX != 0 || velocityY != 0)) {
-            System.out.println(pixelX + " " + pixelY);
-        }
+//        if (this instanceof Bomber && (velocityX != 0 || velocityY != 0)) {
+//            System.out.println(pixelX + " " + pixelY);
+//        }
         pixelX += velocityX;
         pixelY += velocityY;
         tileX = pixelX / SCALED_SIZE;

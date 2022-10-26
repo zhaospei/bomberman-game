@@ -18,7 +18,7 @@
 #     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
 # This output file may be truncated or incomplete.
 #
-#  Out of Memory Error (os_windows.cpp:3527), pid=4000, tid=9180
+#  Out of Memory Error (os_windows.cpp:3527), pid=9204, tid=3304
 #
 # JRE version:  (19.0.1+10) (build )
 # Java VM: OpenJDK 64-Bit Server VM (19.0.1+10-21, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
@@ -27,16 +27,16 @@
 
 ---------------  S U M M A R Y ------------
 
-Command Line: --module-path=C:\Java\javafx-sdk-19\lib --add-modules=javafx.controls,javafx.fxml -javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.2.1\lib\idea_rt.jar=50580:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.2.1\bin -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 Game.MainGame
+Command Line: --module-path=C:\Java\javafx-sdk-19\lib --add-modules=javafx.controls,javafx.fxml -javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.2.1\lib\idea_rt.jar=50554:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.2.1\bin -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 Game.MainGame
 
 Host: Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz, 8 cores, 7G,  Windows 11 , 64 bit Build 22621 (10.0.22621.457)
-Time: Mon Oct 24 19:54:23 2022 SE Asia Standard Time elapsed time: 0.013420 seconds (0d 0h 0m 0s)
+Time: Wed Oct 26 02:18:55 2022 SE Asia Standard Time elapsed time: 0.015649 seconds (0d 0h 0m 0s)
 
 ---------------  T H R E A D  ---------------
 
-Current thread (0x000001779328b960):  JavaThread "Unknown thread" [_thread_in_vm, id=9180, stack(0x00000015f2200000,0x00000015f2300000)]
+Current thread (0x00000144e6264730):  JavaThread "Unknown thread" [_thread_in_vm, id=3304, stack(0x0000001532e00000,0x0000001532f00000)]
 
-Stack: [0x00000015f2200000,0x00000015f2300000]
+Stack: [0x0000001532e00000,0x0000001532f00000]
 Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
 V  [jvm.dll+0x6ee8fa]
 V  [jvm.dll+0x857a1e]
@@ -65,22 +65,22 @@ C  [ntdll.dll+0x5df78]
 ---------------  P R O C E S S  ---------------
 
 Threads class SMR info:
-_java_thread_list=0x00007ffa8118d048, length=0, elements={
+_java_thread_list=0x00007ffa1d4bd048, length=0, elements={
 }
 
 Java Threads: ( => current thread )
 
 Other Threads:
-  0x00000177932e9cd0 WorkerThread "GC Thread#0" [stack: 0x00000015f2300000,0x00000015f2400000] [id=2360]
-  0x00000177932fab70 ConcurrentGCThread "G1 Main Marker" [stack: 0x00000015f2400000,0x00000015f2500000] [id=12104]
-  0x00000177932fbd40 WorkerThread "G1 Conc#0" [stack: 0x00000015f2500000,0x00000015f2600000] [id=1592]
+  0x00000144e62bd830 WorkerThread "GC Thread#0" [stack: 0x0000001532f00000,0x0000001533000000] [id=6676]
+  0x00000144e62ce5d0 ConcurrentGCThread "G1 Main Marker" [stack: 0x0000001533000000,0x0000001533100000] [id=10840]
+  0x00000144e62cf6a0 WorkerThread "G1 Conc#0" [stack: 0x0000001533100000,0x0000001533200000] [id=2644]
 
-[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffa8094d127]
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffa1cc7d127]
 
 VM state: not at safepoint (not fully initialized)
 
 VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
-[0x00000177932875b0] Heap_lock - owner thread: 0x000001779328b960
+[0x00000144e6260770] Heap_lock - owner thread: 0x00000144e6264730
 
 Heap address: 0x0000000081e00000, size: 2018 MB, Compressed Oops mode: 32-bit
 
@@ -95,13 +95,13 @@ Heap:
  garbage-first heap   total 0K, used 0K [0x0000000081e00000, 0x0000000100000000)
   region size 1024K, 0 young (0K), 0 survivors (0K)
 
-[error occurred during error reporting (printing heap information), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffa80d56959]
+[error occurred during error reporting (printing heap information), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffa1d086959]
 
 GC Heap History (0 events):
 No events
 
 Dll operation events (1 events):
-Event: 0.009 Loaded shared library C:\Users\Admin\.jdks\openjdk-19.0.1\bin\java.dll
+Event: 0.011 Loaded shared library C:\Users\Admin\.jdks\openjdk-19.0.1\bin\java.dll
 
 Deoptimization events (0 events):
 No events
@@ -126,46 +126,46 @@ No events
 
 
 Dynamic libraries:
-0x00007ff7ea080000 - 0x00007ff7ea08e000 	C:\Users\Admin\.jdks\openjdk-19.0.1\bin\java.exe
-0x00007ffac20b0000 - 0x00007ffac22c4000 	C:\WINDOWS\SYSTEM32\ntdll.dll
-0x00007ffac1020000 - 0x00007ffac10e2000 	C:\WINDOWS\System32\KERNEL32.DLL
-0x00007ffabf820000 - 0x00007ffabfbbc000 	C:\WINDOWS\System32\KERNELBASE.dll
-0x00007ffabf5b0000 - 0x00007ffabf6c1000 	C:\WINDOWS\System32\ucrtbase.dll
-0x00007ffaa8fd0000 - 0x00007ffaa8fe7000 	C:\Users\Admin\.jdks\openjdk-19.0.1\bin\jli.dll
-0x00007ffaae7c0000 - 0x00007ffaae7db000 	C:\Users\Admin\.jdks\openjdk-19.0.1\bin\VCRUNTIME140.dll
-0x00007ffac1200000 - 0x00007ffac13ab000 	C:\WINDOWS\System32\USER32.dll
-0x00007ffaa7940000 - 0x00007ffaa7bce000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.317_none_a9434687c10c9fa2\COMCTL32.dll
-0x00007ffabf7f0000 - 0x00007ffabf816000 	C:\WINDOWS\System32\win32u.dll
-0x00007ffac0f30000 - 0x00007ffac0fd7000 	C:\WINDOWS\System32\msvcrt.dll
-0x00007ffabfec0000 - 0x00007ffabfee9000 	C:\WINDOWS\System32\GDI32.dll
-0x00007ffabfc30000 - 0x00007ffabfd42000 	C:\WINDOWS\System32\gdi32full.dll
-0x00007ffabf750000 - 0x00007ffabf7ea000 	C:\WINDOWS\System32\msvcp_win.dll
-0x00007ffac0fe0000 - 0x00007ffac1011000 	C:\WINDOWS\System32\IMM32.DLL
-0x00007ffab0420000 - 0x00007ffab042c000 	C:\Users\Admin\.jdks\openjdk-19.0.1\bin\vcruntime140_1.dll
-0x00007ffa99c70000 - 0x00007ffa99cfe000 	C:\Users\Admin\.jdks\openjdk-19.0.1\bin\msvcp140.dll
-0x00007ffa80610000 - 0x00007ffa812d0000 	C:\Users\Admin\.jdks\openjdk-19.0.1\bin\server\jvm.dll
-0x00007ffabfef0000 - 0x00007ffabff9e000 	C:\WINDOWS\System32\ADVAPI32.dll
-0x00007ffac1b60000 - 0x00007ffac1c04000 	C:\WINDOWS\System32\sechost.dll
-0x00007ffac0ce0000 - 0x00007ffac0df5000 	C:\WINDOWS\System32\RPCRT4.dll
-0x00007ffabc8f0000 - 0x00007ffabc8f9000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
-0x00007ffab0370000 - 0x00007ffab03a4000 	C:\WINDOWS\SYSTEM32\WINMM.dll
-0x00007ffab4bc0000 - 0x00007ffab4bca000 	C:\WINDOWS\SYSTEM32\VERSION.dll
-0x00007ffac1a50000 - 0x00007ffac1ac1000 	C:\WINDOWS\System32\WS2_32.dll
-0x00007ffabe530000 - 0x00007ffabe548000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
-0x00007ffaa8fc0000 - 0x00007ffaa8fca000 	C:\Users\Admin\.jdks\openjdk-19.0.1\bin\jimage.dll
-0x00007ffaa3720000 - 0x00007ffaa394e000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
-0x00007ffac0150000 - 0x00007ffac04d9000 	C:\WINDOWS\System32\combase.dll
-0x00007ffac1f30000 - 0x00007ffac2007000 	C:\WINDOWS\System32\OLEAUT32.dll
-0x00007ffaa3290000 - 0x00007ffaa32c2000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
-0x00007ffabf6d0000 - 0x00007ffabf74b000 	C:\WINDOWS\System32\bcryptPrimitives.dll
-0x00007ffabc900000 - 0x00007ffabc90e000 	C:\Users\Admin\.jdks\openjdk-19.0.1\bin\instrument.dll
-0x00007ffaa7630000 - 0x00007ffaa7656000 	C:\Users\Admin\.jdks\openjdk-19.0.1\bin\java.dll
+0x00007ff61bca0000 - 0x00007ff61bcae000 	C:\Users\Admin\.jdks\openjdk-19.0.1\bin\java.exe
+0x00007ffa701f0000 - 0x00007ffa70404000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffa6f520000 - 0x00007ffa6f5e2000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffa6d750000 - 0x00007ffa6daec000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffa6d630000 - 0x00007ffa6d741000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffa517f0000 - 0x00007ffa51807000 	C:\Users\Admin\.jdks\openjdk-19.0.1\bin\jli.dll
+0x00007ffa4ffc0000 - 0x00007ffa4ffdb000 	C:\Users\Admin\.jdks\openjdk-19.0.1\bin\VCRUNTIME140.dll
+0x00007ffa6edb0000 - 0x00007ffa6ef5b000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffa55780000 - 0x00007ffa55a0e000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.317_none_a9434687c10c9fa2\COMCTL32.dll
+0x00007ffa6dfd0000 - 0x00007ffa6dff6000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffa6ffe0000 - 0x00007ffa70087000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffa6f330000 - 0x00007ffa6f359000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffa6daf0000 - 0x00007ffa6dc02000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffa6dc10000 - 0x00007ffa6dcaa000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffa6ffa0000 - 0x00007ffa6ffd1000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ffa52b80000 - 0x00007ffa52b8c000 	C:\Users\Admin\.jdks\openjdk-19.0.1\bin\vcruntime140_1.dll
+0x00007ffa3d400000 - 0x00007ffa3d48e000 	C:\Users\Admin\.jdks\openjdk-19.0.1\bin\msvcp140.dll
+0x00007ffa1c940000 - 0x00007ffa1d600000 	C:\Users\Admin\.jdks\openjdk-19.0.1\bin\server\jvm.dll
+0x00007ffa6e1a0000 - 0x00007ffa6e24e000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffa70090000 - 0x00007ffa70134000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffa6e2b0000 - 0x00007ffa6e3c5000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffa65ca0000 - 0x00007ffa65ca9000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffa62580000 - 0x00007ffa6258a000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffa66cc0000 - 0x00007ffa66cf4000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffa6f3f0000 - 0x00007ffa6f461000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffa6c670000 - 0x00007ffa6c688000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007ffa517e0000 - 0x00007ffa517ea000 	C:\Users\Admin\.jdks\openjdk-19.0.1\bin\jimage.dll
+0x00007ffa515b0000 - 0x00007ffa517de000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ffa6e5a0000 - 0x00007ffa6e929000 	C:\WINDOWS\System32\combase.dll
+0x00007ffa6f240000 - 0x00007ffa6f317000 	C:\WINDOWS\System32\OLEAUT32.dll
+0x00007ffa50fe0000 - 0x00007ffa51012000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007ffa6dd20000 - 0x00007ffa6dd9b000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffa6aa70000 - 0x00007ffa6aa7e000 	C:\Users\Admin\.jdks\openjdk-19.0.1\bin\instrument.dll
+0x00007ffa4a150000 - 0x00007ffa4a176000 	C:\Users\Admin\.jdks\openjdk-19.0.1\bin\java.dll
 
 dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
 symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Users\Admin\.jdks\openjdk-19.0.1\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.317_none_a9434687c10c9fa2;C:\Users\Admin\.jdks\openjdk-19.0.1\bin\server
 
 VM Arguments:
-jvm_args: --module-path=C:\Java\javafx-sdk-19\lib --add-modules=javafx.controls,javafx.fxml -javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.2.1\lib\idea_rt.jar=50580:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.2.1\bin -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 
+jvm_args: --module-path=C:\Java\javafx-sdk-19\lib --add-modules=javafx.controls,javafx.fxml -javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.2.1\lib\idea_rt.jar=50554:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.2.1\bin -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 
 java_command: Game.MainGame
 java_class_path (initial): D:\BTL\bomberman-game\target\classes;C:\Users\Admin\.m2\repository\org\openjfx\javafx-controls\19-ea+7\javafx-controls-19-ea+7.jar;C:\Users\Admin\.m2\repository\org\openjfx\javafx-controls\19-ea+7\javafx-controls-19-ea+7-win.jar;C:\Users\Admin\.m2\repository\org\openjfx\javafx-graphics\19-ea+7\javafx-graphics-19-ea+7.jar;C:\Users\Admin\.m2\repository\org\openjfx\javafx-graphics\19-ea+7\javafx-graphics-19-ea+7-win.jar;C:\Users\Admin\.m2\repository\org\openjfx\javafx-base\19-ea+7\javafx-base-19-ea+7.jar;C:\Users\Admin\.m2\repository\org\openjfx\javafx-base\19-ea+7\javafx-base-19-ea+7-win.jar;C:\Users\Admin\.m2\repository\org\openjfx\javafx-fxml\19-ea+7\javafx-fxml-19-ea+7.jar;C:\Users\Admin\.m2\repository\org\openjfx\javafx-fxml\19-ea+7\javafx-fxml-19-ea+7-win.jar;C:\Users\Admin\.m2\repository\org\controlsfx\controlsfx\11.1.1\controlsfx-11.1.1.jar;C:\Users\Admin\.m2\repository\org\kordamp\bootstrapfx\bootstrapfx-core\0.4.0\bootstrapfx-core-0.4.0.jar
 Launcher Type: SUN_STANDARD
@@ -212,13 +212,13 @@ TEMP=C:\Users\Admin\AppData\Local\Temp
 
 OS:
  Windows 11 , 64 bit Build 22621 (10.0.22621.457)
-OS uptime: 0 days 2:55 hours
+OS uptime: 0 days 1:09 hours
 Hyper-V role detected
 
 CPU: total 8 (initial active 8) (4 cores per cpu, 2 threads per core) family 6 model 142 stepping 10 microcode 0xe0, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, fma, vzeroupper, clflush, clflushopt, hv, rdtscp
 
-Memory: 4k page, system-wide physical 8069M (1660M free)
-TotalPageFile size 8069M (AvailPageFile size 82M)
+Memory: 4k page, system-wide physical 8069M (2065M free)
+TotalPageFile size 8069M (AvailPageFile size 106M)
 current process WorkingSet (physical memory assigned to process): 11M, peak: 11M
 current process commit charge ("private bytes"): 60M, peak: 188M
 
