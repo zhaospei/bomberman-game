@@ -1,19 +1,17 @@
 package Entity.Animate.Character;
 
-import Entity.Animate.AnimateEntity;
 import Entity.Animate.Bomb;
-import Entity.Entity;
 import Entity.Static.Grass;
 import Graphics.Sprite;
 import Input.KeyInput;
 import Texture.BombTexture;
-import javafx.geometry.Rectangle2D;
 
 import static Variables.Variables.DIRECTION.*;
 
 public class Bomber extends Character {
     public KeyInput keyInput;
-    public boolean standInBomb = false;
+    public boolean canPlace = true;
+    public boolean placeBomb = false;
 
     public Bomber(int x, int y, Sprite sprite, KeyInput keyInput) {
         super(x, y, sprite);
@@ -29,10 +27,18 @@ public class Bomber extends Character {
         this.speed = 3;
         this.life = 3;
     }
+
     public void placeBombAt(int x, int y) {
-        if (map.getTiles()[x][y] instanceof Grass && map.getBombs().size() <= Bomb.limit) {
-            Bomb bomb1 = BombTexture.setBomb(x, y);
-            map.getBombs().add(bomb1);
+        canPlace = true;
+        map.getBombs().forEach(bomb -> {
+            if (bomb.getTileX() == x && bomb.getTileY() == y) {
+                canPlace = false;
+            }
+        });
+        if (map.getTile(x, y) instanceof Grass && map.getBombs().size() < Bomb.limit && canPlace) {
+            Bomb bomb = BombTexture.setBomb(x, y);
+            map.getBombs().add(bomb);
+            System.out.println(map.getBombs().size());
         }
     }
 
@@ -42,6 +48,11 @@ public class Bomber extends Character {
             stand = true;
             return;
         }
+        map.getBombs().forEach(bomb -> {
+            if(this.tileX != bomb.tileX) {
+                //bomb.setBlock(true);
+            }
+        });
 
         super.checkCollision();
         map.getEnemies().forEach(enemy -> {
@@ -49,6 +60,7 @@ public class Bomber extends Character {
                 destroy();
             }
         });
+
         if (isCollision) {
             for (int i = -8 - speed; i <= 8 + speed; i++) {
                 switch (direction) {
@@ -67,13 +79,14 @@ public class Bomber extends Character {
         }
 
 
-    tileX =pixelX /Sprite.SCALED_SIZE;
-    tileY =pixelY /Sprite.SCALED_SIZE;
-}
+        tileX = pixelX / Sprite.SCALED_SIZE;
+        tileY = pixelY / Sprite.SCALED_SIZE;
+    }
 
 
     @Override
     public void setDirection() {
+        placeBomb = false;
         direction = keyInput.handleKeyInput();
         this.setVelocity(0, 0);
         switch (direction) {
@@ -97,5 +110,9 @@ public class Bomber extends Character {
         destroyed = false;
         direction = NONE;
         setSprite(Sprite.PLAYER_DOWN[0]);
+    }
+
+    public boolean isPlaceBomb() {
+        return placeBomb;
     }
 }

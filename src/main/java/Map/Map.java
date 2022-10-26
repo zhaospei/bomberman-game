@@ -4,12 +4,14 @@ import Entity.Animate.Bomb;
 import Entity.Animate.Character.Bomber;
 import Entity.Animate.Character.Character;
 import Entity.Animate.Character.Enemy.Enemy;
+import Entity.Animate.Flame;
 import Entity.Entity;;
 import Entity.Static.StaticEntity;
 import Graphics.Sprite;
 import Input.PlayerInput;
 import Texture.BombTexture;
 import Texture.CharacterTexture;
+import Texture.FlameTexture;
 import Texture.StaticTexture;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -17,8 +19,8 @@ import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
+
 import static Variables.Variables.*;
 
 public class Map {
@@ -28,6 +30,8 @@ public class Map {
     private ArrayList<Enemy> enemies;
     private ArrayList<Bomb> bombs;
     private Bomber player;
+    private ArrayList<Flame> flames;
+
     public static Map getGameMap() {
         if (map == null) {
             map = new Map();
@@ -39,6 +43,7 @@ public class Map {
         tiles = new Entity[HEIGHT][WIDTH];
         enemies = new ArrayList<>();
         bombs = new ArrayList<>();
+        flames = new ArrayList<>();
     }
 
     public ArrayList<Enemy> getEnemies() {
@@ -81,6 +86,9 @@ public class Map {
         bombs.forEach(bomb -> {
             bomb.update();
         });
+        flames.forEach(flame -> {
+            flame.update();
+        });
     }
 
     public void renderMap(GraphicsContext graphicsContext) {
@@ -96,6 +104,9 @@ public class Map {
         bombs.forEach(bomb -> {
             bomb.render(graphicsContext);
         });
+        flames.forEach(flame -> {
+            flame.render(graphicsContext);
+        });
     }
 
     public void setTile(int x, int y, Entity entity) {
@@ -106,10 +117,6 @@ public class Map {
         return tiles[y][x];
     }
 
-    public Entity[][] getTiles(){
-        return tiles;
-    }
-
     public Bomber getPlayer() {
         return this.player;
     }
@@ -118,4 +125,7 @@ public class Map {
         return bombs;
     }
 
+    public ArrayList<Flame> getFlames() {
+        return flames;
+    }
 }
