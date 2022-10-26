@@ -93,9 +93,7 @@ public class Bomb extends AnimateEntity {
 
     @Override
     public void delete() {
-        if (map.getBombs().size() > 0) {
-            map.getBombs().remove(this);
-        }
+        this.remove();
     }
 
     public int getTimetoExplode() {

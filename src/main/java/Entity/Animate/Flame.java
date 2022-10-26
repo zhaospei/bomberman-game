@@ -39,8 +39,6 @@ public class Flame extends AnimateEntity {
 
     @Override
     public void delete() {
-        if(map.getFlames().size() > 0) {
-            map.getFlames().remove(this);
-        }
+        this.remove();
     }
 }

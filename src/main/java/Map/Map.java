@@ -80,6 +80,7 @@ public class Map {
     private void removeEntities() {
         ArrayList<Enemy> removedEnemies = new ArrayList<>();
         ArrayList<Bomb> removedBombs = new ArrayList<>();
+        ArrayList<Flame> removedFlames = new ArrayList<>();
         enemies.forEach(enemy -> {
             if (enemy.isRemoved()) {
                 removedEnemies.add(enemy);
@@ -90,12 +91,20 @@ public class Map {
                 removedBombs.add(bomb);
             }
         });
+        flames.forEach(flame -> {
+            if(flame.isRemoved()) {
+                removedFlames.add(flame);
+            }
+        });
         if (player.isRemoved()) player = null;
         removedEnemies.forEach(enemy -> {
             enemies.remove(enemy);
         });
         removedBombs.forEach(bomb -> {
             bombs.remove(bomb);
+        });
+        removedFlames.forEach(flame -> {
+            flames.remove(flame);
         });
     }
 

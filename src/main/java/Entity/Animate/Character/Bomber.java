@@ -55,7 +55,7 @@ public class Bomber extends Character {
             return;
         }
         map.getBombs().forEach(bomb -> {
-            if(this.tileX != bomb.tileX) {
+            if(this.getTileX() != bomb.getTileY()) {
                 //bomb.setBlock(true);
             }
         });
