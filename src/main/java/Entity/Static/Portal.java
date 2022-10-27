@@ -15,7 +15,7 @@ public class Portal extends StaticEntity{
 
     @Override
     public void update() {
-        if(map.getEnemies().size() != 0 && !isBlock()) {
+        if(map.getEnemies().size() == 0 && !isBlock()) {
             accessAble = true;
         }
     }
