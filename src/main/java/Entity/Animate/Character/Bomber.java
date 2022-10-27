@@ -49,7 +49,7 @@ public class Bomber extends Character {
         map.getEnemies().forEach(enemy -> {
             if (this.isCollider(enemy)) {
                 destroy();
-                enemy.destroy();
+                //enemy.destroy();
             }
         });
         if (isCollision) {
@@ -68,11 +68,9 @@ public class Bomber extends Character {
                 }
             }
         }
-
-
-    tileX =pixelX /Sprite.SCALED_SIZE;
-    tileY =pixelY /Sprite.SCALED_SIZE;
-}
+        tileX = pixelX / SCALED_SIZE;
+        tileY = pixelY / SCALED_SIZE;
+    }
 
 
     @Override

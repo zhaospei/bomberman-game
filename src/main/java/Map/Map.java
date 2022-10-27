@@ -12,6 +12,8 @@ import Texture.BombTexture;
 import Texture.CharacterTexture;
 import Texture.StaticTexture;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.io.File;
@@ -139,11 +141,18 @@ public class Map {
             return;
         }
         renderX = player.getPixelX() - (WIDTH_SCREEN / 2) * SCALED_SIZE;
+        renderY = player.getPixelY() - (HEIGHT_SCREEN / 2) * SCALED_SIZE;
         if (renderX < 0) {
             renderX = 0;
         }
         if (renderX > WIDTH * SCALED_SIZE - WIDTH_SCREEN * SCALED_SIZE) {
             renderX = WIDTH * SCALED_SIZE - WIDTH_SCREEN * SCALED_SIZE;
+        }
+        if (renderY < 0) {
+            renderY = 0;
+        }
+        if (renderY > HEIGHT * SCALED_SIZE - HEIGHT_SCREEN * SCALED_SIZE) {
+            renderY = HEIGHT * SCALED_SIZE - HEIGHT_SCREEN * SCALED_SIZE;
         }
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {

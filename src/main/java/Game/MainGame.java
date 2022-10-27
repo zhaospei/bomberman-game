@@ -1,6 +1,7 @@
 package Game;
 
 import Input.KeyInput;
+import Texture.FontTexture;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -8,6 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import Map.Map;
 import static Graphics.Sprite.SCALED_SIZE;
@@ -17,7 +21,6 @@ public class MainGame extends Application {
     private static Map map = Map.getGameMap();
     private GraphicsContext graphicsContext;
     private Canvas canvas;
-
     private final double FPS = 120.0;
     private final long timePerFrame = (long) (1000000000 / FPS);
     private long lastFrame;
@@ -29,12 +32,10 @@ public class MainGame extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle(GAME_TITLE);
-        canvas = new Canvas(WIDTH_SCREEN * SCALED_SIZE, HEIGHT_SCREEN * SCALED_SIZE + UP_BORDER * SCALED_SIZE);
+        canvas = new Canvas(WIDTH_SCREEN * SCALED_SIZE, HEIGHT_SCREEN * SCALED_SIZE);
         graphicsContext = canvas.getGraphicsContext2D();
-
-        Group root = new Group();
-        root.getChildren().add(canvas);
-
+        //HBox info = new HBox(FontTexture.createText("hello", 0, 40, Color.BLACK));
+        VBox root = new VBox(canvas);
         Scene scene = new Scene(root);
 
         stage.setScene(scene);

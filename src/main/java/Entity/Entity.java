@@ -58,7 +58,7 @@ public abstract class Entity {
     }
 
     public void render(GraphicsContext graphicsContext) {
-        graphicsContext.drawImage(image, pixelX - map.getRenderX(), pixelY - map.getRenderY() + UP_BORDER * SCALED_SIZE);
+        graphicsContext.drawImage(image, pixelX - map.getRenderX(), pixelY - map.getRenderY());
     }
 
     public abstract void update();
@@ -85,6 +85,13 @@ public abstract class Entity {
     public int getPixelY() {
         return pixelY;
     }
+    public void setTile(int x, int y) {
+        tileX = x;
+        tileY = y;
+        pixelX = tileX * SCALED_SIZE;
+        pixelY = tileY * SCALED_SIZE;
+    }
+
 
     public boolean isInATile() {
         return (pixelX % SCALED_SIZE == 0 && pixelY % SCALED_SIZE == 0);
