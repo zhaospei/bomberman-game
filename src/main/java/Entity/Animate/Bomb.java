@@ -95,4 +95,8 @@ public class Bomb extends AnimateEntity {
     public void delete() {
         this.remove();
     }
+
+    public int getTimetoExplode() {
+        return timetoExplode;
+    }
 }
