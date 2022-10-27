@@ -27,8 +27,9 @@ public class Variables {
         NONE,
 
     }
-    public static enum BOMB_STATUS {
+    public static enum STATUS {
         NOTEXPLODEDYET,
+        EXPLODING,
     }
     public static enum FLAME_SHAPE {
         BOMB_EXPLODED,

@@ -1,12 +1,14 @@
 package Entity.Animate;
 
+import Entity.Entity;
+import Entity.Static.*;
 import Graphics.Sprite;
 import Variables.Variables;
 
 import static Variables.Variables.FLAME_SHAPE.*;
 
 public class Flame extends AnimateEntity {
-    protected int flameLength = 2;
+    public static int flameLength = 1;
     protected int flameShape = 0;
 
     public Flame(int x, int y, Sprite sprite, Variables.FLAME_SHAPE fs) {
@@ -34,6 +36,37 @@ public class Flame extends AnimateEntity {
         } else {
             timeDestroy--;
             updateAnimation();
+        }
+    }
+
+    public void interactWith(Entity entity) {
+        if (entity instanceof Brick) {
+            ((Brick) entity).destroyed = true;
+        } else if (entity instanceof Item) {
+            entity.setBlock(false);
+            if (entity instanceof SpeedItem) {
+                entity.setSprite(Sprite.powerup_speed);
+            }
+            if (entity instanceof BombItem) {
+                entity.setSprite(Sprite.powerup_bombs);
+            }
+            if (entity instanceof FlameItem) {
+                entity.setSprite(Sprite.powerup_flames);
+            }
+        } else if (entity instanceof Portal) {
+            entity.setBlock(false);
+            entity.setSprite(Sprite.portal);
+        }
+    }
+
+    public void checkCollison() {
+        map.getEnemies().forEach(enemy -> {
+            if (this.isCollider(enemy)) {
+                enemy.destroy();
+            }
+        });
+        if (this.isCollider(map.getPlayer())) {
+            map.getPlayer().destroy();
         }
     }
 

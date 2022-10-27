@@ -2,12 +2,17 @@ package Entity.Animate.Character;
 
 import Entity.Animate.AnimateEntity;
 import Entity.Animate.Bomb;
+import Entity.Animate.Flame;
 import Entity.Entity;
+import Entity.Static.BombItem;
+import Entity.Static.FlameItem;
 import Entity.Static.Grass;
+import Entity.Static.SpeedItem;
 import Graphics.Sprite;
 import Input.KeyInput;
 import Texture.BombTexture;
 import javafx.geometry.Rectangle2D;
+
 import static Graphics.Sprite.*;
 
 import static Variables.Variables.DIRECTION.*;
@@ -44,7 +49,6 @@ public class Bomber extends Character {
         if (map.getTile(x, y) instanceof Grass && map.getBombs().size() < Bomb.limit && canPlace) {
             Bomb bomb = BombTexture.setBomb(x, y);
             map.getBombs().add(bomb);
-            System.out.println(map.getBombs().size());
         }
     }
 
@@ -57,7 +61,21 @@ public class Bomber extends Character {
                 enemy.destroy();
             }
         });
-
+        map.getBombs().forEach(bomb -> {
+            if (!this.isCollider(bomb)) {
+                bomb.setBlock(true);
+            }
+        });
+        map.getItems().forEach(item -> {
+            if (this.isCollider(item)) {
+                item.setActivated(true);
+                item.remove();
+                if (item instanceof SpeedItem) {
+                    setSpeed(SpeedItem.increasedSpeed);
+                }
+                item.delete();
+            }
+        });
         if (isCollision) {
             for (int i = -8 - speed; i <= 8 + speed; i++) {
                 switch (direction) {
