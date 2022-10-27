@@ -1,25 +1,30 @@
 package Entity.Animate.Character;
 
 import Entity.Animate.AnimateEntity;
+import Entity.Animate.Character.Enemy.Balloom;
+import Entity.Animate.Character.Enemy.Doll;
 import Entity.Animate.Character.Enemy.Enemy;
+import Entity.Animate.Character.Enemy.Oneal;
 import Entity.Entity;
 import Entity.Static.Grass;
 import Entity.Static.Portal;
 import Entity.Static.StaticEntity;
 import Game.MainGame;
 import Graphics.Sprite;
+import Input.PlayerInput;
 import Map.Map;
 
 import static Variables.Variables.*;
 
 import static Graphics.Sprite.*;
-import static Variables.Variables.DIRECTION.NONE;
+import static Variables.Variables.DIRECTION.*;
 
 public abstract class Character extends AnimateEntity {
     protected int velocityX;
     protected int velocityY;
     protected int defaultVel;
     protected int speed;
+
     protected DIRECTION direction;
     protected boolean isCollision;
     protected boolean stand;

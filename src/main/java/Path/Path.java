@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Queue;
 
 import static Variables.Variables.*;
+import static Variables.Variables.DIRECTION.*;
 
 public abstract class Path {
     protected Map map;
@@ -58,7 +59,7 @@ public abstract class Path {
         Queue<Vertex> pq = new LinkedList<>();
         pq.add(new Vertex(x1, y1, 0));
         while (!pq.isEmpty()) {
-            Vertex cur = pq.remove();
+            Vertex cur = pq.poll();
             for (int k = 0; k < 4; k++) {
                 int _x = cur.x + dx[k];
                 int _y = cur.y + dy[k];
@@ -69,6 +70,22 @@ public abstract class Path {
             }
         }
         return distanceTiles[x2][y2];
+    }
+
+    public DIRECTION intToDirection(int x) {
+        switch (x) {
+            case 0:
+                return UP;
+            case 1:
+                return DOWN;
+            case 2:
+                return LEFT;
+            case 3:
+                return RIGHT;
+            default:
+                return NONE;
+        }
+
     }
     public abstract DIRECTION path();
 }

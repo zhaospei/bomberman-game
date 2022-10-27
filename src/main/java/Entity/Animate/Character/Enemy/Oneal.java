@@ -3,7 +3,7 @@ package Entity.Animate.Character.Enemy;
 import Entity.Animate.Character.Bomber;
 import Graphics.Sprite;
 import Map.Map;
-import Path.SpeedRandomPath;
+import Path.SpeedDistancePath;
 import Variables.Variables.DIRECTION;
 
 import java.util.Random;
@@ -25,19 +25,9 @@ public class Oneal extends Enemy{
         this.defaultChangeSpeed = 10;
     }
     public DIRECTION path(Map map, Bomber player, Enemy enemy){
-//        if (!enemy.isCollider() && cntMove > 0) {
-//            cntMove--;
-//            return enemy.getDirection();
-//        }
-//        cntMove = defaultCntMove;
-//        if (changeSpeed == 0) {
-//            speed = 1 + new Random().nextInt(2);
-//            changeSpeed = defaultChangeSpeed;
-//        } else {
-//            changeSpeed--;
-//        }
-        SpeedRandomPath speedRandomPath = new SpeedRandomPath(map, player, enemy);
-        return speedRandomPath.path();
+        SpeedDistancePath speedRandomPath = new SpeedDistancePath(map, player, enemy);
+        DIRECTION _direction = speedRandomPath.path();
+        return _direction;
     }
 
     @Override
