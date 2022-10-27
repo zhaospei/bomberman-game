@@ -1,10 +1,14 @@
 package Entity.Animate.Character;
 
+import Entity.Animate.AnimateEntity;
 import Entity.Animate.Bomb;
+import Entity.Entity;
 import Entity.Static.Grass;
 import Graphics.Sprite;
 import Input.KeyInput;
 import Texture.BombTexture;
+import javafx.geometry.Rectangle2D;
+import static Graphics.Sprite.*;
 
 import static Variables.Variables.DIRECTION.*;
 
@@ -12,6 +16,8 @@ public class Bomber extends Character {
     public KeyInput keyInput;
     public boolean canPlace = true;
     public boolean placeBomb = false;
+
+    private int timeRevival;
 
     public Bomber(int x, int y, Sprite sprite, KeyInput keyInput) {
         super(x, y, sprite);
@@ -24,7 +30,7 @@ public class Bomber extends Character {
         this.keyInput = keyInput;
         this.keyInput.initialization();
         this.defaultVel = 1;
-        this.speed = 3;
+        this.speed = 2;
         this.life = 3;
     }
 
@@ -44,20 +50,11 @@ public class Bomber extends Character {
 
     @Override
     public void checkCollision() {
-        if (direction == NONE) {
-            stand = true;
-            return;
-        }
-        map.getBombs().forEach(bomb -> {
-            if(this.tileX != bomb.tileX) {
-                //bomb.setBlock(true);
-            }
-        });
-
         super.checkCollision();
         map.getEnemies().forEach(enemy -> {
             if (this.isCollider(enemy)) {
                 destroy();
+                enemy.destroy();
             }
         });
 
@@ -86,7 +83,6 @@ public class Bomber extends Character {
 
     @Override
     public void setDirection() {
-        placeBomb = false;
         direction = keyInput.handleKeyInput();
         this.setVelocity(0, 0);
         switch (direction) {
@@ -106,13 +102,15 @@ public class Bomber extends Character {
     @Override
     public void delete() {
         this.life--;
-        setPosition(32, 32);
+        timeRevival = 7;
+        map.setRevival(true);
+        setPosition(SCALED_SIZE, SCALED_SIZE);
         destroyed = false;
         direction = NONE;
         setSprite(Sprite.PLAYER_DOWN[0]);
     }
 
-    public boolean isPlaceBomb() {
-        return placeBomb;
+    public int getTimeRevival() {
+        return timeRevival;
     }
 }

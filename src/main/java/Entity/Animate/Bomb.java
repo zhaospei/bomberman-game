@@ -6,8 +6,6 @@ import Graphics.Sprite;
 import Texture.FlameTexture;
 import Variables.Variables;
 
-import java.util.Iterator;
-
 import static Variables.Variables.BOMB_STATUS.*;
 
 public class Bomb extends AnimateEntity {
@@ -95,12 +93,6 @@ public class Bomb extends AnimateEntity {
 
     @Override
     public void delete() {
-        if (map.getBombs().size() > 0) {
-            map.getBombs().remove(this);
-        }
-    }
-
-    public int getTimetoExplode() {
-        return timetoExplode;
+        this.remove();
     }
 }

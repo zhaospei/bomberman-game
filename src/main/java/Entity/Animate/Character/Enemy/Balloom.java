@@ -37,6 +37,6 @@ public class Balloom extends Enemy{
 
     @Override
     public void delete() {
-
+        this.remove();
     }
 }
