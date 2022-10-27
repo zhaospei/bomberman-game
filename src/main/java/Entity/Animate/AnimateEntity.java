@@ -15,7 +15,7 @@ public abstract class AnimateEntity extends Entity {
 
     public HashMap<Enum, Sprite[]> animation = new HashMap<>();
 
-    protected int timeDestroy;
+    protected int timeDestroy = 30;
     protected boolean destroyed;
 
     public AnimateEntity(int x, int y, Sprite sprite) {

@@ -2,19 +2,25 @@ package Entity.Animate.Character;
 
 import Entity.Animate.AnimateEntity;
 import Entity.Animate.Bomb;
+import Entity.Animate.Flame;
 import Entity.Entity;
+import Entity.Static.BombItem;
+import Entity.Static.FlameItem;
 import Entity.Static.Grass;
+import Entity.Static.SpeedItem;
 import Graphics.Sprite;
 import Input.KeyInput;
 import Texture.BombTexture;
 import javafx.geometry.Rectangle2D;
+
 import static Graphics.Sprite.*;
 
 import static Variables.Variables.DIRECTION.*;
 
 public class Bomber extends Character {
     public KeyInput keyInput;
-    public boolean standInBomb = false;
+    public boolean canPlace = true;
+    public boolean placeBomb = false;
 
     private int timeRevival;
 
@@ -32,14 +38,17 @@ public class Bomber extends Character {
         this.speed = 2;
         this.life = 3;
     }
+
     public void placeBombAt(int x, int y) {
-        for (Bomb bomb: map.getBombs()) {
+        canPlace = true;
+        map.getBombs().forEach(bomb -> {
             if (bomb.getTileX() == x && bomb.getTileY() == y) {
-                return;
+                canPlace = false;
             }
-        }
-        if (map.getTile(x, y) instanceof Grass && map.getBombs().size() < Bomb.limit) {
-            map.getBombs().add(new Bomb(x, y, Sprite.BOMB[0]));
+        });
+        if (map.getTile(x, y) instanceof Grass && map.getBombs().size() < Bomb.limit && canPlace) {
+            Bomb bomb = BombTexture.setBomb(x, y);
+            map.getBombs().add(bomb);
         }
     }
 
@@ -50,6 +59,21 @@ public class Bomber extends Character {
             if (this.isCollider(enemy)) {
                 destroy();
                 //enemy.destroy();
+            }
+        });
+        map.getBombs().forEach(bomb -> {
+            if (!this.isCollider(bomb)) {
+                bomb.setBlock(true);
+            }
+        });
+        map.getItems().forEach(item -> {
+            if (this.isCollider(item)) {
+                item.setActivated(true);
+                item.remove();
+                if (item instanceof SpeedItem) {
+                    setSpeed(SpeedItem.increasedSpeed);
+                }
+                item.delete();
             }
         });
         if (isCollision) {

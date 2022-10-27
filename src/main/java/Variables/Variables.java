@@ -27,8 +27,18 @@ public class Variables {
         NONE,
 
     }
-    public static enum BOMB_STATUS {
+    public static enum STATUS {
         NOTEXPLODEDYET,
+        EXPLODING,
+    }
+    public static enum FLAME_SHAPE {
+        BOMB_EXPLODED,
+        VERTICAL,
+        HORIZONTAL,
+        HORIZONTAL_LEFT_LAST,
+        HORIZONTAL_RIGHT_LAST,
+        VERTICAL_TOP_LAST,
+        VERTICAL_DOWN_LAST,
     }
 
     public static final String ICON_PATH = "/icon.png";

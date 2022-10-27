@@ -7,6 +7,7 @@ import Entity.Animate.Character.Enemy.Enemy;
 import Entity.Animate.Character.Enemy.Oneal;
 import Entity.Entity;
 import Entity.Static.Grass;
+import Entity.Static.Portal;
 import Entity.Static.StaticEntity;
 import Game.MainGame;
 import Graphics.Sprite;
@@ -82,22 +83,23 @@ public abstract class Character extends AnimateEntity {
         isCollision = false;
         pixelX += this.velocityX;
         pixelY += this.velocityY;
-
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
-                Entity entity = map.getTiles()[i][j];
+                Entity entity = map.getTile(j, i);
                 if (entity.isBlock() && this.isCollider(entity)) {
                     isCollision = true;
                 }
-                map.getBombs().forEach(bomb -> {
-                    Entity entity1 = bomb;
-                    if (entity1.isBlock() && this.isCollider(entity1)) {
-                        isCollision = true;
-                    }
-                });
+                if(this instanceof Bomber && this.isCollider(entity) && entity instanceof Portal && ((Portal) entity).isAccessAble() && entity.getTileX() == j && entity.getTileY() == i) {
+                    System.out.println("WIN");
+                }
             }
         }
-        
+        map.getBombs().forEach(bomb -> {
+            Entity entity1 = bomb;
+            if (entity1.isBlock() && this.isCollider(entity1)) {
+                isCollision = true;
+            }
+        });
         stand = (velocityX == 0 && velocityY == 0) || isCollision;
         pixelX -= this.velocityX;
         pixelY -= this.velocityY;
