@@ -89,7 +89,7 @@ public abstract class Character extends AnimateEntity {
                 if (entity.isBlock() && this.isCollider(entity)) {
                     isCollision = true;
                 }
-                if(this instanceof Bomber && this.isCollider(entity) && entity instanceof Portal && ((Portal) entity).isAccessAble() && entity.getTileX() == j && entity.getTileY() == i) {
+                if (this instanceof Bomber && this.isCollider(entity) && entity instanceof Portal && ((Portal) entity).isAccessAble() && entity.getTileX() == j && entity.getTileY() == i) {
                     System.out.println("WIN");
                 }
             }
@@ -97,6 +97,9 @@ public abstract class Character extends AnimateEntity {
         map.getBombs().forEach(bomb -> {
             Entity entity1 = bomb;
             if (entity1.isBlock() && this.isCollider(entity1)) {
+                isCollision = true;
+            }
+            if(this.isCollider(entity1) && this instanceof Enemy) {
                 isCollision = true;
             }
         });
@@ -109,8 +112,7 @@ public abstract class Character extends AnimateEntity {
     public void update() {
         if (isDestroyed()) {
             updateDestroyAnimation();
-        }
-        else {
+        } else {
             for (int i = 0; i < speed; i++) {
                 setDirection();
                 checkCollision();
@@ -123,6 +125,7 @@ public abstract class Character extends AnimateEntity {
             }
         }
     }
+
     public int getLife() {
         return life;
     }
@@ -133,5 +136,6 @@ public abstract class Character extends AnimateEntity {
         sprite = Sprite.movingSprite(currentAnimate, 3, time * this.speed);
         image = sprite.getFxImage();
     }
+
     public abstract void setDirection();
 }
