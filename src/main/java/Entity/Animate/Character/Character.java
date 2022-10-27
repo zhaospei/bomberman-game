@@ -1,6 +1,7 @@
 package Entity.Animate.Character;
 
 import Entity.Animate.AnimateEntity;
+import Entity.Animate.Bomb;
 import Entity.Animate.Character.Enemy.Balloom;
 import Entity.Animate.Character.Enemy.Doll;
 import Entity.Animate.Character.Enemy.Enemy;
@@ -125,11 +126,40 @@ public abstract class Character extends AnimateEntity {
         return life;
     }
 
+    public boolean checkTileCollider(DIRECTION direction) {
+        boolean ok = false;
+        int k = 0;
+        switch (direction) {
+            case UP -> k = 0;
+            case DOWN -> k = 1;
+            case LEFT -> k = 2;
+            case RIGHT -> k = 3;
+        }
+        int lastPixelX = this.getPixelX();
+        int lastPixelY = this.getPixelY();
+        this.setTile(this.getTileX() + dx[k], this.getTileY() + dy[k]);
+        for (int i = 0; i < HEIGHT; i++) {
+            for (int j = 0; j < WIDTH; j++) {
+                Entity entity = map.getTiles()[i][j];
+                if (entity.isBlock() && this.isCollider(entity)) {
+                    ok = true;
+                }
+                for (Bomb bomb: map.getBombs()) {
+                    if (bomb.isBlock() && this.isCollider(bomb)) {
+                        ok = true;
+                    }
+                }
+            }
+        }
+        this.setPosition(lastPixelX, lastPixelY);
+        return ok;
+    }
     @Override
     public void updateAnimation() {
         long time = MainGame.time;
         sprite = Sprite.movingSprite(currentAnimate, 3, time * this.speed);
         image = sprite.getFxImage();
     }
+
     public abstract void setDirection();
 }

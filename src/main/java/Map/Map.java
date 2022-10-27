@@ -115,11 +115,12 @@ public class Map {
     }
 
     private void renderRevival(GraphicsContext graphicsContext) {
-        if (renderX == 0) {
+        if (renderX == 0 && renderY == 0) {
             revival = false;
             return;
         } else {
             renderX = Math.max(0, renderX - player.getTimeRevival());
+            renderY = Math.max(0, renderY - player.getTimeRevival());
         }
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
@@ -135,11 +136,7 @@ public class Map {
         });
     }
 
-    public void renderMap(GraphicsContext graphicsContext) {
-        if (revival) {
-            renderRevival(graphicsContext);
-            return;
-        }
+    private void updateRenderXY() {
         renderX = player.getPixelX() - (WIDTH_SCREEN / 2) * SCALED_SIZE;
         renderY = player.getPixelY() - (HEIGHT_SCREEN / 2) * SCALED_SIZE;
         if (renderX < 0) {
@@ -154,6 +151,14 @@ public class Map {
         if (renderY > HEIGHT * SCALED_SIZE - HEIGHT_SCREEN * SCALED_SIZE) {
             renderY = HEIGHT * SCALED_SIZE - HEIGHT_SCREEN * SCALED_SIZE;
         }
+    }
+
+    public void renderMap(GraphicsContext graphicsContext) {
+        if (revival) {
+            renderRevival(graphicsContext);
+            return;
+        }
+        updateRenderXY();
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
                 tiles[i][j].render(graphicsContext);
