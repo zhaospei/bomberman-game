@@ -1,6 +1,7 @@
 package Entity;
 
 import Map.Map;
+import Variables.Variables;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -8,7 +9,7 @@ import Graphics.Sprite;
 import javafx.util.Pair;
 
 import static Graphics.Sprite.*;
-import static Variables.Variables.UP_BORDER;
+import static Variables.Variables.*;
 
 public abstract class Entity {
     protected static Map map = Map.getGameMap();
