@@ -15,79 +15,11 @@ public class RightPath extends Path{
 
     @Override
     public DIRECTION path() {
-        boolean pursue = true;
-        if (player.getTileX() != enemy.getTileX() && player.getTileY() != enemy.getTileY()) {
-            pursue = false;
-        }
-        if (player.getTileX() == enemy.getTileX()) {
-            if (enemy.getPixelX() % SCALED_SIZE != 0 || player.getPixelX() % SCALED_SIZE != 0) {
-                pursue = false;
-            }
-            if (player.getTileY() < enemy.getTileY()) {
-                for (int i = player.getPixelY(); i < enemy.getTileY(); i++) {
-                    if (map.getTile(player.getTileX(), i).isBlock()) {
-                        pursue = false;
-                    }
-                }
-            } else {
-                for (int i = enemy.getPixelY(); i < player.getTileY(); i++) {
-                    if (map.getTile(player.getTileX(), i).isBlock()) {
-                        pursue = false;
-                    }
-                }
-            }
-        } else {
-            if (enemy.getPixelY() % SCALED_SIZE != 0 || player.getPixelY() % SCALED_SIZE != 0) {
-                pursue = false;
-            }
-            if (player.getTileX() < enemy.getTileX()) {
-                for (int i = player.getPixelX(); i < enemy.getTileX(); i++) {
-                    if (map.getTile(i, player.getTileY()).isBlock()) {
-                        pursue = false;
-                    }
-                }
-            } else {
-                for (int i = enemy.getPixelX(); i < player.getTileX(); i++) {
-                    if (map.getTile(i, player.getTileY()).isBlock()) {
-                        pursue = false;
-                    }
-                }
-            }
-        }
-        if (pursue) {
-            enemy.setSpeed(2);
-            if (player.getTileX() == enemy.getTileX() && player.getTileY() == enemy.getTileY()) {
-                if (Math.abs(player.getPixelX() - enemy.getPixelX()) > Math.abs(player.getPixelY() - enemy.getPixelY())) {
-                    if (player.getPixelX() < enemy.getPixelX()) {
-                        return LEFT;
-                    } else {
-                        return RIGHT;
-                    }
-                } else {
-                    if (player.getPixelY() < enemy.getPixelY()) {
-                        return UP;
-                    } else {
-                        return DOWN;
-                    }
-                }
-            }
-            if (player.getTileX() == enemy.getTileX()) {
-                if (player.getTileY() < enemy.getTileY()) {
-                    return UP;
-                } else {
-                    return DOWN;
-                }
-            } else {
-                if (player.getTileX() < enemy.getTileX()) {
-                    return LEFT;
-                } else {
-                    return RIGHT;
-                }
-            }
-        } else {
+        DIRECTION headPath = new HeadPath(map, player, enemy).path();
+        if (headPath == NONE) {
             enemy.setSpeed(1);
             if (enemy.isCollider()) {
-                if (map.getTile(enemy.getTileX() + 1, enemy.getTileY()).isBlock()) {
+                if (enemy.checkTileCollider(RIGHT)) {
                     return LEFT;
                 } else {
                     return RIGHT;
@@ -95,6 +27,9 @@ public class RightPath extends Path{
             } else {
                 return enemy.getDirection();
             }
+        } else {
+            enemy.setSpeed(2);
+            return headPath;
         }
     }
 }

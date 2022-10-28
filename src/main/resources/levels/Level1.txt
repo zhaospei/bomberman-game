@@ -30,6 +30,7 @@ Character:
 p - Bomber
 1 - Balloon
 2 - Oneal
+3 - Doll
 
 Items:
 b - Bomb Item

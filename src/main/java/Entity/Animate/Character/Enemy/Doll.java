@@ -25,6 +25,7 @@ public class Doll extends Enemy{
     }
 
     public DIRECTION path(Map map, Bomber player, Enemy enemy) {
+        setSpeed(3);
         RightPath rightPath = new RightPath(map, player, enemy);
         return rightPath.path();
     }

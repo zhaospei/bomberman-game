@@ -21,17 +21,6 @@ public class SpeedDistancePath extends Path {
 
 
     public DIRECTION path() {
-//        if (!enemy.isCollider() && cntMove > 0) {
-//            cntMove--;
-//            return enemy.getDirection();
-//        }
-//        cntMove = defaultCntMove;
-//        if (changeSpeed == 0) {
-//            speed = 1 + new Random().nextInt(1);
-//            changeSpeed = defaultChangeSpeed;
-//        } else {
-//            changeSpeed--;
-//        }
         if (Distance(enemy.getTileY(), enemy.getTileX(), player.getTileY(), player.getTileX()) <= 5) {
             enemy.setSpeed(2);
             enemy.setCntMove(5);
@@ -39,7 +28,6 @@ public class SpeedDistancePath extends Path {
         } else {
             int cntMove = enemy.getCntMove();
             int changeSpeed = enemy.getChangeSpeed();
-            //System.out.println(changeSpeed);
             if (!enemy.isCollider() && cntMove > 0) {
                 enemy.setCntMove(cntMove - 1);
                 if (changeSpeed == 0) {
