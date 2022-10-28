@@ -40,6 +40,9 @@ public class DistancePath extends Path {
                 if (map.getTile(enemy.getTileX() + dx[k], enemy.getTileY() + dy[k]) instanceof Grass) {
                     int curDistance = Distance(enemy.getTileY() + dy[k], enemy.getTileX() + dx[k],
                             player.getTileY(), player.getTileX(), false);
+                    if (enemy.checkTileCollider(intToDirection(k), true)) {
+                        continue;
+                    }
                     if (minDistance > curDistance) {
                         minDistance = curDistance;
                         nowDirection = intToDirection(k);

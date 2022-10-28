@@ -2,6 +2,7 @@ package Entity.Animate.Character;
 
 import Entity.Animate.AnimateEntity;
 import Entity.Animate.Bomb;
+import Entity.Animate.Brick;
 import Entity.Animate.Character.Enemy.Balloom;
 import Entity.Animate.Character.Enemy.Doll;
 import Entity.Animate.Character.Enemy.Enemy;
@@ -131,7 +132,7 @@ public abstract class Character extends AnimateEntity {
         return life;
     }
 
-    public boolean checkTileCollider(DIRECTION direction) {
+    public boolean checkTileCollider(DIRECTION direction, boolean dodge) {
         boolean ok = false;
         int k = 0;
         switch (direction) {
@@ -147,7 +148,13 @@ public abstract class Character extends AnimateEntity {
             for (int j = 0; j < WIDTH; j++) {
                 Entity entity = map.getTile(j, i);
                 if (entity.isBlock() && this.isCollider(entity)) {
-                    ok = true;
+                    if (dodge) {
+                        if (!(entity instanceof Brick)) {
+                            ok = true;
+                        }
+                    } else {
+                        ok = true;
+                    }
                 }
                 for (Bomb bomb: map.getBombs()) {
                     if (bomb.isBlock() && this.isCollider(bomb)) {

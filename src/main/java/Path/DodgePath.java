@@ -38,14 +38,7 @@ public class DodgePath extends Path {
             for (int k = 0; k < 4; k++) {
                 if (map.getTile(enemy.getTileX() + dx[k], enemy.getTileY() + dy[k]) instanceof Grass
                     || map.getTile(enemy.getTileX() + dx[k], enemy.getTileY() + dy[k]) instanceof Brick) {
-                    boolean ok = false;
-                    for (Bomb bomb: map.getBombs()) {
-                        if(enemy.isCollider(bomb)) {
-                            ok = true;
-                        }
-                    }
-                    if (ok) {
-                        System.out.println(k);
+                    if (enemy.checkTileCollider(intToDirection(k), true)) {
                         continue;
                     }
                     int curDistance = Distance(enemy.getTileY() + dy[k], enemy.getTileX() + dx[k],
