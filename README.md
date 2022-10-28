@@ -1,5 +1,11 @@
 # Bài tập lớn OOP - Bomberman Game
 
+Bài tập lớn môn Lập trình Hướng đối tượng - INT2204 22 
+#### Người thực hiện:
+
+- Bùi Tuấn Dũng - 21020006
+- Lê Tuấn Đạt - 2102....
+
 ## Mô tả về các đối tượng trong trò chơi
 
 - ![](src/main/resources/sprites/player_down.png) *Bomber* là nhân vật chính của trò chơi. Bomber có thể di chuyển theo 4 hướng trái/phải/lên/xuống theo sự điều khiển của người chơi.
