@@ -1,8 +1,10 @@
 package Path;
 
+import Entity.Animate.Bomb;
 import Entity.Animate.Brick;
 import Entity.Animate.Character.Bomber;
 import Entity.Animate.Character.Enemy.Enemy;
+import Entity.Entity;
 import Entity.Static.Grass;
 import Map.Map;
 import Variables.Variables.DIRECTION;
@@ -36,6 +38,16 @@ public class DodgePath extends Path {
             for (int k = 0; k < 4; k++) {
                 if (map.getTile(enemy.getTileX() + dx[k], enemy.getTileY() + dy[k]) instanceof Grass
                     || map.getTile(enemy.getTileX() + dx[k], enemy.getTileY() + dy[k]) instanceof Brick) {
+                    boolean ok = false;
+                    for (Bomb bomb: map.getBombs()) {
+                        if(enemy.isCollider(bomb)) {
+                            ok = true;
+                        }
+                    }
+                    if (ok) {
+                        System.out.println(k);
+                        continue;
+                    }
                     int curDistance = Distance(enemy.getTileY() + dy[k], enemy.getTileX() + dx[k],
                             player.getTileY(), player.getTileX(), true);
                     if (minDistance > curDistance) {

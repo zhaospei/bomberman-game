@@ -30,6 +30,7 @@ public class Kondoria extends Enemy {
         this.defaultVel = 1;
         this.speed = 1;
         this.defaultCntMove = 5;
+        this.life = 1;
     }
     @Override
     public DIRECTION path(Map map, Bomber player, Enemy enemy) {
