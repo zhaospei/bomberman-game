@@ -145,7 +145,7 @@ public abstract class Character extends AnimateEntity {
         this.setTile(this.getTileX() + dx[k], this.getTileY() + dy[k]);
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
-                Entity entity = map.getTile(i, j);
+                Entity entity = map.getTiles()[i][j];
                 if (entity.isBlock() && this.isCollider(entity)) {
                     ok = true;
                 }
