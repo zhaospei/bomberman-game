@@ -13,10 +13,10 @@ public class StaticTexture {
                 return new FlameItem(j, i, Sprite.BRICK[0]);
             case 'b':
                 return new BombItem(j ,i, Sprite.BRICK[0]);
-            case '#':
-                return new Wall(j, i, Sprite.wall);
             case 'x':
                 return new Portal(j, i, Sprite.BRICK[0]);
+            case '#':
+                return new Wall(j, i, Sprite.wall);
             default:
                 return new Grass(j, i, Sprite.grass);
         }
