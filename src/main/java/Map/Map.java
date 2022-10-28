@@ -195,6 +195,13 @@ public class Map {
     }
 
     public void renderMap(GraphicsContext graphicsContext) {
+//        if (flames.size() > 0) {
+//            for (Flame flame : flames) {
+//                System.out.println(flame.getPixelX() + " " + flame.getPixelY());
+//            }
+//            System.out.println("------------------------");
+//        }
+
         if (revival) {
             renderRevival(graphicsContext);
             return;

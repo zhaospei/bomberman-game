@@ -32,6 +32,9 @@ public class RandomPath extends Path {
             if (map.getTile(enemy.getTileX() + 1, enemy.getTileY()) instanceof Grass) {
                 canDirections.add(RIGHT);
             }
+            if (canDirections.size() == 0) {
+                return enemy.getDirection();
+            }
             int random = new Random().nextInt(canDirections.size());
             return canDirections.get(random);
         } else {

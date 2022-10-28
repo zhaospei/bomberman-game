@@ -1,5 +1,6 @@
 package Path;
 
+import Entity.Animate.Brick;
 import Entity.Entity;
 import Map.Map;
 import Entity.Animate.Character.Bomber;
@@ -40,22 +41,43 @@ public abstract class Path {
     }
 
 
-    public int Distance(int x1, int y1, int x2, int y2) {
-        if (map.getTile(y1, x1).isBlock() || map.getTile(y2, x2).isBlock()) {
+    public int Distance(int x1, int y1, int x2, int y2, boolean dodge) {
+        if (map.getTile(y2, x2).isBlock()) {
             return INF;
+        }
+        if (map.getTile(y1, x1).isBlock()) {
+            if (dodge) {
+                if (! (map.getTile(y1, x1) instanceof Brick)) {
+                    return INF;
+                }
+            } else {
+                return INF;
+            }
         }
         int statusTiles[][] = new int[HEIGHT][WIDTH];
         int distanceTiles[][] = new int [HEIGHT][WIDTH];
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
                 distanceTiles[i][j] = INF;
-                if (map.getTile(j, i).isBlock()) {
+                Entity tile = map.getTile(j, i);
+                if (tile.isBlock()) {
                     statusTiles[i][j] = 1;
+                    if (dodge && tile instanceof Brick) {
+                        statusTiles[i][j] = 0;
+                    }
                 } else {
                     statusTiles[i][j] = 0;
                 }
             }
         }
+
+//        for (int i = 0; i < HEIGHT; i++) {
+//            for (int j = 0; j < WIDTH; j++) {
+//                System.out.print(statusTiles[i][j] + " ");
+//            }
+//            System.out.println();
+//        }
+
         Queue<Vertex> pq = new LinkedList<>();
         pq.add(new Vertex(x1, y1, 0));
         while (!pq.isEmpty()) {

@@ -1,27 +1,24 @@
 package Path;
 
+import Entity.Animate.Brick;
 import Entity.Animate.Character.Bomber;
 import Entity.Animate.Character.Enemy.Enemy;
 import Entity.Static.Grass;
 import Map.Map;
 import Variables.Variables.DIRECTION;
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
-import java.util.ArrayList;
-import java.util.Random;
-
-import static Variables.Variables.DIRECTION.*;
 import static Variables.Variables.*;
-import static Graphics.Sprite.*;
+import static Variables.Variables.DIRECTION.*;
 
-public class DistancePath extends Path {
-    public DistancePath(Map map, Bomber player, Enemy enemy) {
+public class DodgePath extends Path {
+    public DodgePath(Map map, Bomber player, Enemy enemy) {
         super(map, player, enemy);
     }
 
+    @Override
     public DIRECTION path() {
         if (enemy.isInATile()) {
-            if (Distance(enemy.getTileY(), enemy.getTileX(), player.getTileY(), player.getTileX(), false) == 1) {
+            if (Distance(enemy.getTileY(), enemy.getTileX(), player.getTileY(), player.getTileX(), true) == 1) {
                 int enemyPixelX = enemy.getPixelX();
                 int enemyPixelY = enemy.getPixelY();
                 DIRECTION nowDirection = UP;
@@ -37,9 +34,10 @@ public class DistancePath extends Path {
             int minDistance = INF;
             DIRECTION nowDirection = UP;
             for (int k = 0; k < 4; k++) {
-                if (map.getTile(enemy.getTileX() + dx[k], enemy.getTileY() + dy[k]) instanceof Grass) {
+                if (map.getTile(enemy.getTileX() + dx[k], enemy.getTileY() + dy[k]) instanceof Grass
+                    || map.getTile(enemy.getTileX() + dx[k], enemy.getTileY() + dy[k]) instanceof Brick) {
                     int curDistance = Distance(enemy.getTileY() + dy[k], enemy.getTileX() + dx[k],
-                            player.getTileY(), player.getTileX(), false);
+                            player.getTileY(), player.getTileX(), true);
                     if (minDistance > curDistance) {
                         minDistance = curDistance;
                         nowDirection = intToDirection(k);

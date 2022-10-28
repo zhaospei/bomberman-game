@@ -141,7 +141,7 @@ public class Sprite {
             new Sprite(DEFAULT_SIZE, 9, 7, SpriteSheet.tiles, 16, 16),
     };
 
-    public static Sprite[] MINVO_DEAD = {
+    public static Sprite[] MINVO_DESTROYED = {
             new Sprite(DEFAULT_SIZE, 8, 8, SpriteSheet.tiles, 16, 16),
             new Sprite(DEFAULT_SIZE, 8, 8, SpriteSheet.tiles, 16, 16),
             new Sprite(DEFAULT_SIZE, 8, 8, SpriteSheet.tiles, 16, 16),
