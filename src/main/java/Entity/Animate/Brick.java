@@ -26,7 +26,7 @@ public class Brick extends AnimateEntity {
         if (destroyed == true) {
             currentAnimate = animation.get(EXPLODING);
             if (timeDestroy > 0) {
-                updateAnimation();
+                updateDestroyAnimation();
                 timeDestroy--;
             } else {
                 delete();
@@ -38,21 +38,13 @@ public class Brick extends AnimateEntity {
     }
 
     @Override
-    public void destroy() {
-        currentAnimate = animation.get(EXPLODING);
-        updateDestroyAnimation();
+    public void updateAnimation() {
     }
-
     @Override
     public void updateDestroyAnimation() {
-        while(timeDestroy != 0) {
-            timeDestroy--;
-            updateAnimation();
-            if(timeDestroy == 0) {
-                delete();
-            }
-        }
-        updateAnimation();
+        long time = MainGame.time;
+        sprite = Sprite.movingSprite(currentAnimate, 3, time);
+        image = sprite.getFxImage();
     }
 
     @Override
