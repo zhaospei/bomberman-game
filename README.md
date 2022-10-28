@@ -1,9 +1,6 @@
 # Bài tập lớn OOP - Bomberman Game
 
 ## Mô tả về các đối tượng trong trò chơi
-Nếu bạn đã từng chơi Bomberman, bạn sẽ cảm thấy quen thuộc với những đối tượng này. Chúng được được chia làm hai loại chính là nhóm đối tượng động (*Bomber*, *Enemy*, *Bomb*) và nhóm đối tượng tĩnh (*Grass*, *Wall*, *Brick*, *Door*, *Item*).
-
-*Hãy thiết kế hệ thống các đối tượng một cách phù hợp để tận dụng tối đa sức mạnh của OOP: tái sử dụng code, dễ dàng maintain.*
 
 - ![](src/main/resources/sprites/player_down.png) *Bomber* là nhân vật chính của trò chơi. Bomber có thể di chuyển theo 4 hướng trái/phải/lên/xuống theo sự điều khiển của người chơi.
 - ![](src/main/resources/sprites/balloom_left1.png) *Enemy* là các đối tượng mà Bomber phải tiêu diệt hết để có thể qua Level. Enemy có thể di chuyển ngẫu nhiên hoặc tự đuổi theo Bomber tùy theo loại Enemy. Các loại Enemy sẽ được mô tả cụ thể ở phần dưới.
@@ -22,7 +19,7 @@ Các *Item* cũng được giấu phía sau Brick và chỉ hiện ra khi Brick 
 - ![](src/main/resources/sprites/powerup_flames.png) *FlameItem* Item này giúp tăng phạm vi ảnh hưởng của Bomb khi nổ (độ dài các Flame lớn hơn)
 - ![](src/main/resources/sprites/powerup_bombs.png) *BombItem* Thông thường, nếu không có đối tượng Bomb nào đang trong trạng thái kích hoạt, Bomber sẽ được đặt và kích hoạt duy nhất một đối tượng Bomb. Item này giúp tăng số lượng Bomb có thể đặt thêm một.
 
-Có nhiều loại Enemy trong Bomberman, tuy nhiên trong phiên bản này chỉ yêu cầu cài đặt hai loại Enemy dưới đây (nếu cài đặt thêm các loại khác sẽ được cộng thêm điểm):
+Các loại *Enemy* sẽ có tốc độ và cách thức hoạt động khác nhau được lượt kê dưới đây:
 - ![](src/main/resources/sprites/balloom_left1.png) *Balloom* là Enemy đơn giản nhất, di chuyển ngẫu nhiên với vận tốc cố định
 - ![](src/main/resources/sprites/oneal_left1.png) *Oneal* có tốc độ di chuyển thay đổi, lúc nhanh, lúc chậm và nó sẽ đuổi theo Bomber nếu khoảng cách giữa nó và Bomber nhỏ hơn 5 đơn vị khoảng cách
 - ![](src/main/resources/sprites/doll_left1.png) *Doll* có tốc độ di chuyển chậm, khi nó đối diện với Bomber (hàng ngang hoặc dọc) và giữa nó không có chướng ngại nào (kể cả Bomb) thì nó sẽ tăng độ di chuyển và đuổi theo Bomber
