@@ -13,6 +13,7 @@ import Graphics.Sprite;
 import Input.PlayerInput;
 import Texture.*;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -30,6 +31,7 @@ import static Graphics.Sprite.*;
 public class Map {
     private static Map map;
     private int levelNumber;
+    private Image topInfoImage;
     private Entity[][] tiles;
     private ArrayList<Enemy> enemies;
     private ArrayList<Bomb> bombs;
@@ -62,7 +64,9 @@ public class Map {
 
     public void createMap(String mapPath) throws FileNotFoundException {
         Scanner scanner = new Scanner(new File(mapPath));
-        scanner.nextLine();
+        topInfoImage = new Image("/top_info.png");
+        String _string = scanner.nextLine();
+        levelNumber = _string.charAt(0) - '0';
         resetEntities();
         revival = false;
         for (int i = 0; i < HEIGHT; i++) {
@@ -153,6 +157,12 @@ public class Map {
             item.update();
         });
         removeEntities();
+    }
+
+    public void renderTopInfo(GraphicsContext graphicsContext) {
+        graphicsContext.drawImage(topInfoImage, 0, 0);
+        graphicsContext.fillText("Stage: " + String.valueOf(levelNumber), 3 * SCALED_SIZE, SCALED_SIZE);
+        graphicsContext.fillText("Life: " + String.valueOf(player.getLife()), 10 * SCALED_SIZE, SCALED_SIZE);
     }
 
     private void renderRevival(GraphicsContext graphicsContext) {
