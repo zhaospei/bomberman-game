@@ -24,7 +24,7 @@ Các *Item* cũng được giấu phía sau Brick và chỉ hiện ra khi Brick 
 
 Có nhiều loại Enemy trong Bomberman, tuy nhiên trong phiên bản này chỉ yêu cầu cài đặt hai loại Enemy dưới đây (nếu cài đặt thêm các loại khác sẽ được cộng thêm điểm):
 - ![](src/main/resources/sprites/balloom_left1.png) *Balloom* là Enemy đơn giản nhất, di chuyển ngẫu nhiên với vận tốc cố định
-- ![](src/main/resources/sprites/oneal_left1.png) *Oneal* có tốc độ di chuyển thay đổi, lúc nhanh, lúc chậm và di chuyển "thông minh" hơn so với Balloom (biết đuổi theo Bomber)
+- ![](src/main/resources/sprites/oneal_left1.png) *Oneal* có tốc độ di chuyển thay đổi, lúc nhanh, lúc chậm và nó sẽ đuổi theo Bomber nếu khoảng cách giữa nó và Bomber nhỏ hơn 5 đơn vị khoảng cách
 - ![](src/main/resources/sprites/doll_left1.png) *Doll* có tốc độ di chuyển chậm, khi nó đối diện với Bomber (hàng ngang hoặc dọc) và giữa nó không có chướng ngại nào (kể cả Bomb) thì nó sẽ tăng độ di chuyển và đuổi theo Bomber
 - ![](src/main/resources/sprites/minvo_left1.png) *Minvo* có tốc độ di chuyển cố định, và nó có thể đi xuyên bomb
 - ![](src/main/resources/sprites/kondoria_left1.png) *Kondoria* có tốc độ di chuyển cố định, nó có thể đi xuyên qua các bricks, và nó luôn luôn đổi theo Bomber
