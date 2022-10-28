@@ -11,6 +11,7 @@ import Entity.Entity;
 import Entity.Static.Grass;
 import Entity.Static.Portal;
 import Entity.Static.StaticEntity;
+import Entity.Static.Wall;
 import Game.MainGame;
 import Graphics.Sprite;
 import Input.PlayerInput;
@@ -149,7 +150,7 @@ public abstract class Character extends AnimateEntity {
                 Entity entity = map.getTile(j, i);
                 if (entity.isBlock() && this.isCollider(entity)) {
                     if (dodge) {
-                        if (!(entity instanceof Brick)) {
+                        if (entity instanceof Wall) {
                             ok = true;
                         }
                     } else {

@@ -1,10 +1,14 @@
 package Path;
 
+import Entity.Animate.Bomb;
 import Entity.Animate.Brick;
 import Entity.Entity;
+import Entity.Static.Portal;
+import Entity.Static.Wall;
 import Map.Map;
 import Entity.Animate.Character.Bomber;
 import Entity.Animate.Character.Enemy.Enemy;
+import javafx.scene.SubScene;
 import javafx.util.Pair;
 
 import java.util.LinkedList;
@@ -47,7 +51,7 @@ public abstract class Path {
         }
         if (map.getTile(y1, x1).isBlock()) {
             if (dodge) {
-                if (! (map.getTile(y1, x1) instanceof Brick)) {
+                if (map.getTile(y1, x1) instanceof Wall) {
                     return INF;
                 }
             } else {
@@ -62,7 +66,7 @@ public abstract class Path {
                 Entity tile = map.getTile(j, i);
                 if (tile.isBlock()) {
                     statusTiles[i][j] = 1;
-                    if (dodge && tile instanceof Brick) {
+                    if (dodge && !(tile instanceof Wall)) {
                         statusTiles[i][j] = 0;
                     }
                 } else {
@@ -71,15 +75,13 @@ public abstract class Path {
             }
         }
 
-//        for (int i = 0; i < HEIGHT; i++) {
-//            for (int j = 0; j < WIDTH; j++) {
-//                System.out.print(statusTiles[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
+        for (Bomb bomb: map.getBombs()) {
+            statusTiles[bomb.getTileY()][bomb.getTileY()] = 1;
+        }
 
         Queue<Vertex> pq = new LinkedList<>();
         pq.add(new Vertex(x1, y1, 0));
+        distanceTiles[x1][y1] = 0;
         while (!pq.isEmpty()) {
             Vertex cur = pq.poll();
             for (int k = 0; k < 4; k++) {

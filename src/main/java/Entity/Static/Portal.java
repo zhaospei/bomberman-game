@@ -2,7 +2,7 @@ package Entity.Static;
 
 import Graphics.Sprite;
 
-public class Portal extends StaticEntity{
+public class Portal extends StaticEntity {
     private boolean accessAble = false;
     public Portal(int x, int y, Sprite sprite) {
         super(x, y, sprite);

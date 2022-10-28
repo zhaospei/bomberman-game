@@ -6,6 +6,7 @@ import Entity.Animate.Character.Bomber;
 import Entity.Animate.Character.Enemy.Enemy;
 import Entity.Entity;
 import Entity.Static.Grass;
+import Entity.Static.Wall;
 import Map.Map;
 import Variables.Variables.DIRECTION;
 
@@ -36,8 +37,7 @@ public class DodgePath extends Path {
             int minDistance = INF;
             DIRECTION nowDirection = UP;
             for (int k = 0; k < 4; k++) {
-                if (map.getTile(enemy.getTileX() + dx[k], enemy.getTileY() + dy[k]) instanceof Grass
-                    || map.getTile(enemy.getTileX() + dx[k], enemy.getTileY() + dy[k]) instanceof Brick) {
+                if (!(map.getTile(enemy.getTileX() + dx[k], enemy.getTileY() + dy[k]) instanceof Wall)) {
                     if (enemy.checkTileCollider(intToDirection(k), true)) {
                         continue;
                     }

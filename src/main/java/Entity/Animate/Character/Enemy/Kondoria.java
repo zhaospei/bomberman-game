@@ -4,6 +4,7 @@ import Entity.Animate.Brick;
 import Entity.Animate.Character.Bomber;
 import Entity.Entity;
 import Entity.Static.Portal;
+import Entity.Static.Wall;
 import Graphics.Sprite;
 import Map.Map;
 import Path.DodgePath;
@@ -46,8 +47,7 @@ public class Kondoria extends Enemy {
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
                 Entity entity = map.getTile(j, i);
-                if (entity instanceof Brick) continue;
-                if (entity.isBlock() && this.isCollider(entity)) {
+                if (entity.isBlock() && this.isCollider(entity) && (entity instanceof Wall)) {
                     isCollision = true;
                 }
             }

@@ -31,7 +31,11 @@ public class SpeedDistancePath extends Path {
                 enemy.setCntMove(cntMove - 1);
                 if (changeSpeed == 0) {
                     enemy.setSpeed(1 + new Random().nextInt(player.getSpeed()));
-                    enemy.setChangeSpeed(30);
+                    if (enemy.getSpeed() == 1) {
+                        enemy.setChangeSpeed(30);
+                    } else {
+                        enemy.setChangeSpeed(10);
+                    }
                 } else {
                     enemy.setChangeSpeed(changeSpeed - 1);
                 }
