@@ -157,6 +157,11 @@ public abstract class Character extends AnimateEntity {
                     }
                 }
                 for (Bomb bomb: map.getBombs()) {
+                    if (this instanceof Enemy) {
+                        if (this.isCollider(bomb)) {
+                            ok = true;
+                        }
+                    }
                     if (bomb.isBlock() && this.isCollider(bomb)) {
                         ok = true;
                     }
