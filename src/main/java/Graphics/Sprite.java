@@ -129,27 +129,41 @@ public class Sprite {
     };
 
     //Minvo
-    public static Sprite minvo_left1 = new Sprite(DEFAULT_SIZE, 8, 5, SpriteSheet.tiles, 16, 16);
-    public static Sprite minvo_left2 = new Sprite(DEFAULT_SIZE, 8, 6, SpriteSheet.tiles, 16, 16);
-    public static Sprite minvo_left3 = new Sprite(DEFAULT_SIZE, 8, 7, SpriteSheet.tiles, 16, 16);
+    public static Sprite[] MINVO_LEFT = {
+            new Sprite(DEFAULT_SIZE, 8, 5, SpriteSheet.tiles, 16, 16),
+            new Sprite(DEFAULT_SIZE, 8, 6, SpriteSheet.tiles, 16, 16),
+            new Sprite(DEFAULT_SIZE, 8, 7, SpriteSheet.tiles, 16, 16),
+    };
 
-    public static Sprite minvo_right1 = new Sprite(DEFAULT_SIZE, 9, 5, SpriteSheet.tiles, 16, 16);
-    public static Sprite minvo_right2 = new Sprite(DEFAULT_SIZE, 9, 6, SpriteSheet.tiles, 16, 16);
-    public static Sprite minvo_right3 = new Sprite(DEFAULT_SIZE, 9, 7, SpriteSheet.tiles, 16, 16);
+    public static Sprite[] MINVO_RIGHT = {
+            new Sprite(DEFAULT_SIZE, 9, 5, SpriteSheet.tiles, 16, 16),
+            new Sprite(DEFAULT_SIZE, 9, 6, SpriteSheet.tiles, 16, 16),
+            new Sprite(DEFAULT_SIZE, 9, 7, SpriteSheet.tiles, 16, 16),
+    };
 
-    public static Sprite minvo_dead = new Sprite(DEFAULT_SIZE, 8, 8, SpriteSheet.tiles, 16, 16);
-
+    public static Sprite[] MINVO_DEAD = {
+            new Sprite(DEFAULT_SIZE, 8, 8, SpriteSheet.tiles, 16, 16),
+            new Sprite(DEFAULT_SIZE, 8, 8, SpriteSheet.tiles, 16, 16),
+            new Sprite(DEFAULT_SIZE, 8, 8, SpriteSheet.tiles, 16, 16),
+    };
     //Kondoria
-    public static Sprite kondoria_left1 = new Sprite(DEFAULT_SIZE, 10, 5, SpriteSheet.tiles, 16, 16);
-    public static Sprite kondoria_left2 = new Sprite(DEFAULT_SIZE, 10, 6, SpriteSheet.tiles, 16, 16);
-    public static Sprite kondoria_left3 = new Sprite(DEFAULT_SIZE, 10, 7, SpriteSheet.tiles, 16, 16);
+    public static Sprite[] KONDORIA_LEFT = {
+            new Sprite(DEFAULT_SIZE, 10, 5, SpriteSheet.tiles, 16, 16),
+            new Sprite(DEFAULT_SIZE, 10, 6, SpriteSheet.tiles, 16, 16),
+            new Sprite(DEFAULT_SIZE, 10, 7, SpriteSheet.tiles, 16, 16),
+    };
 
-    public static Sprite kondoria_right1 = new Sprite(DEFAULT_SIZE, 11, 5, SpriteSheet.tiles, 16, 16);
-    public static Sprite kondoria_right2 = new Sprite(DEFAULT_SIZE, 11, 6, SpriteSheet.tiles, 16, 16);
-    public static Sprite kondoria_right3 = new Sprite(DEFAULT_SIZE, 11, 7, SpriteSheet.tiles, 16, 16);
+    public static Sprite[] KONDORIA_RIGHT = {
+            new Sprite(DEFAULT_SIZE, 11, 5, SpriteSheet.tiles, 16, 16),
+            new Sprite(DEFAULT_SIZE, 11, 6, SpriteSheet.tiles, 16, 16),
+            new Sprite(DEFAULT_SIZE, 11, 7, SpriteSheet.tiles, 16, 16),
+    };
 
-    public static Sprite kondoria_dead = new Sprite(DEFAULT_SIZE, 10, 8, SpriteSheet.tiles, 16, 16);
-
+    public static Sprite[] KONDORIA_DESTROYED = {
+            new Sprite(DEFAULT_SIZE, 10, 8, SpriteSheet.tiles, 16, 16),
+            new Sprite(DEFAULT_SIZE, 10, 8, SpriteSheet.tiles, 16, 16),
+            new Sprite(DEFAULT_SIZE, 10, 8, SpriteSheet.tiles, 16, 16),
+    };
     //ALL
     public static Sprite mob_dead1 = new Sprite(DEFAULT_SIZE, 15, 0, SpriteSheet.tiles, 16, 16);
     public static Sprite mob_dead2 = new Sprite(DEFAULT_SIZE, 15, 1, SpriteSheet.tiles, 16, 16);

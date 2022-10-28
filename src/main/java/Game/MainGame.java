@@ -1,17 +1,13 @@
 package Game;
 
 import Input.KeyInput;
-import Texture.FontTexture;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import Map.Map;
 import static Graphics.Sprite.SCALED_SIZE;
