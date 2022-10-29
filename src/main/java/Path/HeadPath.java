@@ -1,5 +1,6 @@
 package Path;
 
+import Entity.Animate.Bomb;
 import Entity.Animate.Character.Bomber;
 import Entity.Animate.Character.Enemy.Enemy;
 import Map.Map;
@@ -32,12 +33,22 @@ public class HeadPath extends Path{
                 return NONE;
             }
             if (player.getTileY() < enemy.getTileY()) {
+                for (Bomb bomb: map.getBombs()) {
+                    if (bomb.getTileY() >= player.getTileY() && bomb.getTileY() <= enemy.getTileY()) {
+                        return NONE;
+                    }
+                }
                 for (int i = player.getTileY(); i < enemy.getTileY(); i++) {
                     if (map.getTile(player.getTileX(), i).isBlock()) {
                         return NONE;
                     }
                 }
             } else {
+                for (Bomb bomb: map.getBombs()) {
+                    if (bomb.getTileY() <= player.getTileY() && bomb.getTileY() >= enemy.getTileY()) {
+                        return NONE;
+                    }
+                }
                 for (int i = enemy.getTileY(); i < player.getTileY(); i++) {
                     if (map.getTile(player.getTileX(), i).isBlock()) {
                         return NONE;
@@ -58,12 +69,22 @@ public class HeadPath extends Path{
                 return NONE;
             }
             if (player.getTileX() < enemy.getTileX()) {
+                for (Bomb bomb: map.getBombs()) {
+                    if (bomb.getTileX() >= player.getTileX() && bomb.getTileX() <= enemy.getTileX()) {
+                        return NONE;
+                    }
+                }
                 for (int i = player.getTileX(); i < enemy.getTileX(); i++) {
                     if (map.getTile(i, player.getTileY()).isBlock()) {
                         return NONE;
                     }
                 }
             } else {
+                for (Bomb bomb: map.getBombs()) {
+                    if (bomb.getTileX() <= player.getTileX() && bomb.getTileX() >= enemy.getTileX()) {
+                        return NONE;
+                    }
+                }
                 for (int i = enemy.getTileX(); i < player.getTileX(); i++) {
                     if (map.getTile(i, player.getTileY()).isBlock()) {
                         return NONE;

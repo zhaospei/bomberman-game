@@ -19,7 +19,7 @@ public class RightPath extends Path{
         if (headPath == NONE) {
             enemy.setSpeed(1);
             if (enemy.isCollider()) {
-                if (enemy.checkTileCollider(RIGHT)) {
+                if (enemy.checkTileCollider(RIGHT, false)) {
                     return LEFT;
                 } else {
                     return RIGHT;

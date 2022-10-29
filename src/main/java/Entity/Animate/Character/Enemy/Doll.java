@@ -8,7 +8,7 @@ import Variables.Variables.DIRECTION;
 
 import static Variables.Variables.DIRECTION.*;
 
-public class Doll extends Enemy{
+public class Doll extends Enemy {
     public Doll(int x, int y, Sprite sprite) {
         super(x, y, sprite);
         animation.put(UP, Sprite.DOLL_LEFT);
