@@ -17,12 +17,4 @@ public class SpeedItem extends Item {
             increasedSpeed++;
         }
     }
-
-    public int getIncreasedSpeed() {
-        return increasedSpeed;
-    }
-
-    public void setIncreasedSpeed(int increasedSpeed) {
-        this.increasedSpeed = increasedSpeed;
-    }
 }

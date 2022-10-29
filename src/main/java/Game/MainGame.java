@@ -1,5 +1,6 @@
 package Game;
 
+import Graphics.Sprite;
 import Input.KeyInput;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -12,11 +13,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import Map.Map;
+
 import static Graphics.Sprite.SCALED_SIZE;
 import static Variables.Variables.*;
 
 public class MainGame extends Application {
     private static Map map = Map.getGameMap();
+
+    private static int score = 0;
     private GraphicsContext graphicsContext;
     private GraphicsContext topInfoContext;
     private Canvas canvas;
@@ -62,12 +66,13 @@ public class MainGame extends Application {
                     scene.setOnKeyPressed(keyEvent -> {
                         String code = keyEvent.getCode().toString();
                         KeyInput.keyInput.put(code, true);
-                    });;
+                    });
+                    ;
                     scene.setOnKeyReleased(keyEvent -> {
                         String code = keyEvent.getCode().toString();
                         KeyInput.keyInput.put(code, false);
                     });
-                    frames ++;
+                    frames++;
 
                 }
 
@@ -84,5 +89,13 @@ public class MainGame extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    public static void setNewScore(int enemy_score) {
+        MainGame.score = score + enemy_score;
+    }
+
+    public static int getScore() {
+        return score;
     }
 }

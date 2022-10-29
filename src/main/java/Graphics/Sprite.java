@@ -25,8 +25,6 @@ public class Sprite {
     public static Sprite grass = new Sprite(DEFAULT_SIZE, 6, 0, SpriteSheet.tiles, 16, 16);
     public static Sprite[] BRICK = {
             new Sprite(DEFAULT_SIZE, 7, 0, SpriteSheet.tiles, 16, 16),
-            new Sprite(DEFAULT_SIZE, 7, 0, SpriteSheet.tiles, 16, 16),
-            new Sprite(DEFAULT_SIZE, 7, 0, SpriteSheet.tiles, 16, 16),
     };
     public static Sprite wall = new Sprite(DEFAULT_SIZE, 5, 0, SpriteSheet.tiles, 16, 16);
     public static Sprite portal = new Sprite(DEFAULT_SIZE, 4, 0, SpriteSheet.tiles, 14, 14);
@@ -249,7 +247,20 @@ public class Sprite {
     public static Sprite powerup_detonator = new Sprite(DEFAULT_SIZE, 4, 10, SpriteSheet.tiles, 16, 16);
     public static Sprite powerup_bombpass = new Sprite(DEFAULT_SIZE, 5, 10, SpriteSheet.tiles, 16, 16);
     public static Sprite powerup_flamepass = new Sprite(DEFAULT_SIZE, 6, 10, SpriteSheet.tiles, 16, 16);
-
+    public static Sprite powerup_mystery = new Sprite(DEFAULT_SIZE, 7, 10, SpriteSheet.tiles, 16, 16);
+    /*
+    |--------------------------------------------------------------------------
+    | Scores
+    |--------------------------------------------------------------------------
+     */
+    public static Sprite Balloom_score = new Sprite(DEFAULT_SIZE, 8, 10, SpriteSheet.tiles, 16, 16);
+    public static Sprite Oneal_score = new Sprite(DEFAULT_SIZE, 9, 10, SpriteSheet.tiles, 16, 16);
+    public static Sprite Doll_score = new Sprite(DEFAULT_SIZE, 10, 10, SpriteSheet.tiles, 16, 16);
+    public static Sprite Minvo_score = new Sprite(DEFAULT_SIZE, 11, 10, SpriteSheet.tiles, 16, 16);
+    public static Sprite Kondoria_score = new Sprite(DEFAULT_SIZE, 12, 10, SpriteSheet.tiles, 16, 16);
+    public static Sprite Ovapi_score = new Sprite(DEFAULT_SIZE, 13, 10, SpriteSheet.tiles, 16, 16);
+    public static Sprite Pass_score = new Sprite(DEFAULT_SIZE, 14, 10, SpriteSheet.tiles, 16, 16);
+    public static Sprite Pontan_score = new Sprite(DEFAULT_SIZE, 15, 10, SpriteSheet.tiles, 16, 16);
     public Sprite(int size, int x, int y, SpriteSheet sheet, int rw, int rh) {
         SIZE = size;
         _pixels = new int[SIZE * SIZE];

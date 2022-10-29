@@ -4,11 +4,13 @@ import Entity.Animate.Bomb;
 import Entity.Animate.Brick;
 import Entity.Animate.Character.Bomber;
 import Entity.Animate.Character.Character;
-import Entity.Animate.Character.Enemy.Enemy;
+import Entity.Animate.Character.Enemy.*;
 import Entity.Animate.Flame;
 import Entity.Entity;;
 import Entity.Static.Item;
+import Entity.Static.Score;
 import Entity.Static.StaticEntity;
+import Game.MainGame;
 import Graphics.Sprite;
 import Input.PlayerInput;
 import Texture.*;
@@ -37,8 +39,8 @@ public class Map {
     private ArrayList<Bomb> bombs;
     private ArrayList<Flame> flames;
     private ArrayList<Item> items;
+    private ArrayList<Score> scores;
     private Bomber player;
-
     private boolean revival;
     private int renderX;
     private int renderY;
@@ -56,6 +58,7 @@ public class Map {
         bombs = new ArrayList<>();
         flames = new ArrayList<>();
         items = new ArrayList<>();
+        scores = new ArrayList<>();
     }
 
     public ArrayList<Enemy> getEnemies() {
@@ -74,7 +77,7 @@ public class Map {
             for (int j = 0; j < WIDTH; j++) {
                 char c = string.charAt(j);
                 tiles[i][j] = StaticTexture.setStatic(c, i, j);
-                if(tiles[i][j] instanceof Item) {
+                if (tiles[i][j] instanceof Item) {
                     items.add((Item) tiles[i][j]);
                 }
                 if (c == '*') {
@@ -98,8 +101,14 @@ public class Map {
         ArrayList<Bomb> removedBombs = new ArrayList<>();
         ArrayList<Flame> removedFlames = new ArrayList<>();
         ArrayList<Item> removedItems = new ArrayList<>();
+        ArrayList<Score> removedScores = new ArrayList<>();
+        scores.forEach(score -> {
+            if (score.isRemoved()) {
+                removedScores.add(score);
+            }
+        });
         items.forEach(item -> {
-            if(item.isRemoved()) {
+            if (item.isRemoved()) {
                 removedItems.add(item);
             }
         });
@@ -120,6 +129,22 @@ public class Map {
         });
         if (player.isRemoved()) player = null;
         removedEnemies.forEach(enemy -> {
+            if(enemy instanceof Balloom) {
+                Score score = ScoreTexture.setScore('b', enemy.getTileX(), enemy.getTileY());
+                scores.add(score);
+            } else if (enemy instanceof Oneal) {
+                Score score = ScoreTexture.setScore('o', enemy.getTileX(), enemy.getTileY());
+                scores.add(score);
+            } else if (enemy instanceof Doll) {
+                Score score = ScoreTexture.setScore('d', enemy.getTileX(), enemy.getTileY());
+                scores.add(score);
+            } else if (enemy instanceof Minvo) {
+                Score score = ScoreTexture.setScore('m', enemy.getTileX(), enemy.getTileY());
+                scores.add(score);
+            } else if (enemy instanceof Kondoria) {
+                Score score = ScoreTexture.setScore('k', enemy.getTileX(), enemy.getTileY());
+                scores.add(score);
+            }
             enemies.remove(enemy);
         });
         removedBombs.forEach(bomb -> {
@@ -131,6 +156,9 @@ public class Map {
         removedItems.forEach(item -> {
             items.remove(item);
         });
+        removedScores.forEach(score -> {
+            scores.remove(score);
+        });
     }
 
 
@@ -139,7 +167,7 @@ public class Map {
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
                 //if(tiles[i][j] instanceof Brick == false) {
-                    tiles[i][j].update();
+                tiles[i][j].update();
                 //}
             }
         }
@@ -156,13 +184,18 @@ public class Map {
         items.forEach(item -> {
             item.update();
         });
+        scores.forEach(score -> {
+            score.update();
+        });
         removeEntities();
     }
 
     public void renderTopInfo(GraphicsContext graphicsContext) {
         graphicsContext.drawImage(topInfoImage, 0, 0);
-        graphicsContext.fillText("Stage: " + String.valueOf(levelNumber), 3 * SCALED_SIZE, SCALED_SIZE);
-        graphicsContext.fillText("Life: " + String.valueOf(player.getLife()), 10 * SCALED_SIZE, SCALED_SIZE);
+        graphicsContext.fillText("Score: " + String.valueOf(MainGame.getScore()), 0.6 * SCALED_SIZE, SCALED_SIZE * 0.8);
+        graphicsContext.fillText("Enemies Remaining: " + String.valueOf(getEnemies().size()), 0.6 * SCALED_SIZE, SCALED_SIZE * 1.6);
+        graphicsContext.fillText("Stage: " + String.valueOf(levelNumber), 10.6 * SCALED_SIZE, SCALED_SIZE * 0.8);
+        graphicsContext.fillText("Life: " + String.valueOf(player.getLife()), 10.6 * SCALED_SIZE, SCALED_SIZE * 1.6);
     }
 
     private void renderRevival(GraphicsContext graphicsContext) {
@@ -176,7 +209,7 @@ public class Map {
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
                 //if (tiles[i][j] instanceof Brick == false) {
-                    tiles[i][j].render(graphicsContext);
+                tiles[i][j].render(graphicsContext);
                 //}
             }
         }
@@ -220,7 +253,7 @@ public class Map {
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
                 //if(tiles[i][j] instanceof Brick == false) {
-                    tiles[i][j].render(graphicsContext);
+                tiles[i][j].render(graphicsContext);
                 //}
             }
         }
@@ -236,6 +269,9 @@ public class Map {
         });
         items.forEach(item -> {
             item.render(graphicsContext);
+        });
+        scores.forEach(score -> {
+            score.render(graphicsContext);
         });
     }
 
