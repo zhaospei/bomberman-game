@@ -76,7 +76,7 @@ public abstract class Path {
         }
 
         for (Bomb bomb: map.getBombs()) {
-            statusTiles[bomb.getTileY()][bomb.getTileY()] = 1;
+            statusTiles[bomb.getTileY()][bomb.getTileX()] = 1;
         }
 
         Queue<Vertex> pq = new LinkedList<>();

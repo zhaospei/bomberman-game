@@ -84,9 +84,6 @@ public abstract class Character extends AnimateEntity {
 
     public void checkCollision() {
         isCollision = false;
-        if (immortal > 0) {
-            return;
-        }
         pixelX += this.velocityX;
         pixelY += this.velocityY;
         for (int i = 0; i < HEIGHT; i++) {
@@ -103,10 +100,14 @@ public abstract class Character extends AnimateEntity {
         map.getBombs().forEach(bomb -> {
             Entity entity1 = bomb;
             if (entity1.isBlock() && this.isCollider(entity1)) {
-                isCollision = true;
+                if (immortal == 0) {
+                    isCollision = true;
+                }
             }
             if(this.isCollider(entity1) && this instanceof Enemy) {
-                isCollision = true;
+                if (immortal == 0) {
+                    isCollision = true;
+                }
             }
         });
         stand = (velocityX == 0 && velocityY == 0) || isCollision;
