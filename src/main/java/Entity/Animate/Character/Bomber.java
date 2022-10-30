@@ -55,10 +55,14 @@ public class Bomber extends Character {
     @Override
     public void checkCollision() {
         super.checkCollision();
+        if (immortal > 0) {
+            immortal--;
+        }
         map.getEnemies().forEach(enemy -> {
             if (this.isCollider(enemy)) {
-                destroy();
-                //enemy.destroy();
+                if (immortal == 0) {
+                    destroy();
+                }
             }
         });
         map.getBombs().forEach(bomb -> {
@@ -119,6 +123,7 @@ public class Bomber extends Character {
     public void delete() {
         this.life--;
         timeRevival = 7;
+        immortal = 100;
         map.setRevival(true);
         setPosition(SCALED_SIZE, SCALED_SIZE);
         destroyed = false;

@@ -33,6 +33,8 @@ public abstract class Character extends AnimateEntity {
     protected boolean stand;
     protected int life;
 
+    protected int immortal;
+
     public Character(int x, int y, Sprite sprite) {
         super(x, y, sprite);
         defaultVel = 0;
@@ -43,6 +45,7 @@ public abstract class Character extends AnimateEntity {
         isCollision = false;
         stand = true;
         direction = NONE;
+        immortal = 0;
     }
 
     public void setVelocity(int velocityX, int velocityY) {
@@ -73,9 +76,6 @@ public abstract class Character extends AnimateEntity {
     }
 
     public void move() {
-//        if (this instanceof Bomber && (velocityX != 0 || velocityY != 0)) {
-//            System.out.println(pixelX + " " + pixelY);
-//        }
         pixelX += velocityX;
         pixelY += velocityY;
         tileX = pixelX / SCALED_SIZE;
@@ -84,6 +84,9 @@ public abstract class Character extends AnimateEntity {
 
     public void checkCollision() {
         isCollision = false;
+        if (immortal > 0) {
+            return;
+        }
         pixelX += this.velocityX;
         pixelY += this.velocityY;
         for (int i = 0; i < HEIGHT; i++) {
@@ -172,6 +175,15 @@ public abstract class Character extends AnimateEntity {
         this.setPosition(lastPixelX, lastPixelY);
         return ok;
     }
+
+    public int getImmortal() {
+        return immortal;
+    }
+
+    public void setImmortal(int immortal) {
+        this.immortal = immortal;
+    }
+
     @Override
     public void updateAnimation() {
         long time = MainGame.time;
