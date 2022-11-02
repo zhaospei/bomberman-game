@@ -178,6 +178,9 @@ public class MainGame extends Application {
 
     public static void setBackToMenu(boolean backToMenu) {
         MainGame.backToMenu = backToMenu;
+        if (map.getBombs().size() > 0) {
+            map.getBombs().remove(0);
+        }
     }
 
     public static void setWin(boolean win) {
