@@ -12,7 +12,6 @@ public class SpeedDistancePath extends Path {
         super(map, player, enemy);
     }
 
-
     public DIRECTION path() {
         if (Distance(enemy.getTileY(), enemy.getTileX(), player.getTileY(), player.getTileX(), false) <= 5) {
             enemy.setCntMove(5);

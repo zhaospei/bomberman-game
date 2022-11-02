@@ -67,7 +67,6 @@ public class MainGame extends Application {
         startTime = System.nanoTime();
         lastFrame = 0;
         lastTime = 0;
-        //map.createMap(MAP_URLS[0]);
         menu.createMenu();
         Sound.menu_sound.play();
         Sound.menu_sound.loop();
@@ -122,7 +121,6 @@ public class MainGame extends Application {
                             String code = keyEvent.getCode().toString();
                             KeyInput.keyInput.put(code, false);
                         });
-                        //frames++;
                         if((backToMenu == true && win == false) || (countdown != 160 && win == false)) {
                             if(countdown == 160) {
                                 Sound.game_over.play();

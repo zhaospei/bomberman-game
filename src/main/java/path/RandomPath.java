@@ -15,18 +15,6 @@ public class RandomPath extends Path {
     public DIRECTION path() {
         if (enemy.isCollider() || enemy.isInATile()) {
             ArrayList<DIRECTION> canDirections = new ArrayList<>();
-//            if (map.getTile(enemy.getTileX(), enemy.getTileY() - 1) instanceof Grass) {
-//                canDirections.add(UP);
-//            }
-//            if (map.getTile(enemy.getTileX(), enemy.getTileY() + 1) instanceof Grass) {
-//                canDirections.add(DOWN);
-//            }
-//            if (map.getTile(enemy.getTileX() - 1, enemy.getTileY()) instanceof Grass) {
-//                canDirections.add(LEFT);
-//            }
-//            if (map.getTile(enemy.getTileX() + 1, enemy.getTileY()) instanceof Grass) {
-//                canDirections.add(RIGHT);
-//            }
             for (int k = 0; k < 4; k++) {
                 if (!enemy.checkTileCollider(intToDirection(k), false)) {
                     canDirections.add(intToDirection(k));

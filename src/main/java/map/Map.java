@@ -167,9 +167,7 @@ public class Map {
         if (revival) return;
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
-                //if(tiles[i][j] instanceof Brick == false) {
                 tiles[i][j].update();
-                //}
             }
         }
         enemies.forEach(enemy -> {
@@ -227,9 +225,7 @@ public class Map {
         }
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
-                //if (tiles[i][j] instanceof Brick == false) {
                 tiles[i][j].render(graphicsContext);
-                //}
             }
         }
         enemies.forEach(enemy -> {
@@ -257,13 +253,6 @@ public class Map {
     }
 
     public void renderMap(GraphicsContext graphicsContext) {
-//        if (flames.size() > 0) {
-//            for (Flame flame : flames) {
-//                System.out.println(flame.getPixelX() + " " + flame.getPixelY());
-//            }
-//            System.out.println("------------------------");
-//        }
-
         if (revival) {
             renderRevival(graphicsContext);
             return;
@@ -271,9 +260,7 @@ public class Map {
         updateRenderXY();
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
-                //if(tiles[i][j] instanceof Brick == false) {
                 tiles[i][j].render(graphicsContext);
-                //}
             }
         }
         enemies.forEach(enemy -> {
