@@ -4,7 +4,7 @@ Bài tập lớn môn Lập trình Hướng đối tượng - INT2204 22
 #### Người thực hiện:
 
 - Bùi Tuấn Dũng - 21020006
-- Lê Tuấn Đạt - 2102....
+- Lê Tuấn Đạt - 21020062
 
 ## Mô tả về các đối tượng trong trò chơi
 
@@ -41,19 +41,6 @@ Các loại *Enemy* sẽ có tốc độ và cách thức hoạt động khác n
 - Khi Bomb nổ, một Flame trung tâm![](src/main/resources/sprites/bomb_exploded.png) tại vị trí Bomb nổ và bốn Flame tại bốn vị trí ô đơn vị xung quanh vị trí của Bomb xuất hiện theo bốn hướng trên![](src/main/resources/sprites/explosion_vertical.png)/dưới![](src/main/resources/sprites/explosion_vertical.png)/trái![](src/main/resources/sprites/explosion_horizontal.png)/phải![](src/main/resources/sprites/explosion_horizontal.png). Độ dài bốn Flame xung quanh mặc định là 1 đơn vị, được tăng lên khi Bomber sử dụng các FlameItem.
 - Khi các Flame xuất hiện, nếu có một đối tượng thuộc loại Brick/Wall nằm trên vị trí một trong các Flame thì độ dài Flame đó sẽ được giảm đi để sao cho Flame chỉ xuất hiện đến vị trí đối tượng Brick/Wall theo hướng xuất hiện. Lúc đó chỉ có đối tượng Brick/Wall bị ảnh hưởng bởi Flame, các đối tượng tiếp theo không bị ảnh hưởng. Còn nếu vật cản Flame là một đối tượng Bomb khác thì đối tượng Bomb đó cũng sẽ nổ ngay lập tức.
 
-# Tasks:
-### Gói bắt buộc (7đ)
-- [X] 1. Thiết kế cây thừa kế cho các đối tượng game +2đ
-- [X] 2. Xây dựng bản đồ màn chơi từ tệp cấu hình (có mẫu tệp cấu hình, xem [tại đây](https://raw.githubusercontent.com/bqcuong/bomberman-starter/starter-2/res/levels/Level1.txt)) +1đ
-- [X] 3. Di chuyển Bomber theo sự điều khiển từ người chơi +1đ
-- [X] 4. Tự động di chuyển các Enemy +1đ
-- [X] 5. Xử lý va chạm cho các đối tượng Bomber, Enemy, Wall, Brick, Bomb +1đ
-- [X] 6. Xử lý bom nổ +1đ
-- [X] 7. Xử lý khi Bomber sử dụng các Item và khi đi vào vị trí Portal +1đ
-### Gói tùy chọn (tối đa +2đ)
-- [X] 1. Nâng cấp thuật toán tìm đường cho Enemy +0.5đ
-   Cài đặt thêm các loại Enemy khác: +0.25đ cho mỗi loại enemy
-- [ ] 2. Cài đặt thuật toán AI cho Bomber (tự chơi) +1đ
-- [ ] 3. Xử lý hiệu ứng âm thanh (thêm music & sound effects) +1đ
-- [ ] 4. Phát triển hệ thống server-client để nhiều người có thể cùng chơi qua mạng LAN hoặc Internet +1đ
-- [ ] 5. Những ý tưởng khác sẽ được đánh giá và cộng điểm theo mức tương ứng
+### Cây thừa kế cho các đối tượng của Game
+![image](https://user-images.githubusercontent.com/48708971/199369362-b2e6e8f6-7f84-4d05-9db3-215c6be3f573.png)
+
