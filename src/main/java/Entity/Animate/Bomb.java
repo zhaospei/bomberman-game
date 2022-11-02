@@ -2,6 +2,8 @@ package Entity.Animate;
 
 import Entity.Static.Grass;
 import Graphics.Sprite;
+import Sound.Sound;
+import Sound.SoundPlay;
 import Texture.FlameTexture;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -11,6 +13,11 @@ import static Variables.Variables.STATUS.*;
 public class Bomb extends AnimateEntity {
     protected int timetoExplode = 120;
     public static int limit = 1;
+    private boolean up = true;
+    private boolean left = true;
+    private boolean right = true;
+    private boolean down = true;
+    private int cnt = 0;
 
     public Bomb(int x, int y, Sprite sprite) {
         super(x, y, sprite);
@@ -21,133 +28,140 @@ public class Bomb extends AnimateEntity {
 
     @Override
     public void update() {
-        if (timetoExplode > 0) {
+        if (timetoExplode != 0) {
             updateAnimation();
             timetoExplode--;
         } else {
             delete();
             Flame flm = FlameTexture.setFlame("be", this.tileX, this.tileY);
             map.getFlames().add(flm);
-            AtomicBoolean up = new AtomicBoolean(true);
-            AtomicBoolean left = new AtomicBoolean(true);
-            AtomicBoolean right = new AtomicBoolean(true);
-            AtomicBoolean down = new AtomicBoolean(true);
             for (int i = 1; i <= flm.flameLength; i++) {
                 int x = flm.getTileX();
                 int y = flm.getTileY();
                 int ii = i;
-                if (down.get()) {
+                if (down) {
                     map.getBombs().forEach(bomb -> {
                         if (bomb.getTileX() == x && bomb.getTileY() == (y + ii)) {
                             bomb.setTimetoExplode(0);
+                            down = false;
+                            if(bomb.up) {
+                                cnt++;
+                            }
                         }
                     });
                     map.getFlames().forEach(flame -> {
-                        if (flame.getTileX() == x && flame.getTileY() == (y + ii)) {
-                            down.set(false);
+                        if (flame.getTileX() == x && flame.getTileY() == (y+ii)) {
+                            down = false;
                         }
                     });
                     if (map.getTile(x, y + i) instanceof Grass == false) {
                         flm.interactWith(map.getTile(x, y + i));
-                        down.set(false);
+                        down = false;
                     }
                 }
 
-                if (up.get()) {
+                if (up) {
                     map.getBombs().forEach(bomb -> {
                         if (bomb.getTileX() == x && bomb.getTileY() == (y - ii)) {
                             bomb.setTimetoExplode(0);
+                            up = false;
+                            if(bomb.down) {
+                                cnt++;
+                            }
                         }
                     });
                     map.getFlames().forEach(flame -> {
-                        if (flame.getTileX() == x && flame.getTileY() == (y - ii)) {
-                            up.set(false);
+                        if (flame.getTileX() == x && flame.getTileY() == (y-ii)) {
+                            up = false;
                         }
                     });
                     if (map.getTile(x, y - i) instanceof Grass == false) {
                         flm.interactWith(map.getTile(x, y - i));
-                        up.set(false);
+                        up = false;
                     }
                 }
 
-                if (right.get()) {
+                if (right) {
                     map.getBombs().forEach(bomb -> {
                         if (bomb.getTileX() == (x + ii) && bomb.getTileY() == (y)) {
                             bomb.setTimetoExplode(0);
+                            right = false;
+                            if(bomb.left) {
+                                cnt++;
+                            }
                         }
                     });
                     map.getFlames().forEach(flame -> {
-                        if (flame.getTileX() == (x + ii) && flame.getTileY() == (y)) {
-                            right.set(false);
+                        if (flame.getTileX() == (x+ii) && flame.getTileY() == (y)) {
+                            right = false;
                         }
                     });
                     if (map.getTile(x + i, y) instanceof Grass == false) {
                         flm.interactWith(map.getTile(x + i, y));
-                        right.set(false);
+                        right = false;
 
                     }
                 }
-                if (left.get()) {
+                if (left) {
                     map.getBombs().forEach(bomb -> {
                         if (bomb.getTileX() == (x - ii) && bomb.getTileY() == (y)) {
                             bomb.setTimetoExplode(0);
+                            left = false;
+                            if(bomb.right) {
+                                cnt++;
+                            }
                         }
                     });
                     map.getFlames().forEach(flame -> {
-                        if (flame.getTileX() == (x - ii) && flame.getTileY() == (y)) {
-                            left.set(false);
+                        if (flame.getTileX() == (x-ii) && flame.getTileY() == (y)) {
+                            left = false;
                         }
                     });
                     if (map.getTile(x - i, y) instanceof Grass == false) {
                         flm.interactWith(map.getTile(x - i, y));
-                        left.set(false);
+                        left = false;
                     }
                 }
 
                 if (i == flm.flameLength) {
-                    if (down.get()) {
+                    if (down) {
                         Flame vdl = FlameTexture.setFlame("vdl", x, y + i);
                         map.getFlames().add(vdl);
-                        vdl.checkCollison();
                     }
-                    if (up.get()) {
+                    if (up) {
                         Flame vtl = FlameTexture.setFlame("vtl", x, y - i);
                         map.getFlames().add(vtl);
-                        vtl.checkCollison();
                     }
-                    if (left.get()) {
+                    if (left) {
                         Flame hll = FlameTexture.setFlame("hll", x - i, y);
                         map.getFlames().add(hll);
-                        hll.checkCollison();
                     }
-                    if (right.get()) {
+                    if (right) {
                         Flame hrl = FlameTexture.setFlame("hrl", x + i, y);
                         map.getFlames().add(hrl);
-                        hrl.checkCollison();
                     }
 
                 } else {
-                    if (down.get()) {
+                    if (down) {
                         Flame vd = FlameTexture.setFlame("v", x, y + i);
                         map.getFlames().add(vd);
-                        vd.checkCollison();
                     }
-                    if (up.get()) {
+                    if (up) {
                         Flame vt = FlameTexture.setFlame("v", x, y - i);
                         map.getFlames().add(vt);
-                        vt.checkCollison();
                     }
-                    if (left.get()) {
+                    if (left) {
                         Flame hl = FlameTexture.setFlame("h", x - i, y);
                         map.getFlames().add(hl);
-                        hl.checkCollison();
                     }
-                    if (right.get()) {
+                    if (right) {
                         Flame hr = FlameTexture.setFlame("h", x + i, y);
                         map.getFlames().add(hr);
-                        hr.checkCollison();
                     }
                 }
+            }
+            if(cnt == 0) {
+                Sound.bomb_explosion.play();
             }
         }
     }

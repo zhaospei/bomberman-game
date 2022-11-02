@@ -11,6 +11,7 @@ import Entity.Static.Item;
 import Entity.Static.Score;
 import Entity.Static.StaticEntity;
 import Game.MainGame;
+import Game.Menu;
 import Graphics.Sprite;
 import Input.PlayerInput;
 import Texture.*;
@@ -24,6 +25,7 @@ import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,7 +34,8 @@ import static Graphics.Sprite.*;
 
 public class Map {
     private static Map map;
-    private int levelNumber;
+    private static int levelNumber;
+    private int time = 60 * 200;
     private Image topInfoImage;
     private Entity[][] tiles;
     private ArrayList<Enemy> enemies;
@@ -64,7 +67,13 @@ public class Map {
     public ArrayList<Enemy> getEnemies() {
         return enemies;
     }
-
+    public void resetNumber() {
+        Flame.flameLength = 1;
+        Bomb.limit = 1;
+        MainGame.setNewScore(-MainGame.getScore());
+        player.setSpeed(2);
+        time = 60*200;
+    }
     public void createMap(String mapPath) throws FileNotFoundException {
         Scanner scanner = new Scanner(new File(mapPath));
         topInfoImage = new Image("/top_info.png");
@@ -129,7 +138,7 @@ public class Map {
         });
         if (player.isRemoved()) player = null;
         removedEnemies.forEach(enemy -> {
-            if(enemy instanceof Balloom) {
+            if (enemy instanceof Balloom) {
                 Score score = ScoreTexture.setScore('b', enemy.getTileX(), enemy.getTileY());
                 scores.add(score);
             } else if (enemy instanceof Oneal) {
@@ -193,9 +202,27 @@ public class Map {
     public void renderTopInfo(GraphicsContext graphicsContext) {
         graphicsContext.drawImage(topInfoImage, 0, 0);
         graphicsContext.fillText("Score: " + String.valueOf(MainGame.getScore()), 0.6 * SCALED_SIZE, SCALED_SIZE * 0.8);
-        graphicsContext.fillText("Enemies Remaining: " + String.valueOf(getEnemies().size()), 0.6 * SCALED_SIZE, SCALED_SIZE * 1.6);
+        if(MainGame.getScore() > Menu.getHighscore()) {
+            try {
+                PrintWriter writer = new PrintWriter("src/main/resources/menu/highscore.txt");
+                writer.print("");
+                writer.print(MainGame.getScore());
+                writer.close();
+            } catch (FileNotFoundException e) {
+                System.out.println(e);
+            }
+        }
+        if (time != 0) {
+            graphicsContext.fillText("Time: " + String.valueOf((time--) / 60), 0.6 * SCALED_SIZE, SCALED_SIZE * 1.6);
+        } else {
+            graphicsContext.fillText("Time: " + String.valueOf(time), 0.6 * SCALED_SIZE, SCALED_SIZE * 1.6);
+            MainGame.setBackToMenu(true);
+        }
         graphicsContext.fillText("Stage: " + String.valueOf(levelNumber), 10.6 * SCALED_SIZE, SCALED_SIZE * 0.8);
         graphicsContext.fillText("Life: " + String.valueOf(player.getLife()), 10.6 * SCALED_SIZE, SCALED_SIZE * 1.6);
+        if(player.getLife() == 0) {
+            MainGame.setBackToMenu(true);
+        }
     }
 
     private void renderRevival(GraphicsContext graphicsContext) {
@@ -310,5 +337,9 @@ public class Map {
 
     public void setRevival(boolean revival) {
         this.revival = revival;
+    }
+
+    public static int getLevelNumber() {
+        return levelNumber;
     }
 }

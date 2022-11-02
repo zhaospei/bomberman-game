@@ -40,7 +40,6 @@ public class Variables {
         VERTICAL_TOP_LAST,
         VERTICAL_DOWN_LAST,
     }
-
     public static final String ICON_PATH = "/icon.png";
 
     public static final String[] MAP_URLS = {

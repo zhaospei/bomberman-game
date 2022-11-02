@@ -1,6 +1,7 @@
 package Entity;
 
 import Map.Map;
+import Sound.Sound;
 import Variables.Variables;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;

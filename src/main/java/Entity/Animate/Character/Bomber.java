@@ -2,6 +2,7 @@ package Entity.Animate.Character;
 
 import Entity.Animate.AnimateEntity;
 import Entity.Animate.Bomb;
+import Entity.Animate.Character.Enemy.Enemy;
 import Entity.Animate.Flame;
 import Entity.Entity;
 import Entity.Static.BombItem;
@@ -10,6 +11,7 @@ import Entity.Static.Grass;
 import Entity.Static.SpeedItem;
 import Graphics.Sprite;
 import Input.KeyInput;
+import Sound.Sound;
 import Texture.BombTexture;
 import javafx.geometry.Rectangle2D;
 
@@ -20,7 +22,6 @@ import static Variables.Variables.DIRECTION.*;
 public class Bomber extends Character {
     public KeyInput keyInput;
     public boolean canPlace = true;
-    public boolean placeBomb = false;
 
     private int timeRevival;
 
@@ -63,9 +64,15 @@ public class Bomber extends Character {
                 canPlace = false;
             }
         }
+        for (Enemy enemy: map.getEnemies()) {
+            if(enemy.getTileX() == bombX && enemy.getTileY() == bombY) {
+                canPlace = false;
+            }
+        }
         if (map.getTile(bombX, bombY) instanceof Grass && map.getBombs().size() < Bomb.limit && canPlace) {
             Bomb bomb = BombTexture.setBomb(bombX, bombY);
             map.getBombs().add(bomb);
+            Sound.place_bomb.play();
         }
     }
 
@@ -89,6 +96,7 @@ public class Bomber extends Character {
         });
         map.getItems().forEach(item -> {
             if (this.isCollider(item)) {
+                Sound.get_item.play();
                 item.setActivated(true);
                 item.remove();
                 if (item instanceof SpeedItem) {
@@ -133,6 +141,7 @@ public class Bomber extends Character {
         if (direction != NONE && direction != PLACEBOMB) {
             currentAnimate = animation.get(direction);
             updateAnimation();
+            Sound.walk.play();
         }
     }
 
@@ -146,6 +155,7 @@ public class Bomber extends Character {
         destroyed = false;
         direction = NONE;
         setSprite(Sprite.PLAYER_DOWN[0]);
+        Sound.bomber_die.play();
     }
 
     public int getTimeRevival() {

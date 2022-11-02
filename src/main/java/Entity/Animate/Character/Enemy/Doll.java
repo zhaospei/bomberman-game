@@ -1,6 +1,7 @@
 package Entity.Animate.Character.Enemy;
 
 import Entity.Animate.Character.Bomber;
+import Game.MainGame;
 import Graphics.Sprite;
 import Map.Map;
 import Path.RightPath;

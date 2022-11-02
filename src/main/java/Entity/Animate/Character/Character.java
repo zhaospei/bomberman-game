@@ -16,6 +16,7 @@ import Game.MainGame;
 import Graphics.Sprite;
 import Input.PlayerInput;
 import Map.Map;
+import Sound.Sound;
 
 import static Variables.Variables.*;
 
@@ -93,7 +94,8 @@ public abstract class Character extends AnimateEntity {
                     isCollision = true;
                 }
                 if (this instanceof Bomber && this.isCollider(entity) && entity instanceof Portal && ((Portal) entity).isAccessAble() && entity.getTileX() == j && entity.getTileY() == i) {
-                    System.out.println("WIN");
+                    MainGame.setBackToMenu(true);
+                    MainGame.setWin(true);
                 }
             }
         }

@@ -3,6 +3,7 @@ package Entity.Animate;
 import Entity.Entity;
 import Game.MainGame;
 import Graphics.Sprite;
+import Sound.Sound;
 import com.sun.tools.javac.Main;
 
 import java.util.HashMap;

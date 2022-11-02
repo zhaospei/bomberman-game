@@ -25,12 +25,14 @@ public class Flame extends AnimateEntity {
 
     @Override
     public void update() {
+        checkCollison();
         updateAnimation();
         updateDestroyAnimation();
     }
 
     @Override
     public void updateDestroyAnimation() {
+        checkCollison();
         if (timeDestroy == 0) {
             delete();
         } else {
@@ -65,7 +67,7 @@ public class Flame extends AnimateEntity {
                 enemy.destroy();
             }
         });
-        if (this.isCollider(map.getPlayer())) {
+        if (this.isCollider(map.getPlayer()) && map.getPlayer().getImmortal() == 0 && !map.getPlayer().isDestroyed()) {
             map.getPlayer().destroy();
         }
     }

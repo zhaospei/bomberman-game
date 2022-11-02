@@ -253,14 +253,15 @@ public class Sprite {
     | Scores
     |--------------------------------------------------------------------------
      */
-    public static Sprite Balloom_score = new Sprite(DEFAULT_SIZE, 8, 10, SpriteSheet.tiles, 16, 16);
-    public static Sprite Oneal_score = new Sprite(DEFAULT_SIZE, 9, 10, SpriteSheet.tiles, 16, 16);
-    public static Sprite Doll_score = new Sprite(DEFAULT_SIZE, 10, 10, SpriteSheet.tiles, 16, 16);
-    public static Sprite Minvo_score = new Sprite(DEFAULT_SIZE, 11, 10, SpriteSheet.tiles, 16, 16);
-    public static Sprite Kondoria_score = new Sprite(DEFAULT_SIZE, 12, 10, SpriteSheet.tiles, 16, 16);
-    public static Sprite Ovapi_score = new Sprite(DEFAULT_SIZE, 13, 10, SpriteSheet.tiles, 16, 16);
-    public static Sprite Pass_score = new Sprite(DEFAULT_SIZE, 14, 10, SpriteSheet.tiles, 16, 16);
-    public static Sprite Pontan_score = new Sprite(DEFAULT_SIZE, 15, 10, SpriteSheet.tiles, 16, 16);
+    public static Sprite balloom_score = new Sprite(DEFAULT_SIZE, 8, 10, SpriteSheet.tiles, 16, 16);
+    public static Sprite oneal_score = new Sprite(DEFAULT_SIZE, 9, 10, SpriteSheet.tiles, 16, 16);
+    public static Sprite doll_score = new Sprite(DEFAULT_SIZE, 10, 10, SpriteSheet.tiles, 16, 16);
+    public static Sprite minvo_score = new Sprite(DEFAULT_SIZE, 11, 10, SpriteSheet.tiles, 16, 16);
+    public static Sprite kondoria_score = new Sprite(DEFAULT_SIZE, 12, 10, SpriteSheet.tiles, 16, 16);
+    public static Sprite ovapi_score = new Sprite(DEFAULT_SIZE, 13, 10, SpriteSheet.tiles, 16, 16);
+    public static Sprite pass_score = new Sprite(DEFAULT_SIZE, 14, 10, SpriteSheet.tiles, 16, 16);
+    public static Sprite pontan_score = new Sprite(DEFAULT_SIZE, 15, 10, SpriteSheet.tiles, 16, 16);
+
     public Sprite(int size, int x, int y, SpriteSheet sheet, int rw, int rh) {
         SIZE = size;
         _pixels = new int[SIZE * SIZE];
